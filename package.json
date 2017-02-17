@@ -14,11 +14,13 @@
   },
   "devDependencies": {
     "autoprefixer": "^6.3.6",
+    "bootstrap-sass": "^3.3.7",
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.0",
     "elm": "^0.18.0",
     "elm-hot-loader": "^0.5.4",
     "elm-webpack-loader": "^4.2.0",
+    "extract-text-webpack-plugin": "^2.0.0-rc.3",
     "file-loader": "^0.10.0",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.17.0",

@@ -3,16 +3,6 @@ module Main exposing (main)
 import Html exposing (..)
 
 
--- main : Program Never Model Msg
--- main =
---    Navigation.program locationToMsg
---        { init = init
---        , update = update
---        , subscriptions = subscriptions
---        , view = view
---        }
-
-
 main : Program Never Model Msg
 main =
     Html.beginnerProgram
@@ -20,10 +10,6 @@ main =
         , view = view
         , update = update
         }
-
-
-
--- MODEL
 
 
 type alias Model =

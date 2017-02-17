@@ -6,6 +6,7 @@ var merge             = require('webpack-merge');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var autoprefixer      = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // detemine build env
 var TARGET_ENV =
@@ -43,7 +44,7 @@ var commonConfig = {
       },
       {
         test: /\.(woff|woff2|svg)$/,
-        loader: 'file-loader',
+        use: 'file-loader',
       },
     ],
   },
@@ -100,6 +101,7 @@ if (TARGET_ENV === 'development') {
           use: [
             'style-loader',
             'css-loader',
+            'sass-loader',
             'postcss-loader'
           ],
         },
@@ -110,6 +112,13 @@ if (TARGET_ENV === 'development') {
 
 // additional webpack settings for prod env (when invoked via 'npm run build')
 if (TARGET_ENV === 'production') {
+
+  var extractSass = new ExtractTextPlugin({
+    filename: "[name].[contenthash].css",
+    disable: false,
+    allChunks: true
+  });
+
   module.exports = merge(commonConfig, {
     entry: path.join( __dirname, 'frontend/js/index.js'),
 
@@ -118,18 +127,22 @@ if (TARGET_ENV === 'production') {
         {
           test: /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
-          loader: 'elm-webpack-loader',
+          use: 'elm-webpack-loader',
         },
         {
-          test: /\.(css|styl)$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            'postcss-loader',
-            'stylus-loader',
-          ],
-        },
-      ],
+          test: /\.(css|scss)$/,
+          use: extractSass.extract({
+            loader: [{
+              loader: 'css-loader'
+            }, {
+              loader: 'sass-loader'
+            }, {
+              loader: 'postcss-loader'
+            }],
+            fallback: 'style-loader'
+          })
+        }
+      ]
     },
 
     plugins: [
@@ -137,6 +150,8 @@ if (TARGET_ENV === 'production') {
         { from: 'frontend/img', to: 'img' },
         { from: 'frontend/favicon.ico' }
       ]),
+
+      extractSass,
 
       new webpack.optimize.UglifyJsPlugin({
         minimize: true,

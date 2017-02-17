@@ -1,7 +1,7 @@
 'use strict';
 
 require('!style-loader!css-loader!font-awesome/css/font-awesome.min.css');
-// require('../sass/index.scss');
+require('../scss/index.scss');
 
 var Elm = require('../elm/Main');
 var node = document.getElementById('app');
