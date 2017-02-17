@@ -1,0 +1,48 @@
+{
+  "name": "elm-workshop",
+  "description": "A workshop to learn the functional programming language Elm",
+  "version": "1.0.0",
+  "license": "UNLICENSED",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/basti1302/elm-lang-de.git"
+  },
+  "author": {
+    "name": "Bastian Krol",
+    "email": "bastian.krol@codecentric.de",
+    "url": "https://www.codecentric.de/team/profil/?profil=bastian-krol"
+  },
+  "devDependencies": {
+    "autoprefixer": "^6.3.6",
+    "copy-webpack-plugin": "^4.0.1",
+    "css-loader": "^0.26.0",
+    "elm": "^0.18.0",
+    "elm-hot-loader": "^0.4.0",
+    "elm-webpack-loader": "^3.0.6",
+    "file-loader": "^0.9.0",
+    "font-awesome": "^4.7.0",
+    "html-webpack-plugin": "^2.17.0",
+    "mkdirp": "^0.5.1",
+    "node-sass": "^4.5.0",
+    "npm-run-all": "^4.0.1",
+    "postcss-loader": "^1.1.1",
+    "rimraf": "^2.5.4",
+    "sass-loader": "^6.0.0",
+    "style-loader": "^0.13.1",
+    "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
+    "webpack-dev-server": "^1.14.1",
+    "webpack-merge": "^0.17.0"
+  },
+  "scripts": {
+    "env": "env",
+    "postinstall": "run-s make",
+    "elm-install": "elm-package install",
+    "clean": "rimraf dist && mkdirp dist",
+    "clean-make": "run-s clean make",
+    "make": "run-s elm-install webpack-production",
+    "webpack-production": "webpack",
+    "watch-webpack-production": "webpack -w",
+    "start": "webpack-dev-server --hot --inline --content-base frontend/"
+  }
+}
