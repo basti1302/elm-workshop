@@ -1,7 +1,3 @@
-$font-stack:    Helvetica, sans-serif;
-$primary-color: pink;
+@import 'config/bootstrap';
+@import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-body {
-  font: 100% $font-stack;
-  color: $primary-color;
-}
