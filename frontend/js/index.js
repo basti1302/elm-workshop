@@ -1,6 +1,6 @@
 'use strict';
 
-require('!style!css!font-awesome/css/font-awesome.min.css');
+require('!style-loader!css-loader!font-awesome/css/font-awesome.min.css');
 // require('../sass/index.scss');
 
 var Elm = require('../elm/Main');

@@ -23,20 +23,23 @@ var commonConfig = {
   },
 
   resolve: {
-    modulesDirectories: ['node_modules'],
-    extensions: ['', '.js', '.elm'],
+    modules: [ 'node_modules' ],
+    extensions: [ '.js', '.json', '.elm', '*' ]
   },
 
   module: {
     noParse: /\.elm$/,
-    loaders: [
+    rules: [
       // This loader is required for font-awesome to properly load font files
       // referenced in font-awesome's css files. These are referenced like this
       // font-awesome/fonts/fontawesome-webfont.eot?v=4.7.0
       // and we need to stript the "?v=4.7.0" from the end.
       {
         test: /\.(woff2|woff|ttf|eot|svg)(\?v=[a-z0-9]\.[a-z0-9]\.[a-z0-9])?$/,
-        loader: 'url-loader?limit=100000'
+        loader: 'url-loader',
+        options: {
+          limit: 100000
+        }
       },
       {
         test: /\.(woff|woff2|svg)$/,
@@ -52,10 +55,6 @@ var commonConfig = {
       filename: 'index.html',
     }),
   ],
-
-  postcss: [
-    autoprefixer({ browsers: ['last 2 versions'] }),
-  ],
 };
 
 // additional webpack settings for local development environment
@@ -69,7 +68,6 @@ if (TARGET_ENV === 'development') {
     devServer: {
       port: 7000,
       inline: true,
-      progress: true,
       proxy: [
         // redirect API requests to the Node.js backend
         {
@@ -82,15 +80,24 @@ if (TARGET_ENV === 'development') {
     },
 
     module: {
-      loaders: [
+      rules: [
         {
           test:    /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
-          loader:  'elm-hot!elm-webpack?verbose=true&warn=true&debug=true',
+          use:  [
+            { loader: 'elm-hot-loader' },
+            { loader: 'elm-webpack-loader',
+              options: {
+                verbose: true,
+                warn: true,
+                debug: true
+              }
+            }
+          ]
         },
         {
-          test: /\.(css|styl)$/,
-          loaders: [
+          test: /\.(css|scss)$/,
+          use: [
             'style-loader',
             'css-loader',
             'postcss-loader'
@@ -107,15 +114,15 @@ if (TARGET_ENV === 'production') {
     entry: path.join( __dirname, 'frontend/js/index.js'),
 
     module: {
-      loaders: [
+      rules: [
         {
           test: /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
-          loader: 'elm-webpack',
+          loader: 'elm-webpack-loader',
         },
         {
           test: /\.(css|styl)$/,
-          loaders: [
+          use: [
             'style-loader',
             'css-loader',
             'postcss-loader',
@@ -130,8 +137,6 @@ if (TARGET_ENV === 'production') {
         { from: 'frontend/img', to: 'img' },
         { from: 'frontend/favicon.ico' }
       ]),
-
-      new webpack.optimize.OccurenceOrderPlugin(),
 
       new webpack.optimize.UglifyJsPlugin({
         minimize: true,

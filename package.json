@@ -17,9 +17,9 @@
     "copy-webpack-plugin": "^4.0.1",
     "css-loader": "^0.26.0",
     "elm": "^0.18.0",
-    "elm-hot-loader": "^0.4.0",
-    "elm-webpack-loader": "^3.0.6",
-    "file-loader": "^0.9.0",
+    "elm-hot-loader": "^0.5.4",
+    "elm-webpack-loader": "^4.2.0",
+    "file-loader": "^0.10.0",
     "font-awesome": "^4.7.0",
     "html-webpack-plugin": "^2.17.0",
     "mkdirp": "^0.5.1",
@@ -30,9 +30,9 @@
     "sass-loader": "^6.0.0",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^1.13.1",
-    "webpack-dev-server": "^1.14.1",
-    "webpack-merge": "^0.17.0"
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0",
+    "webpack-merge": "^2.6.1"
   },
   "scripts": {
     "env": "env",
