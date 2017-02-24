@@ -1,4 +1,4 @@
-module Example002.Main exposing (main)
+module Example003 exposing (main)
 
 import Html exposing (..)
 

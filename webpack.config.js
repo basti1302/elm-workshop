@@ -1,18 +1,21 @@
-// most of this setup is from the elm-webpack-starter example:
-// https://github.com/moarwick/elm-webpack-starter/
-var path              = require('path');
-var webpack           = require('webpack');
-var merge             = require('webpack-merge');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var autoprefixer      = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
+var autoprefixer      = require('autoprefixer');
+var glob              = require('glob');
+var merge             = require('webpack-merge');
+var path              = require('path');
+var process           = require('process');
+var webpack           = require('webpack');
 
-var elmModules = [
-  path.resolve( __dirname, 'frontend/elm/Main.elm'),
-  path.resolve( __dirname, 'frontend/elm/Example001/Main.elm'),
-  path.resolve( __dirname, 'frontend/elm/Example002/Main.elm')
-];
+var elmModules =
+  glob
+  .sync('frontend/elm/Ex*.elm')
+  .map(function(modulePath) {
+    return path.resolve( __dirname, modulePath);
+});
+
+console.log('Found Elm modules: ', elmModules);
 
 // detemine build env
 var TARGET_ENV =

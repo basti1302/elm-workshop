@@ -16,52 +16,146 @@ This script does a few things:
   a beginner workshop.
 */
 
+// We use the left-pad function from npm... what could possibly go wrong? ;D
+var leftPad = require('left-pad');
+
 (function() {
   'use strict';
 
-  // elm-webpack-loader will actually compile all modules specified via the
-  // modules option in webpack config, not just frontend/elm/Main.elm.
+  // We need to require one arbitrary Elm file here, to trigger
+  // elm-webpack-loader. The loader will then actually compile all modules
+  // specified via the modules option in webpack config, not just
+  // the Elm file we mention here.
   // Thus, all modules are available as Elm.Full.Qualified.Module.Name
   // after this require call.
-  var Elm = require('../elm/Main');
+  var Elm = require('../elm/Example001');
 
-  // define which Elm module controls which DOM node
-  var nodesAndModules =
-    [   { divId: 'main', elmModule: Elm.Main }
-      , { divId: 'example001', elmModule: Elm.Example001.Main }
-      , { divId: 'example002', elmModule: Elm.Example002.Main }
-    ];
+  // Define which Elm module controls which DOM node.
+  // To add more modules, add them to the list here and add a div in
+  // index.html for them with a matching id.
+  var exercises = [];
+  for (var i = 1; i <= 2; i++) {
+    var index = leftPad(i, 3, '0');
+    if (!Elm['Example' + index]) {
+      console.error('No output module for index: ', index);
+      continue;
+    }
+    if (!Elm['Exercise' + index]) {
+      console.error('No exercise module for index: ', index);
+      continue;
+    }
+    exercises.push(
+      { index: index
+      , outputModule: Elm['Example' + index]
+      , outputDivId: createOutputDivId(index)
+      , exerciseModule: Elm['Exercise' + index]
+      , exerciseDivId: createExerciseDivId(index)
+      }
+    );
+  }
 
   // Embed all modules in their respective div.
-  nodesAndModules.forEach(function(definition) {
+  exercises.forEach(function(definition) {
+    if (!definition.outputModule) {
+      console.error('Inconsistent exercise definition, no output module: ',
+        definition.index);
+      return null;
+    }
+    if (!definition.exerciseModule) {
+      console.error('Inconsistent exercise definition, no exercise module: ',
+        definition.index);
+      return null;
+    }
+
     // fetch DOM nodes
-    var elmNode = document.getElementById(definition.divId);
-    if (!elmNode) {
-        console.error('Node not found: ', definition.divId);
-        return;
-    }
-    var navNode = document.getElementById('nav-' + definition.divId);
-    if (!navNode) {
-      console.error('Node not found: ', 'nav-' + definition.divId);
-      return;
-    }
+    var outputNode = findNode(definition.outputDivId);
+    if (!outputNode) { return; }
+    var exerciseNode = findNode(definition.exerciseDivId);
+    if (!exerciseNode) { return; }
 
-    // associate Elm module with DOM node
-    definition.elmModule.embed(elmNode);
+    // associate Elm output module with DOM node
+    definition.outputModule.embed(outputNode);
     // hide all nodes initially
-    elmNode.style.display = 'none';
+    outputNode.style.display = 'none';
 
-    // register nav click listener
-    navNode.onclick = function() {
-      nodesAndModules.forEach(function(definition) {
-        document.getElementById(definition.divId).style.display = 'none';
-      });
-      elmNode.style.display = 'block';
-      localStorage.setItem('active-div', definition.divId);
-    };
+    // associate Elm exercise module with DOM node
+    definition.exerciseModule.embed(exerciseNode);
+    // hide all nodes initially
+    exerciseNode.style.display = 'none';
   });
 
-  var lastActiveDiv = localStorage.getItem('active-div') || 'main';
-  document.getElementById(lastActiveDiv).style.display = 'block';
+  function createOutputDivId(index) {
+      return 'output-' + index;
+  }
+
+ function createExerciseDivId(index) {
+      return 'exercise-' + index;
+  }
+
+  function findNode(divId) {
+    var node = document.getElementById(divId);
+    if (!node) {
+      console.error('Node not found: ', divId);
+      return null;
+    }
+    return node;
+  }
+
+  function hideNode(divId) {
+    var node = findNode(divId);
+    if (node) {
+      node.style.display = 'none';
+    }
+  }
+
+  function showNode(divId) {
+    var node = findNode(divId);
+    if (node) {
+      node.style.display = 'block';
+    }
+  }
+
+  function createExerciseSelectionHandler(index) {
+    return function() {
+      activateExercise(index);
+    };
+  }
+
+  function activateExercise(index) {
+    // TODO Mark nav node as not active/active
+    exercises.forEach(function(definition) {
+      hideNode(definition.outputDivId);
+      hideNode(definition.exerciseDivId);
+    });
+    showNode(createOutputDivId(index));
+    showNode(createExerciseDivId(index));
+    localStorage.setItem('active-index', index);
+  }
+
+  function getIndexFromUrl() {
+    var hash = window.location.hash;
+    var result = /^#(\d\d\d)$/.exec(hash);
+    if (result) {
+      return result[1];
+    }
+    return null;
+  }
+
+  window.onhashchange = function() {
+    var newIndex = getIndexFromUrl();
+    if (newIndex) {
+      activateExercise(newIndex);
+    }
+  };
+
+  var initialExerciseIndex =
+    getIndexFromUrl() ||
+    localStorage.getItem('active-index') || 
+    '001';
+  activateExercise(initialExerciseIndex);
+
+  if (window.location.hash !== '/#' + initialExerciseIndex) {
+    history.pushState(null, null, '/#' + initialExerciseIndex);
+  }
 })();
 
