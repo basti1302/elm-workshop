@@ -1,4 +1,4 @@
-module Main exposing (main)
+module Example002.Main exposing (main)
 
 import Html exposing (..)
 
@@ -13,12 +13,12 @@ main =
 
 
 type alias Model =
-    ()
+    Int
 
 
 model : Model
 model =
-    ()
+    0
 
 
 type Msg
@@ -34,4 +34,4 @@ update msg model =
 
 view : Model -> Html Msg
 view model =
-    p [] [ text "Hello World" ]
+    p [] [ text "Example 002" ]

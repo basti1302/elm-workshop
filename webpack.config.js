@@ -8,6 +8,12 @@ var autoprefixer      = require('autoprefixer');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+var elmModules = [
+  path.resolve( __dirname, 'frontend/elm/Main.elm'),
+  path.resolve( __dirname, 'frontend/elm/Example001/Main.elm'),
+  path.resolve( __dirname, 'frontend/elm/Example002/Main.elm')
+];
+
 // detemine build env
 var TARGET_ENV =
   process.env.npm_lifecycle_event.indexOf('production') >= 0 ?
@@ -91,7 +97,9 @@ if (TARGET_ENV === 'development') {
               options: {
                 verbose: true,
                 warn: true,
-                debug: true
+                debug: true,
+                cwd: __dirname,
+                modules: elmModules
               }
             }
           ]
@@ -127,7 +135,12 @@ if (TARGET_ENV === 'production') {
         {
           test: /\.elm$/,
           exclude: [/elm-stuff/, /node_modules/],
-          use: 'elm-webpack-loader',
+          use: {
+            loader: 'elm-webpack-loader',
+            options: {
+              modules: elmModules,
+            }
+          }
         },
         {
           test: /\.(css|scss)$/,
