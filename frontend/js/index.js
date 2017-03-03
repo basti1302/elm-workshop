@@ -30,29 +30,39 @@ var leftPad = require('left-pad');
   // after this require call.
   var Elm = require('../elm/Example001');
 
+  var maxExerciseIndex = 999;
+
   // Define which Elm module controls which DOM node.
   // To add more modules, add them to the list here and add a div in
   // index.html for them with a matching id.
   var exercises = [];
-  for (var i = 1; i <= 2; i++) {
+  for (var i = 1; i <= maxExerciseIndex; i++) {
     var index = leftPad(i, 3, '0');
-    if (!Elm['Example' + index]) {
-      console.error('No output module for index: ', index);
+    if (!Elm['Example' + index] && !Elm['Exercise' + index]) {
+      // neither Example nor Exercise Elm module exists, ignore this index
       continue;
-    }
-    if (!Elm['Exercise' + index]) {
-      console.error('No exercise module for index: ', index);
+    } else if (!Elm['Example' + index]) {
+      console.warn('Exercise modules without example for index: ', index);
+      continue;
+    } else if (!Elm['Exercise' + index]) {
+      console.warn('Example modules without exercise for index: ', index);
       continue;
     }
     exercises.push(
-      { index: index
+      { idx: i
+      , index: index
       , outputModule: Elm['Example' + index]
       , outputDivId: createOutputDivId(index)
       , exerciseModule: Elm['Exercise' + index]
       , exerciseDivId: createExerciseDivId(index)
+      , navDivId: createNavDivId(index)
       }
     );
   }
+
+  var outputParentDiv = findNode('output');
+  var exercisesParentDiv = findNode('exercises');
+  var navParentDiv = findNode('navigation');
 
   // Embed all modules in their respective div.
   exercises.forEach(function(definition) {
@@ -67,11 +77,20 @@ var leftPad = require('left-pad');
       return null;
     }
 
-    // fetch DOM nodes
-    var outputNode = findNode(definition.outputDivId);
-    if (!outputNode) { return; }
-    var exerciseNode = findNode(definition.exerciseDivId);
-    if (!exerciseNode) { return; }
+    // create DOM nodes
+    var outputNode = document.createElement('div');
+    outputNode.id = definition.outputDivId;
+    outputParentDiv.appendChild(outputNode);
+    var exerciseNode = document.createElement('div');
+    exerciseNode.id = definition.exerciseDivId;
+    exercisesParentDiv.appendChild(exerciseNode);
+    var navLiNode = document.createElement('li');
+    navParentDiv.appendChild(navLiNode);
+    var navANode = document.createElement('a');
+    navANode.id = definition.navDivId;
+    navANode.href = '/#' + definition.index;
+    navANode.textContent = definition.idx;
+    navLiNode.appendChild(navANode);
 
     // associate Elm output module with DOM node
     definition.outputModule.embed(outputNode);
@@ -85,11 +104,15 @@ var leftPad = require('left-pad');
   });
 
   function createOutputDivId(index) {
-      return 'output-' + index;
+    return 'output-' + index;
   }
 
  function createExerciseDivId(index) {
-      return 'exercise-' + index;
+    return 'exercise-' + index;
+  }
+
+  function createNavDivId(index) {
+    return 'nav-' + index;
   }
 
   function findNode(divId) {

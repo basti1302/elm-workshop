@@ -11,31 +11,14 @@ Exercise 1 - Setup
 Getting started
 ---------------
 
-If you did not yet follow the setup instructions in `readme.mardown`, please follow these steps to set everything up:
+If you did not yet follow the setup instructions in `readme.mardown`, please follow these steps to set everything up.
 
-Clone `git@github.com:basti1302/elm-workshop.git` (or `https://github.com/basti1302/elm-workshop.git`) into a directory of your choice.
-
-In the root directory of the repository, run
-```
-npm install
-```
-
-This will install (among other things) Elm 0.18 as a local dependency.
-
-Next, run
-
-```
-npm start
-```
-
-This will start the Webpack dev server in watch mode. Go to http://localhost:7000.
-
-Open the file `frontend/elm/Example001.elm` in an editor. Now you are ready to go. Have fun!
+However, if you are seeing this in a browser served from http://localhost:7000 you have set up everything successfully. Hooray!
 
 Elm Syntax Basics - a Very Short Guided Tour
 --------------------------------------------
 
-The file you opened looks like this:
+Open the file `frontend/elm/Example001.elm` in an editor. The file looks like this:
 
 ```
 module Example001 exposing (..)
@@ -74,7 +57,9 @@ This is the entry point into our module. Whatever we return from it will be rend
 
 Now you know the basic syntactic building blocks of Elm. Let's get started with some hands on exercises.
 
+----
+
 Do you see the navbar at the top? You can always switch between exercises by clicking on the exercise numbers there.
 
-Now, continue with the [exercise 2](/#002).
+<span class="fa fa-hand-o-right"></span>  Now, continue with **[exercise 2](/#002)**.
 """

@@ -1,37 +1,8 @@
-module Example003 exposing (main)
+module Example003 exposing (..)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 
-main : Program Never Model Msg
 main =
-    Html.beginnerProgram
-        { model = model
-        , view = view
-        , update = update
-        }
-
-
-type alias Model =
-    Int
-
-
-model : Model
-model =
-    0
-
-
-type Msg
-    = NoOp
-
-
-update : Msg -> Model -> Model
-update msg model =
-    case msg of
-        NoOp ->
-            model
-
-
-view : Model -> Html Msg
-view model =
-    p [] [ text "Example 002" ]
+    p [] [ text "HTML Structures" ]

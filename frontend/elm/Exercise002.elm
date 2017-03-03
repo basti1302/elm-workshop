@@ -44,4 +44,8 @@ First comes the function name, then the parameter list, separated by spaces.
 The equals sign starts the function body. Remember that Elm is not an
 imperative language. All you can do in the function body is to produce a new
 value, based on the input parameters.
+
+----
+
+<span class="fa fa-hand-o-right"></span> Continue with **[exercise 3](/#003)**.
 """

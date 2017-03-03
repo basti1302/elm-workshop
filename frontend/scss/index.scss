@@ -1,6 +1,8 @@
 @import 'config/bootstrap';
 @import '~bootstrap-sass/assets/stylesheets/bootstrap';
 
-.panel-body > div {
-  min-height: 10rem;
-}
+@import 'workshop';
+
+/* add custom styles in scss/user.scss */
+@import 'user';
+
