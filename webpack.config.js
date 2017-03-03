@@ -8,14 +8,19 @@ var path              = require('path');
 var process           = require('process');
 var webpack           = require('webpack');
 
+// collect all entry point Elm modules
+var exampleModules = glob.sync('frontend/elm/Example*.elm');
+var exerciseModules = glob.sync('frontend/elm/Exercise*.elm');
+var solutionModules = glob.sync('frontend/elm/Solution*.elm');
 var elmModules =
-  glob
-  .sync('frontend/elm/Ex*.elm')
+  exampleModules
+  .concat(exerciseModules)
+  .concat(solutionModules)
   .map(function(modulePath) {
     return path.resolve( __dirname, modulePath);
-});
+  });
 
-console.log('Found Elm modules: ', elmModules);
+console.log('Found Elm modules: \n', elmModules);
 
 // detemine build env
 var TARGET_ENV =

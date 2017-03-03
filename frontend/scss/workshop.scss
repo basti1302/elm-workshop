@@ -1,3 +1,15 @@
 .panel-body > div {
   min-height: 10rem;
 }
+
+.solution-output {
+  border: 1px solid grey;
+  margin-bottom: 1rem;
+  padding: 1rem;
+
+  .solution-label {
+    font-weight: bold;
+    font-size: large;
+    text-decoration: underline;
+  }
+}

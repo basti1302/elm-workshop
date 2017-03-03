@@ -1,6 +1,7 @@
-module Example003 exposing (..)
+module Solution003_3 exposing (..)
 
 import Html exposing (..)
+import Html.Attributes exposing (..)
 
 
 main =
