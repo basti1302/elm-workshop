@@ -4,18 +4,9 @@ import Html exposing (..)
 
 
 main =
-    div
-        []
-        [ h1
-            []
-            [ text "Headline 1" ]
-        , p
-            []
-            [ text "A paragraph" ]
-        , h2
-            []
-            [ text "Headline 2" ]
-        , p
-            []
-            [ text "Another paragraph" ]
-        ]
+    text (toString (multiply 2 3))
+
+
+multiply : Int -> Int -> Int
+multiply a b =
+    a * b

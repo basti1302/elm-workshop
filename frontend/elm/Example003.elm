@@ -1,8 +1,11 @@
 module Example003 exposing (..)
 
 import Html exposing (..)
-import Html.Attributes exposing (..)
 
 
 main =
-    p [] [ text "HTML Structures" ]
+    text (toString (multiply 2 3))
+
+
+multiply a b =
+    a * b

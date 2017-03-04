@@ -186,7 +186,7 @@ var leftPad = require('left-pad');
     exercises.forEach(function(definition) {
       hideNode(definition.outputDivId);
       hideNode(definition.exerciseDivId);
-      findNode(definition.navDivId).classNames = '';
+      findNode(definition.navDivId).parentElement.className = '';
       definition.solutionDefinitions.forEach(function(solutionDefinition) {
         hideNode(solutionDefinition.key);
       });
@@ -195,7 +195,7 @@ var leftPad = require('left-pad');
     // show new exercise
     showNode(exerciseDefinition.outputDivId);
     showNode(exerciseDefinition.exerciseDivId);
-    findNode(exerciseDefinition.navDivId).classNames = 'active';
+    findNode(exerciseDefinition.navDivId).parentElement.className = 'active';
     exerciseDefinition.solutionDefinitions.forEach(function(solutionDefinition) {
       showNode(solutionDefinition.key);
     });

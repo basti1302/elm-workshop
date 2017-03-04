@@ -1,8 +1,10 @@
 module Exercise001 exposing (..)
 
+import Html exposing (Html)
 import Markdown
 
 
+main : Html ()
 main =
     Markdown.toHtml [] """
 Exercise 1 - Setup
@@ -11,7 +13,7 @@ Exercise 1 - Setup
 Getting started
 ---------------
 
-If you did not yet follow the setup instructions in `readme.mardown`, please follow these steps to set everything up.
+Welcome to the Elm workshop! If you did not yet follow the setup instructions in `readme.mardown`, please do so now to set everything up.
 
 However, if you are seeing this in a browser served from http://localhost:7000 you have set up everything successfully. Hooray!
 
@@ -53,7 +55,7 @@ Finally, the `main` function:
 main = text "Hello Elm!"
 ```
 
-This is the entry point into our module. Whatever we return from it will be rendered. Elm is strongly typed, so we can not just return a string here. Instead, we need to convert the string into an HTML text node by calling the function text from the Html module.
+This is the entry point into our module. Whatever we return from it will be rendered. Elm is strongly typed, so we can not just return a string here. Instead, we need to convert the string into an *HTML text node* by calling the function `text` from the `Html` module.
 
 Now you know the basic syntactic building blocks of Elm. Let's get started with some hands on exercises.
 

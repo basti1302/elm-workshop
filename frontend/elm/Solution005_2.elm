@@ -1,18 +1,15 @@
-module Solution003_3 exposing (..)
+module Solution005_2 exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 
 
+main : Html a
 main =
     div
         []
         [ h1
-            [ style
-                [ ( "font-size", "100px" )
-                , ( "color", "#f0f" )
-                ]
-            ]
+            [ class "text-warning" ]
             [ text "Headline 1" ]
         , p
             [ class "text-success bold" ]
