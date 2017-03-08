@@ -29,9 +29,9 @@ Syntax
 √ 6: List.map -> HTML ul/li, filter, ...
 √ 7: let .. in ..
 √ 8: Typen: Type Alias
-* 9: Typen: Records, record update, implicit getters
-* |> und <|
-* Conditionals: if-else, && || not
+√ 9: Typen: Records, record update, implicit getters
+√ |> und <|
+√ Conditionals: if-else, && || not
 * Typen: Tuple, Html.Attributes.style
 * [Typen: Primitive: Int, Bool, String]
 * Typen: Union Type

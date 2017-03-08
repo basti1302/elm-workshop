@@ -8,7 +8,7 @@ main : Html a
 main =
     Markdown.toHtml [] """
 Exercise X - Topic
-==================
+===================
 
 Introduction
 ------------
