@@ -1,0 +1,71 @@
+22 MAR 2017
+13:30 - 17:00
+
+3,5 Stunden
+
+TODO
+====
+√ Setup
+√ Code-Beispiele in den Aufgaben, damit Teilnehmer das Beispiel gleichzeitig mit
+  der Aufgabe sehen.
+√ Beispielprojekt mit webpack, elm, ggf. express für Backend
+√ Themen sortieren, in Reihenfolge bringen, roter Faden
+* Aufgaben im Beispielprojekt vorbereiten.
+* Folien (Konzepte erklären, Beispiele)
+* Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
+* Test-Lauf
+
+Scope
+=====
+
+Syntax
+------
+
+√ Hello World
+√ Kommentare
+√ XXXX Typen: List
+√ HTML
+√ 5: class Attribute
+√ 6: List.map -> HTML ul/li, filter, ...
+√ 7: let .. in ..
+√ 8: Typen: Type Alias
+* 9: Typen: Records, record update, implicit getters
+* |> und <|
+* Conditionals: if-else, && || not
+* Typen: Tuple, Html.Attributes.style
+* [Typen: Primitive: Int, Bool, String]
+* Typen: Union Type
+* case ... of
+* Pattern Matching
+* Maybe
+* Imports, Module, Exposing, full qualified vs. non-qualified
+
+Konzepte
+--------
+
+* Html.beginnerProgram
+* Elm-Architecture (einfache Version)
+    * zentrales Model
+    * update Funktion
+    * view function
+* Msg, Cmd erklären
+* button, click event
+* text input, change event
+
+* Backend HTTP
+* Web Sockets?
+
+Passt das noch?
+===============
+* Geschachtelte Komponenten mit eigenem model, view, update
+* JSON Encode/Decode? json2elm!
+* Flags (nicht so wichtig)
+* Navigation
+* SPA-Aspekte
+
+Out of Scope
+============
+* JavaScript interop, Ports
+
+
+
