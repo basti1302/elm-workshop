@@ -133,5 +133,12 @@ Add code to the `update` function to overwrite the current counter value with th
 
 ----
 
+The half day workshop ends here. Congratulations for finishing it! <3
+
+Of course you are welcome to
+* explorer exercises you might have skipped,
+* review the covered material again and experiment some more with the code in the exercises you have completed, or
+* continue with the next exercise that would be covered in a longer workshop (full day or multi day).
+
 <span class="fa fa-hand-o-right"></span> Continue with **[exercise 14](/#014)**.
 """

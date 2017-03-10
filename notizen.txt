@@ -10,12 +10,15 @@ TODO
   der Aufgabe sehen.
 √ Beispielprojekt mit webpack, elm, ggf. express für Backend
 √ Themen sortieren, in Reihenfolge bringen, roter Faden
-* Aufgaben im Beispielprojekt vorbereiten.
+√ Aufgaben im Beispielprojekt vorbereiten.
 * Kürzen!!!!
 * Folien (Konzepte erklären, Beispiele)
 * Zweisprachig/Deutsch
-* Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
+* Syntax-Highlighting für Code-Blöcke
+* Compile-Fehler im Browser anzeigen?
 * Test-Lauf
+
+* Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
 
 Scope
 =====
@@ -39,19 +42,19 @@ Syntax
 √ Pattern Matching
 √ Html.beginnerProgram
 √ button, click event
-* Elm-Architecture (einfache Version)
+√ text input, change event
+√ Elm-Architecture (einfache Version)
     * zentrales Model
     * update Funktion
     * view function
-* Cmd
-* text input, change event
 * Maybe
 * Imports, Module, Exposing, full qualified vs. non-qualified
 * [Typen: Tuple, Html.Attributes.style]
 * [Typen: Primitive: Int, Bool, String]
 
-* Backend HTTP (only in full day workshop)
+* Backend HTTP (only in full day workshop) & Cmd
 * Web Sockets? (only in full day workshop)
+* Tasks (only in full day workshop)
 
 Passt das noch?
 ===============

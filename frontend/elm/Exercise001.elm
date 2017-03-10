@@ -17,6 +17,11 @@ Welcome to the Elm workshop! If you did not yet follow the setup instructions in
 
 However, if you are seeing this in a browser served from http://localhost:7000 you have set up everything successfully. Hooray!
 
+Workshop Setting
+----------------
+
+This workshop is intended as a live workshop with a trainer. You might be able to work through the exercises by yourself, but this might not be the most effective way. If you would like to book this as an on-site workshop at your company or for a conference, feel free to contact me at <a href="mailto:bastian.krol@codecentric.de">bastian.krol@codecentric.de</a>. The workshop length and the covered topics are flexible and can be customized to your specific needs, ranging from a half day basics workshop to a multi-day in depth Elm bootcamp.
+
 Elm Syntax Basics - a Very Short Guided Tour
 --------------------------------------------
 
