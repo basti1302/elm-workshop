@@ -11,7 +11,9 @@ TODO
 √ Beispielprojekt mit webpack, elm, ggf. express für Backend
 √ Themen sortieren, in Reihenfolge bringen, roter Faden
 * Aufgaben im Beispielprojekt vorbereiten.
+* Kürzen!!!!
 * Folien (Konzepte erklären, Beispiele)
+* Zweisprachig/Deutsch
 * Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
 * Test-Lauf
 
@@ -23,7 +25,7 @@ Syntax
 
 √ Hello World
 √ Kommentare
-√ XXXX Typen: List
+√ Typen: List
 √ HTML
 √ 5: class Attribute
 √ 6: List.map -> HTML ul/li, filter, ...
@@ -32,32 +34,28 @@ Syntax
 √ 9: Typen: Records, record update, implicit getters
 √ |> und <|
 √ Conditionals: if-else, && || not
-* Typen: Tuple, Html.Attributes.style
-* [Typen: Primitive: Int, Bool, String]
-* Typen: Union Type
-* case ... of
-* Pattern Matching
-* Maybe
-* Imports, Module, Exposing, full qualified vs. non-qualified
-
-Konzepte
---------
-
-* Html.beginnerProgram
+√ Typen: Union Type
+√ case ... of
+√ Pattern Matching
+√ Html.beginnerProgram
+√ button, click event
 * Elm-Architecture (einfache Version)
     * zentrales Model
     * update Funktion
     * view function
-* Msg, Cmd erklären
-* button, click event
+* Cmd
 * text input, change event
+* Maybe
+* Imports, Module, Exposing, full qualified vs. non-qualified
+* [Typen: Tuple, Html.Attributes.style]
+* [Typen: Primitive: Int, Bool, String]
 
-* Backend HTTP
-* Web Sockets?
+* Backend HTTP (only in full day workshop)
+* Web Sockets? (only in full day workshop)
 
 Passt das noch?
 ===============
-* Geschachtelte Komponenten mit eigenem model, view, update
+* Geschachtelte Komponenten mit eigenem model, view, update, Html.map
 * JSON Encode/Decode? json2elm!
 * Flags (nicht so wichtig)
 * Navigation
@@ -66,6 +64,4 @@ Passt das noch?
 Out of Scope
 ============
 * JavaScript interop, Ports
-
-
 
