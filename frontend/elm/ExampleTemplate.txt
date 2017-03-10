@@ -1,0 +1,8 @@
+module Example0X exposing (..)
+
+import Html exposing (..)
+
+
+main : Html a
+main =
+    text "Example X"

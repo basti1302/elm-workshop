@@ -21,6 +21,8 @@ Relevant Docs
 Exercise X.1
 -------------
 
+Open the file  `frontend/elm/Example0X.elm` in an editor. ...
+
 Exercise X.2
 -------------
 
