@@ -83,6 +83,7 @@ if (TARGET_ENV === 'development') {
     devServer: {
       port: 7000,
       inline: true,
+      overlay: true,
       proxy: [
         // redirect API requests to the Node.js backend
         {
