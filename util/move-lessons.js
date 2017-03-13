@@ -7,14 +7,12 @@ const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 const leftPad = require('left-pad');
 
-// const lessonRegex = /^Lesson(\d\d\d)\.elm$/;
-// const exampleRegex = /^Example(\d\d\d)\.elm$/;
-// const solutionRegex = /^Solution(\d\d\d)_(\d+)\.elm$/;
-
+let elmDir = null;
 let command = null;
-let from = null;
-let to = null;
+let fromParam = null;
+let toParam = null;
 let files = [];
+let maxIndex = null;
 
 function run() {
   parseCommandLineArguments();
@@ -31,12 +29,17 @@ function parseCommandLineArguments() {
       if (args._.length < 3) {
         printErrorAndExit('Too few arguments for command move.');
       }
-      from = args._[1];
-      to = args._[2];
-      checkIfNumerical(from, 'from');
-      checkIfNumerical(to, 'to');
-      from = pad(from);
-      to = pad(to);
+      fromParam = args._[1];
+      toParam = args._[2];
+      checkIfNumerical(fromParam, 'from');
+      checkIfNumerical(toParam, 'to');
+      break;
+    case 'insert':
+      if (args._.length < 2) {
+        printErrorAndExit('Too few arguments for command insert.');
+      }
+      fromParam = args._[1];
+      checkIfNumerical(fromParam, 'from');
       break;
     default:
       printErrorAndExit(`Unknown command: ${command}`);
@@ -62,20 +65,47 @@ function printErrorAndExit(message) {
 
 function printHelp() {
   console.log('Usage:');
-  console.log('    - move-lessons.js move <from> <to>');
+  console.log('    - move-lessons.js move <from> <to>: moves lesson <from> to lesson <to>');
+  console.log('    - move-lessons.js insert <index>: increments the index of all lessons >= <index>');
 }
 
-function chdirAndReadFiles() {
-  const elmDir = path.join(__dirname, '..', 'frontend', 'elm');
+/**
+ * chdir to working directory and read initial directory listing.
+ */
+function init() {
+  elmDir = path.join(__dirname, '..', 'frontend', 'elm');
   process.chdir(elmDir);
+  readDirectoryListing();
+  maxIndex = calculateMaxIndex();
+}
+
+function readDirectoryListing() {
   files = fs.readdirSync(elmDir);
 }
 
+function calculateMaxIndex() {
+  const regex =
+    new RegExp(`^(?:Lesson|Example|Solution)0*(\\d{1,3})(?:_\\d+)?\\.elm$`);
+
+  let max = 0;
+  files.forEach(fileName => {
+    const match = regex.exec(fileName);
+    if (match && match[1]) {
+      let idx = parseInt(match[1]);
+      max = Math.max(max, idx);
+    }
+  });
+  return max;
+}
+
 function executeCommand() {
-  chdirAndReadFiles();
+  init();
   switch (command) {
     case 'move':
-      moveLesson();
+      moveLesson(fromParam, toParam);
+      break;
+    case 'insert':
+      insertLesson();
       break;
     default:
       printErrorAndExit(`Unknown command: ${command}`);
@@ -83,42 +113,32 @@ function executeCommand() {
   }
 }
 
-function moveLesson() {
-  console.log(`moving ${from} to ${to}`);
-  const foundTarget = checkIfTargetExists();
+function moveLesson(from, to) {
+  console.log(`Moving lesson ${from} to ${to}.`);
+  const foundTarget = checkIfTargetExists(to);
   if (foundTarget) {
     process.exit(1);
   }
-  moveAllFilesForLesson();
+  moveAllFilesForLesson(from, to);
 }
 
-function checkIfTargetExists() {
-  const lessonRegex = new RegExp(`^Lesson${to}\.elm$`);
-  const exampleRegex = new RegExp(`^Example${to}\.elm$`);
-  const solutionRegex = new RegExp(`^Solution${to}_(\\d+)\.elm$`);
-  const allRegexes = [
-    lessonRegex,
-    exampleRegex,
-    solutionRegex,
-  ];
-
+function checkIfTargetExists(to) {
+  const regex = new RegExp(`^(?:Lesson|Example|Solution)${pad(to)}(?:_\\d+)?\.elm$`);
   let foundTarget = false;
   files.forEach(fileName => {
-    allRegexes.forEach(regex => {
-      const match = regex.exec(fileName);
-      if (match) {
-        foundTarget = true;
-        console.error(`Error: Target ${match[0]} exists`);
-      }
-    });
+    const match = regex.exec(fileName);
+    if (match) {
+      foundTarget = true;
+      console.error(`Error: Target ${match[0]} exists`);
+    }
   });
   return foundTarget;
 }
 
-function moveAllFilesForLesson() {
-  const lessonRegex = new RegExp(`^(Lesson)(${from})(\.elm$)`);
-  const exampleRegex = new RegExp(`^(Example)(${from})(\.elm$)`);
-  const solutionRegex = new RegExp(`^(Solution)(${from})(_\\d+\.elm$)`);
+function moveAllFilesForLesson(from, to) {
+  const lessonRegex = new RegExp(`^(Lesson)(${pad(from)})(\.elm$)`);
+  const exampleRegex = new RegExp(`^(Example)(${pad(from)})(\.elm$)`);
+  const solutionRegex = new RegExp(`^(Solution)(${pad(from)})(_\\d+\.elm$)`);
   const allRegexes = [
     lessonRegex,
     exampleRegex,
@@ -129,8 +149,7 @@ function moveAllFilesForLesson() {
     allRegexes.forEach(regex => {
       const match = regex.exec(fileName);
       if (match && match.length >= 2) {
-        console.log(`Found: ${match[0]} ${match[1]} ${match[2]} ${match[3]}`);
-        let newFileName = `${match[1]}${to}${match[3]}`;
+        let newFileName = `${match[1]}${pad(to)}${match[3]}`;
         console.log(`${fileName} -> ${newFileName}`);
         fs.renameSync(fileName, newFileName);
       }
@@ -138,15 +157,12 @@ function moveAllFilesForLesson() {
   });
 }
 
+function insertLesson() {
+  console.log(`insert ${fromParam}, max index: ${maxIndex} `);
+  for (var i = maxIndex; i >= fromParam; i--) {
+     moveLesson(i, i + 1);
+     readDirectoryListing();
+  }
+}
 
 run();
-
-// files.forEach(fileName => {
-//   const match = /^Exercise(\d\d\d)\.elm$/.exec(fileName);
-//   if (match && match.length >= 2) {
-//     const exerciseIndex = match[1];
-//     console.log(match[0], exerciseIndex);
-//     fs.renameSync(fileName, 'Lesson' + match[1] + '.elm');
-//   }
-// });
-
