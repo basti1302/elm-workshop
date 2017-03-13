@@ -1,4 +1,4 @@
-module Exercise005 exposing (..)
+module Lesson005 exposing (..)
 
 import Html exposing (Html)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html ()
 main =
     Markdown.toHtml [] """
-Exercise 5 - HTML
-=================
+Lesson 5 - HTML
+===============
 
 Introduction
 ------------

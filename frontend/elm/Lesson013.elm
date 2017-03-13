@@ -1,4 +1,4 @@
-module Exercise013 exposing (..)
+module Lesson013 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 13 - Web Apps (Finally)
-================================
+Lesson 13 - Web Apps (Finally)
+==============================
 
 Introduction
 ------------

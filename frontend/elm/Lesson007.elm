@@ -1,4 +1,4 @@
-module Exercise007 exposing (..)
+module Lesson007 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 7 - Let Expressions
-============================
+Lesson 7 - Let Expressions
+==========================
 
 Introduction
 ------------

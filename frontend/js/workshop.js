@@ -27,22 +27,22 @@ var leftPad = require('left-pad');
   // after this require call.
   var Elm = require('../elm/Example001');
 
-  var maxExerciseIndex = 999;
+  var maxLessonIndex = 999;
 
   // Define which Elm module controls which DOM node.
-  var exercises = [];
-  for (var i = 1; i <= maxExerciseIndex; i++) {
+  var lessons = [];
+  for (var i = 1; i <= maxLessonIndex; i++) {
     var index = leftPad(i, 3, '0');
     var exampleModule = Elm['Example' + index];
-    var exerciseModule = Elm['Exercise' + index];
-    if (!exampleModule && !exerciseModule) {
-      // neither Example nor Exercise Elm module exists, ignore this index
+    var lessonModule = Elm['Lesson' + index];
+    if (!exampleModule && !lessonModule) {
+      // neither Example nor Lesson Elm module exists, ignore this index
       continue;
     } else if (!exampleModule) {
-      console.warn('Exercise module without example for index: ', index);
+      console.warn('Lesson module without example for index: ', index);
       continue;
-    } else if (!exerciseModule) {
-      console.warn('Example module without exercise for index: ', index);
+    } else if (!lessonModule) {
+      console.warn('Example module without lesson for index: ', index);
       continue;
     }
     var solutionDefinitions =
@@ -57,13 +57,13 @@ var leftPad = require('left-pad');
       .filter(function(solutionDefinition) {
         return !!solutionDefinition.module;
       });
-    exercises.push(
+    lessons.push(
       { idx: i
       , index: index
       , outputModule: exampleModule
       , outputDivId: createOutputDivId(index)
-      , exerciseModule: exerciseModule
-      , exerciseDivId: createExerciseDivId(index)
+      , lessonModule: lessonModule
+      , lessonDivId: createLessonDivId(index)
       , navDivId: createNavDivId(index)
       , solutionDefinitions: solutionDefinitions
       }
@@ -71,7 +71,7 @@ var leftPad = require('left-pad');
   }
 
   var outputParentDiv = findNode('output');
-  var exercisesParentDiv = findNode('exercises');
+  var lessonsParentDiv = findNode('lessons');
   var navParentDiv = findNode('navigation');
   var solutionsParentDiv = findNode('solutions');
 
@@ -83,14 +83,14 @@ var leftPad = require('left-pad');
   }
 
   // Embed all modules in their respective div.
-  exercises.forEach(function(definition) {
+  lessons.forEach(function(definition) {
     if (!definition.outputModule) {
-      console.error('Inconsistent exercise definition, no output module: ',
+      console.error('Inconsistent lesson definition, no output module: ',
         definition.index);
       return null;
     }
-    if (!definition.exerciseModule) {
-      console.error('Inconsistent exercise definition, no exercise module: ',
+    if (!definition.lessonModule) {
+      console.error('Inconsistent lesson definition, no lesson module: ',
         definition.index);
       return null;
     }
@@ -105,13 +105,13 @@ var leftPad = require('left-pad');
     // hide all nodes initially
     outputNode.style.display = 'none';
 
-    var exerciseNode = document.createElement('div');
-    exerciseNode.id = definition.exerciseDivId;
-    exercisesParentDiv.appendChild(exerciseNode);
-    // associate Elm exercise module with DOM node
-    definition.exerciseModule.embed(exerciseNode);
+    var lessonNode = document.createElement('div');
+    lessonNode.id = definition.lessonDivId;
+    lessonsParentDiv.appendChild(lessonNode);
+    // associate Elm lesson module with DOM node
+    definition.lessonModule.embed(lessonNode);
     // hide all nodes initially
-    exerciseNode.style.display = 'none';
+    lessonNode.style.display = 'none';
 
     var navLiNode = document.createElement('li');
     navParentDiv.appendChild(navLiNode);
@@ -144,8 +144,8 @@ var leftPad = require('left-pad');
     return 'output-' + index;
   }
 
- function createExerciseDivId(index) {
-    return 'exercise-' + index;
+ function createLessonDivId(index) {
+    return 'lesson-' + index;
   }
 
   function createNavDivId(index) {
@@ -175,39 +175,39 @@ var leftPad = require('left-pad');
     }
   }
 
-  function activateExercise(index) {
-    var exerciseDefinition = findExerciseByIndex(index);
+  function activateLesson(index) {
+    var lessonDefinition = findLessonByIndex(index);
 
-    if (!exerciseDefinition) {
+    if (!lessonDefinition) {
       return;
     }
 
-    // hide all other exercises
-    exercises.forEach(function(definition) {
+    // hide all other lessons
+    lessons.forEach(function(definition) {
       hideNode(definition.outputDivId);
-      hideNode(definition.exerciseDivId);
+      hideNode(definition.lessonDivId);
       findNode(definition.navDivId).parentElement.className = '';
       definition.solutionDefinitions.forEach(function(solutionDefinition) {
         hideNode(solutionDefinition.key);
       });
     });
 
-    // show new exercise
-    showNode(exerciseDefinition.outputDivId);
-    showNode(exerciseDefinition.exerciseDivId);
-    findNode(exerciseDefinition.navDivId).parentElement.className = 'active';
-    exerciseDefinition.solutionDefinitions.forEach(function(solutionDefinition) {
+    // show new lesson
+    showNode(lessonDefinition.outputDivId);
+    showNode(lessonDefinition.lessonDivId);
+    findNode(lessonDefinition.navDivId).parentElement.className = 'active';
+    lessonDefinition.solutionDefinitions.forEach(function(solutionDefinition) {
       showNode(solutionDefinition.key);
     });
 
-    // save active exercise index
+    // save active lesson index
     localStorage.setItem('active-index', index);
   }
 
-  function findExerciseByIndex(index) {
-    for (var exIdx = 0; exIdx < exercises.length; exIdx++) {
-      if (exercises[exIdx].index === index) {
-        return exercises[exIdx];
+  function findLessonByIndex(index) {
+    for (var lessonIdx = 0; lessonIdx < lessons.length; lessonIdx++) {
+      if (lessons[lessonIdx].index === index) {
+        return lessons[lessonIdx];
       }
     }
   }
@@ -242,18 +242,18 @@ var leftPad = require('left-pad');
   window.onhashchange = function() {
     var newIndex = getIndexFromUrl();
     if (newIndex) {
-      activateExercise(newIndex);
+      activateLesson(newIndex);
     }
   };
 
-  var initialExerciseIndex =
+  var initialLessonIndex =
     getIndexFromUrl() ||
     localStorage.getItem('active-index') || 
     '001';
-  activateExercise(initialExerciseIndex);
+  activateLesson(initialLessonIndex);
 
-  if (window.location.hash !== '/#' + initialExerciseIndex) {
-    history.pushState(null, null, '/#' + initialExerciseIndex);
+  if (window.location.hash !== '/#' + initialLessonIndex) {
+    history.pushState(null, null, '/#' + initialLessonIndex);
   }
 
 })();

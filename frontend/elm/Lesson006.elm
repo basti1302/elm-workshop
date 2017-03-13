@@ -1,4 +1,4 @@
-module Exercise006 exposing (..)
+module Lesson006 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 6 - Working with Lists
-===============================
+Lesson 6 - Working with Lists
+=============================
 
 Introduction
 ------------

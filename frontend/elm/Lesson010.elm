@@ -1,4 +1,4 @@
-module Exercise010 exposing (..)
+module Lesson010 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 10 - Fancy Function Application (optional)
-===================================================
+Lesson 10 - Fancy Function Application (optional)
+=================================================
 
 Introduction
 ------------

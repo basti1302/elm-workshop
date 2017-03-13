@@ -1,4 +1,4 @@
-module Exercise003 exposing (..)
+module Lesson003 exposing (..)
 
 import Html exposing (Html)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html ()
 main =
     Markdown.toHtml [] """
-Exercise 3 - Type Annotations
-=============================
+Lesson 3 - Type Annotations
+===========================
 
 Introduction
 ------------

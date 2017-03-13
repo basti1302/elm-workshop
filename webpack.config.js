@@ -10,11 +10,11 @@ var webpack           = require('webpack');
 
 // collect all entry point Elm modules
 var exampleModules = glob.sync('frontend/elm/Example*.elm');
-var exerciseModules = glob.sync('frontend/elm/Exercise*.elm');
+var lessonModules = glob.sync('frontend/elm/Lesson*.elm');
 var solutionModules = glob.sync('frontend/elm/Solution*.elm');
 var elmModules =
   exampleModules
-  .concat(exerciseModules)
+  .concat(lessonModules)
   .concat(solutionModules)
   .map(function(modulePath) {
     return path.resolve( __dirname, modulePath);

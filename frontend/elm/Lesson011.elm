@@ -1,4 +1,4 @@
-module Exercise011 exposing (..)
+module Lesson011 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 11 - Conditionals
-==========================
+Lesson 11 - Conditionals
+========================
 
 Introduction
 ------------

@@ -1,4 +1,4 @@
-module Exercise012 exposing (..)
+module Lesson012 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 12 - Union Types/Tagged Unions
-=======================================
+Lesson 12 - Union Types/Tagged Unions
+=====================================
 
 Introduction
 ------------

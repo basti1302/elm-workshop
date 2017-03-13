@@ -1,4 +1,4 @@
-module Exercise002 exposing (..)
+module Lesson002 exposing (..)
 
 import Html exposing (Html)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html ()
 main =
     Markdown.toHtml [] """
-Exercise 2 - Hello World
-========================
+Lesson 2 - Hello World
+======================
 
 Open the file `frontend/elm/Example002.elm` in an editor. It looks exactly like `Example001.elm`, except for the module name. Now that we know some Elm syntax, let's play with it.
 

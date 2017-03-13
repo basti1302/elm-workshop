@@ -1,4 +1,4 @@
-module Exercise008 exposing (..)
+module Lesson008 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 8 - Type Alias
-=======================
+Lesson 8 - Type Alias
+=====================
 
 Introduction
 ------------

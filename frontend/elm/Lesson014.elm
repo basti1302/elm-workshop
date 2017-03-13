@@ -1,4 +1,4 @@
-module Exercise014 exposing (..)
+module Lesson014 exposing (..)
 
 import Html exposing (..)
 import Markdown
@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Exercise 14 - Talking to HTTP Backends
-======================================
+Lesson 14 - Talking to HTTP Backends
+====================================
 
 Introduction
 ------------
