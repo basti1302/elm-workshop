@@ -6,7 +6,6 @@ const path = require('path');
 const elmDir = path.join(__dirname, '..', 'frontend', 'elm');
 
 process.chdir(elmDir);
-console.log('CWD: ', process.cwd());
 
 const files = fs.readdirSync(elmDir);
 
