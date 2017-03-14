@@ -28,21 +28,27 @@ var leftPad = require('left-pad');
   var Elm = require('../elm/Example001');
 
   var maxLessonIndex = 999;
+  var languages = ['en', 'de'];
+  var defaultLanguage = 'en';
+  var activeLanguage = defaultLanguage;
+  var currentLesson = null;
 
   // Define which Elm module controls which DOM node.
   var lessons = [];
   for (var i = 1; i <= maxLessonIndex; i++) {
     var index = leftPad(i, 3, '0');
     var exampleModule = Elm['Example' + index];
-    var lessonModule = Elm['Lesson' + index];
-    if (!exampleModule && !lessonModule) {
+    var lessonModules = findLessonModules(index);
+    if (!exampleModule && !lessonModules[defaultLanguage]) {
       // neither Example nor Lesson Elm module exists, ignore this index
       continue;
     } else if (!exampleModule) {
       console.warn('Lesson module without example for index: ', index);
       continue;
-    } else if (!lessonModule) {
-      console.warn('Example module without lesson for index: ', index);
+    } else if (!lessonModules[defaultLanguage]) {
+      console.warn(
+        'Example module without lesson (' + defaultLanguage +
+        ') for index: ', index);
       continue;
     }
     var solutionDefinitions =
@@ -57,13 +63,18 @@ var leftPad = require('left-pad');
       .filter(function(solutionDefinition) {
         return !!solutionDefinition.module;
       });
+    var lessonDivIds = {};
+    languages.forEach(function(lang) {
+      lessonDivIds[lang] = createLessonDivId(index, lang);
+    });
+
     lessons.push(
       { idx: i
       , index: index
       , outputModule: exampleModule
       , outputDivId: createOutputDivId(index)
-      , lessonModule: lessonModule
-      , lessonDivId: createLessonDivId(index)
+      , lessonModules: lessonModules
+      , lessonDivIds: lessonDivIds
       , navDivId: createNavDivId(index)
       , solutionDefinitions: solutionDefinitions
       }
@@ -74,6 +85,8 @@ var leftPad = require('left-pad');
   var lessonsParentDiv = findNode('lessons');
   var navParentDiv = findNode('navigation');
   var solutionsParentDiv = findNode('solutions');
+
+  initLanguage();
 
   var solutionsContainer = findNode('solutions-container');
   if (areSolutionsToBeRendered()) {
@@ -89,8 +102,9 @@ var leftPad = require('left-pad');
         definition.index);
       return null;
     }
-    if (!definition.lessonModule) {
-      console.error('Inconsistent lesson definition, no lesson module: ',
+    if (!definition.lessonModules || 
+        !definition.lessonModules[defaultLanguage]) {
+      console.error('Inconsistent lesson definition, no lesson modules: ',
         definition.index);
       return null;
     }
@@ -105,13 +119,19 @@ var leftPad = require('left-pad');
     // hide all nodes initially
     outputNode.style.display = 'none';
 
-    var lessonNode = document.createElement('div');
-    lessonNode.id = definition.lessonDivId;
-    lessonsParentDiv.appendChild(lessonNode);
-    // associate Elm lesson module with DOM node
-    definition.lessonModule.embed(lessonNode);
-    // hide all nodes initially
-    lessonNode.style.display = 'none';
+    languages.forEach(function(lang) {
+      if (definition.lessonModules[lang]) {
+        var lessonNode = document.createElement('div');
+        lessonNode.id = definition.lessonDivIds[lang];
+        lessonsParentDiv.appendChild(lessonNode);
+        // associate Elm lesson module with DOM node
+        definition.lessonModules[lang].embed(lessonNode);
+        // hide all nodes initially
+        lessonNode.style.display = 'none';
+      } else {
+        delete definition.lessonDivIds[lang];
+      }
+    });
 
     var navLiNode = document.createElement('li');
     navParentDiv.appendChild(navLiNode);
@@ -126,7 +146,7 @@ var leftPad = require('left-pad');
       solutionNode.id = solutionDefinition.key;
       solutionNode.className = 'solution-output';
       solutionsParentDiv.appendChild(solutionNode);
-      // solutionNode.style.display = 'none';
+      solutionNode.style.display = 'none';
 
       var solutionLabelNode = document.createElement('div');
       solutionLabelNode.className = 'solution-label';
@@ -138,14 +158,38 @@ var leftPad = require('left-pad');
       solutionNode.appendChild(solutionOutputNode);
       solutionDefinition.module.embed(solutionOutputNode);
     });
+
+    findNode('lang-en').onclick = function(event) {
+      setLanguage('en');
+      event.stopPropagation();
+      event.preventDefault();
+    };
+
+    findNode('lang-de').onclick = function(event) {
+      setLanguage('de');
+      event.stopPropagation();
+      event.preventDefault();
+    };
   });
+
+  function findLessonModules(index) {
+    var lessonModules = {};
+    languages.forEach(function(lang) {
+      var langUpper = lang.charAt(0).toUpperCase() + lang.slice(1);
+      var module = Elm['Lesson' + index + langUpper];
+      if (module) {
+        lessonModules[lang] = module;
+      }
+    });
+    return lessonModules;
+  }
 
   function createOutputDivId(index) {
     return 'output-' + index;
   }
 
- function createLessonDivId(index) {
-    return 'lesson-' + index;
+  function createLessonDivId(index, lang) {
+    return 'lesson-' + index + '-' + lang;
   }
 
   function createNavDivId(index) {
@@ -155,7 +199,6 @@ var leftPad = require('left-pad');
   function findNode(divId) {
     var node = document.getElementById(divId);
     if (!node) {
-      console.error('Node not found: ', divId);
       return null;
     }
     return node;
@@ -175,17 +218,24 @@ var leftPad = require('left-pad');
     }
   }
 
-  function activateLesson(index) {
+  function activateLessonByIndex(index) {
     var lessonDefinition = findLessonByIndex(index);
 
     if (!lessonDefinition) {
       return;
     }
+    activateLesson(lessonDefinition);
+  }
+
+  function activateLesson(lessonDefinition) {
+    currentLesson = lessonDefinition;
 
     // hide all other lessons
     lessons.forEach(function(definition) {
       hideNode(definition.outputDivId);
-      hideNode(definition.lessonDivId);
+      languages.forEach(function(lang) {
+        hideNode(definition.lessonDivIds[lang]);
+      });
       findNode(definition.navDivId).parentElement.className = '';
       definition.solutionDefinitions.forEach(function(solutionDefinition) {
         hideNode(solutionDefinition.key);
@@ -193,15 +243,23 @@ var leftPad = require('left-pad');
     });
 
     // show new lesson
-    showNode(lessonDefinition.outputDivId);
-    showNode(lessonDefinition.lessonDivId);
-    findNode(lessonDefinition.navDivId).parentElement.className = 'active';
-    lessonDefinition.solutionDefinitions.forEach(function(solutionDefinition) {
+    showNode(currentLesson.outputDivId);
+    console.log(activeLanguage);
+    var lessonDiv = currentLesson.lessonDivIds[activeLanguage];
+    if (!lessonDiv) {
+      lessonDiv = currentLesson.lessonDivIds[defaultLanguage];
+      showNode('sorry-not-translated');
+    } else {
+      hideNode('sorry-not-translated');
+    }
+    showNode(lessonDiv);
+    findNode(currentLesson.navDivId).parentElement.className = 'active';
+    currentLesson.solutionDefinitions.forEach(function(solutionDefinition) {
       showNode(solutionDefinition.key);
     });
 
     // save active lesson index
-    localStorage.setItem('active-index', index);
+    localStorage.setItem('active-index', lessonDefinition.index);
   }
 
   function findLessonByIndex(index) {
@@ -219,6 +277,27 @@ var leftPad = require('left-pad');
       return result[1];
     }
     return null;
+  }
+
+  function initLanguage() {
+    activeLanguage =
+      localStorage.getItem('active-language') || defaultLanguage;
+    localStorage.setItem('active-language', activeLanguage);
+    showActiveLanguage(activeLanguage);
+  }
+
+  function setLanguage(lang) {
+    activeLanguage = lang;
+    localStorage.setItem('active-language', lang);
+    activateLesson(currentLesson);
+    showActiveLanguage(lang);
+  }
+
+  function showActiveLanguage(lang) {
+    languages.forEach(function(l) {
+      findNode('lang-' + l).className = '';
+    });
+    findNode('lang-' + lang).className = 'active';
   }
 
   function areSolutionsToBeRendered() {
@@ -242,7 +321,7 @@ var leftPad = require('left-pad');
   window.onhashchange = function() {
     var newIndex = getIndexFromUrl();
     if (newIndex) {
-      activateLesson(newIndex);
+      activateLessonByIndex(newIndex);
     }
   };
 
@@ -250,7 +329,7 @@ var leftPad = require('left-pad');
     getIndexFromUrl() ||
     localStorage.getItem('active-index') || 
     '001';
-  activateLesson(initialLessonIndex);
+  activateLessonByIndex(initialLessonIndex);
 
   if (window.location.hash !== '/#' + initialLessonIndex) {
     history.pushState(null, null, '/#' + initialLessonIndex);

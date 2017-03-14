@@ -1,4 +1,4 @@
-module Lesson003 exposing (..)
+module Lesson003En exposing (..)
 
 import Html exposing (Html)
 import Markdown
