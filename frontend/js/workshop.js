@@ -260,6 +260,9 @@ var leftPad = require('left-pad');
 
     // save active lesson index
     localStorage.setItem('active-index', lessonDefinition.index);
+
+    // scroll to top
+    findNode('navigation').scrollIntoView();
   }
 
   function findLessonByIndex(index) {
