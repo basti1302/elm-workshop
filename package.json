@@ -25,6 +25,7 @@
     "font-awesome": "^4.7.0",
     "glob": "^7.1.1",
     "html-webpack-plugin": "^2.17.0",
+    "http-server": "^0.8.5",
     "left-pad": "^1.1.3",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",
@@ -49,6 +50,8 @@
     "make": "run-s elm-install webpack-production",
     "webpack-production": "webpack",
     "watch-webpack-production": "webpack -w",
-    "start": "webpack-dev-server --hot --inline --content-base frontend/"
+    "start": "run-p serve-workshop serve-slides",
+    "serve-workshop": "webpack-dev-server --hot --inline --content-base frontend/",
+    "serve-slides": "http-server slides -p8080"
   }
 }
