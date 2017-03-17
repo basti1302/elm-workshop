@@ -1,14 +1,3 @@
-<a href="https://www.codecentric.de/">
-  <div style="width: 32rem; margin: 0 auto; background: #333; padding: 3rem 1rem; display: flex; justify-content: center; align-items: center;">
-      <span style="color: white; font-size: 1.5rem;">The</span>
-      <img
-        src="https://www.codecentric.de/wp-content/themes/codecentric2015-HP/img/codecentric-logo.png"
-        alt="codecentric"
-        style="width: 206px; height: 26px; vertical-align: middle; margin: 0 1rem;">
-      <span style="color: white; font-size: 1.5rem;">Elm Workshop</span>
-  </div>
-</a>
-
 <a id="english">
 
 codecentric Elm Workshop
@@ -53,6 +42,17 @@ This will start the Webpack dev server in watch mode. Always keep this running w
 
 Go to <http://localhost:7000> and open the file `frontend/elm/Example001.elm` in an editor to start the workshop. Now you are ready to go. Have fun!
 
+----
+
+Powered by
+<a href="https://www.codecentric.de/">
+  <img
+    src="https://public.centerdevice.de/download/c7b61a69-1634-42a7-9452-9deb01064904.caf0ff3e-4bea-eeec-b393-b74f644fcbfd"
+    width="206"
+    align="middle"
+    alt="codecentric">
+</a>
+
 <a id="german">
 
 Deutsche Version
@@ -96,3 +96,15 @@ npm start
 Damit startest du den Webpack dev server im watch Modus. Lass diesen Prozess die ganze Zeit über laufen, während du am Workshop arbeitest.
 
 Öffne <http://localhost:7000> in einem Browser und die Datei `frontend/elm/Example001.elm` in einem Editor. Das wars schon, jetzt kannst du loslegen. Viel Spaß!
+
+----
+
+Powered by
+<a href="https://www.codecentric.de/">
+  <img
+    src="https://public.centerdevice.de/download/c7b61a69-1634-42a7-9452-9deb01064904.caf0ff3e-4bea-eeec-b393-b74f644fcbfd"
+    width="206"
+    align="middle"
+    alt="codecentric">
+</a>
+
