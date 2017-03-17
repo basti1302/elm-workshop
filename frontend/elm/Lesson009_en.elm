@@ -100,6 +100,8 @@ Finally, use the updated `bookToString` function to render the book with the dis
 Exercise 9.3 (optional)
 -----------------------
 
+**Please skip this exercise in the half day workshop.**
+
 Create another book `book2` and a list of books that contains both `book1` and `book2`. Use `List.map` to map the list of books to a list of strings that only contains the titles of the book. Render the list of titles as an unordered list (`ul`).
 
 ----

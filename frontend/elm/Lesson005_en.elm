@@ -83,8 +83,10 @@ Open the file `frontend/elm/Example005.elm` in an editor. Remove `main`'s  funct
 
 Check the resulting document structure with your browser's developer tools.
 
-Exercise 5.2 - Classes
-----------------------
+Exercise 5.2 - Classes (optional)
+---------------------------------
+
+**Please skip this exercise in the half day workshop.**
 
 In this exercise we are going to add some CSS classes to our little piece of DOM.
 

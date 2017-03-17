@@ -49,7 +49,7 @@ Open the file `frontend/elm/Example006.elm` in an editor. You'll find a list of 
 </ul>
 ```
 
-Basically, you need to replace the second parameter to `ul` in `main` with a `List.map` expression. You might need to wrap your `List.map` call in parantheses `()`.
+Basically, you need to replace the second parameter to `ul` in `main` with a `List.map` expression. You might need to wrap your `List.map` call in parantheses, like this: `(List.map ...)`.
 
 ----
 
