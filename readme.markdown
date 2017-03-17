@@ -30,7 +30,7 @@ In the root directory of the repository, run
 npm install
 ```
 
-This will install (among other things) Elm 0.18 as a local dependency. It will also compile all Elm modules in the project.
+This will install (among other things) Elm 0.18 as a local dependency. It will also compile all Elm modules in the project. At one point, the Elm package manager will ask "Do you approve of this plan?" - you should answer with `Y`.
 
 Next, run
 
@@ -85,7 +85,7 @@ Führe im Hauptverzeichnis des Repositories folgenden Befehl aus:
 npm install
 ```
 
-Dies installiert (unter anderem) Elm 0.18 als lokale Abhängigkeit. Des Weiteren werden schon mal alle Elm-Module im Projekt kompiliert.
+Dies installiert (unter anderem) Elm 0.18 als lokale Abhängigkeit. Des Weiteren werden schon mal alle Elm-Module im Projekt kompiliert. Zwischendurch wird der Elm Paketmanager die Frage "Do you approve of this plan?" stellen. Diese bitte mit `Y` beantworten.
 
 Führe als nächstes den folgenden Befehl aus:
 
