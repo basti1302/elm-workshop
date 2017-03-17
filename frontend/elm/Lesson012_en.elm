@@ -7,113 +7,81 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 12 - Union Types/Tagged Unions
-=====================================
+Lesson 12 - Fancy Function Application (optional)
+=================================================
 
 Introduction
 ------------
 
-At the most basic level, union types in Elm feel like enumerations in other languages (Java, TypeScript, ...). Each union type consists of a number of constant names.
+**This lesson is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.** This lesson will help you to write much nicer Elm code, though.
 
+### Function Application
+
+In the previous exercises we had some use cases that required quite a number of parantheses, for example expressions like `text (toString (6 * 7))`. There are ways to write this more elegantly in Elm, namely with `|>` and `<|`, which are called *forward function application* and *backward function application*, respectively. You can also call them *pipes*, because that's what they do.
+
+* `(parameter |> function)` is the same as `(function parameter)`.
+* `(function <| parameter)` is the same as `(function parameter)`.
+
+Here are a few things that are equivalent:
 ```
-type LogLevel = Info | Warn | Error
+text (toString (6 * 7))
 
-logLevel : LogLevel
-logLevel = Info
-```
+6 * 7 |> toString |> text
 
-Union types are quite a bit more powerful than that, though. Each individual union type option can hold additional data in a type safe way:
-
-```
-type AuthenticationState =
-    -- not signed in, so no additional data is needed
-    NotSignedIn |
-    -- store the user name together with the the authentication state
-    SignedIn String
-
-authState1 : AuthenticationState
-authState1 = NotSignedIn
-
-authState2 : AuthenticationState
-authState2 = SignedIn "example.user"
+text <| toString <| 6 * 7
 ```
 
-When a function accepts a union type value as a parameter, it will usually want to know which case it is. The `case ... of` statement helps with that:
+Do you notice how the second and the third line resemble pipelines for values? Let's look at the second line in detail. The following is a good mental model for the `|>` operator: We start with the value `6 * 7` and pass it via `|>` into the `toString` function. The `toString` function transforms the numerical value `42` into the string value `"42"`. This value is then passed into the function `text`, which turns the string into an HTML text node.
+
+The third line works the same, but there the flow starts at the right side and values flow from right to left instead of left to right.
+
+### Partial Function Application
+
+But what about functions that take two or more parameters? Can we use `|>` and `<|` with such functions? We can only pipe one value into the next function via `|>`/`<|`, so where would this function get the other parameters from? Turns out we still can use these operators, with the help of partial function application.
+
+Let's say we wanted to use the [compare function](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#compare) in a pipe expression, like we did with `toString` and `text` above. The function `compare` requires *two* arguments, but it is perfectly fine to only pass in one value, like so `(compare 7)`. This will create a new (anonymous) function on the fly, that takes only one parameter, and that will compare everything with 7. We say that the first parameter for `compare` is already bound to 7.
+
+Thus, this would be legal Elm code:
 
 ```
-logLevelToMessage : LogLevel -> String
-logLevelToMessage logLevel =
-    case logLevel of
-        Info ->
-            "An information"
-
-        Warn ->
-            "A warning"
-
-        Error ->
-            "Red alert! Red Alert"
+12 |> compare 7
+-- => LT (which means that 7 is less then 12)
 ```
 
-If a union type contains additional data (like `SignedIn` in the example above) you can get these values out with pattern matching:
+And it would pass the value 12 into a function that takes one parameter and compares every incoming parameter with 7.
 
-```
-authStateToMessage : AuthenticationState -> String
-authStateToMessage authState =
-    case authState of
-        NotSignedIn ->
-            "You are not signed in."
-
-        SignedIn userName ->
-            "Signed in as " ++ userName
-```
-
-Here, in the `SignedIn userName ->` case, the pattern `SignedIn userName` is matched against the value `authState`, thereby assigning the name `userName` to the string contained in the SignedIn value.
 
 Relevant Docs
 -------------
 
-* http://elm-lang.org/docs/syntax#union-types
-* https://guide.elm-lang.org/types/union_types.html
+* http://elm-lang.org/docs/syntax#functions
+* http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|>
+* http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#<|
 
 Exercise 12.1
 -------------
 
-Open the file  `frontend/elm/Example012.elm` in an editor.
+Take a look at `frontend/elm/Example012.elm`. It uses a verbose `let` expression to
 
-Declare a union type `Msg` (short for message) with the values `Increment` and `Decrement` and a value `Set` which can contain a value of type `Int` (like `SignedIn` above could contain a `String` value).
+* sort an integer list,
+* convert all integer values in the list to strings,
+* join the strings into one string, and finally
+* convert this string into an HTML text node.
 
-Implement a function `update` with type `Int -> Msg -> Int` that accepts the *current value* and a `Msg` and returns a new integer value, based on the current value and the incoming `Msg`. That is, `update 5 Increment` would return 6, `update 5 Decrement` would return 4, and `update 5 (Set 99)` would return 99.
+You could write that as one line with `text (String.join ", " (List.map toString (List.sort unsortedList)))` but that is even uglier.
 
-A `view` function that renders an integer value to HTML is already provided for you, so you don't have to bother about that in this exercise.
+Remove the `let` expresssion and refactor this code into a chain of function calls that are chained via `|>`.
 
-Finally, delete the dummy line `text "Exercise 12"` in the `main` function and uncomment the disabled code in the main function (beginning with `let someValues = ...`).
+### Sidenote
 
-The result should look like this:
+There are also *function composition* operators, [`<<`](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#<<) and [`>>`](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#>>). For the mathematically inclined:
 
-* 43
-* 41
-* 13
+* `(g << f) x` is the same as `g (f x)`
+* `(f >> g) x` is the same as `g (f x)`
+
+If this sounds like complicated gibberish to you, don't bother with it for now. `|>` and `<|` are used far more often than `<<` and `>>`.
 
 ----
 
 <span class="fa fa-hand-o-right"></span> Continue with **[lesson 13](/#013)**.
 """
-
-
-
--- You can also use *type variables* when declaring your union type if, you need something more generic:
---
--- ```
--- type Result error value
---     = Ok value
---     | Err error
---
--- someResult1 : Result String Int
--- someResult1 = Ok 42
---
--- someResult2 : Result String Int
--- someResult2 = Err "That did not work"
--- ```
---
--- With a declaration like this you can use `Result` with many different concrete types for your success values and for your error values respectively. In Elm, type variables start with a lower case (often, only one character is used to name a type variable) while actual types start with an upper case character.
---

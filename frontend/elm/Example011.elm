@@ -12,6 +12,6 @@ main : Html a
 main =
     let
         mappedValues =
-            List.map convert [ 2, 4, 9, 13, 15, 24 ]
+            List.map convert [ 2, 4, 9, 11, 15, 24 ]
     in
         text (toString (mappedValues))

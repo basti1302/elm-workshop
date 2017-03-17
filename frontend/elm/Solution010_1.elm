@@ -3,15 +3,44 @@ module Solution010_1 exposing (..)
 import Html exposing (..)
 
 
-unsortedList : List Int
-unsortedList =
-    [ 3, 7, 2, 9, 5, 1 ]
+type Msg
+    = Increment
+    | Decrement
+    | Set Int
+
+
+update : Int -> Msg -> Int
+update currentValue msg =
+    case msg of
+        Increment ->
+            currentValue + 1
+
+        Decrement ->
+            currentValue - 1
+
+        Set newValue ->
+            newValue
+
+
+view : Int -> Html a
+view value =
+    let
+        txt =
+            text (toString (value))
+    in
+        li [] [ txt ]
 
 
 main : Html a
 main =
-    unsortedList
-        |> List.sort
-        |> List.map toString
-        |> String.join ", "
-        |> text
+    let
+        someValues =
+            [ update 42 Increment
+            , update 42 Decrement
+            , update 42 (Set 10)
+            ]
+
+        items =
+            List.map view someValues
+    in
+        ul [] items

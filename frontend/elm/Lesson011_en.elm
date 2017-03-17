@@ -13,7 +13,7 @@ Lesson 11 - Conditionals (optional)
 Introduction
 ------------
 
-This exercise is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.
+**This lesson is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.**
 
 The `if` keyword lets you select among different expressions, depending on a boolean value. Its well known cousins `else` and `else if` are also available:
 
