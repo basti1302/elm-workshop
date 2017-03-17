@@ -154,6 +154,13 @@ function moveAllFilesForLesson(from, to) {
         console.log(`${fileName} -> ${newFileName}`);
         // search & replace numbers in file
         replace({
+          regex: (from + 1),
+          replacement: (to + 1),
+          paths: [ fileName ],
+          recursive: false,
+          silent: true,
+        });
+        replace({
           regex: from,
           replacement: to,
           paths: [ fileName ],
