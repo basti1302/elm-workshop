@@ -1,4 +1,5 @@
 <a id="english">
+
 Elm Workshop
 ============
 
@@ -43,6 +44,7 @@ Go to <http://localhost:7000> and open the file `frontend/elm/Example001.elm` in
 
 
 <a id="german">
+
 Deutsche Version
 ================
 
