@@ -1,11 +1,22 @@
+<a href="https://www.codecentric.de/">
+  <div style="width: 32rem; margin: 0 auto; background: #333; padding: 3rem 1rem; display: flex; justify-content: center; align-items: center;">
+      <span style="color: white; font-size: 1.5rem;">The</span>
+      <img
+        src="https://www.codecentric.de/wp-content/themes/codecentric2015-HP/img/codecentric-logo.png"
+        alt="codecentric"
+        style="width: 206px; height: 26px; vertical-align: middle; margin: 0 1rem;">
+      <span style="color: white; font-size: 1.5rem;">Elm Workshop</span>
+  </div>
+</a>
+
 <a id="english">
 
-Elm Workshop
-============
+codecentric Elm Workshop
+========================
 
 [Zur deutschen Version](#german)
 
-Welcome to the Elm Workshop for beginners. This workshop contains a series of hands-on exercises to get you up to speed with the [Elm](http://elm-lang.org) programming language.
+Welcome to the [codecentric](https://www.codecentric.de/) Elm Workshop for beginners. This workshop contains a series of hands-on exercises to get you up to speed with the [Elm](http://elm-lang.org) programming language.
 
 This workshop is intended as a live workshop with a trainer. You might be able to work through the exercises by yourself, but this might not be the most effective way. If you would like to arrange an on-site workshop at your company or for a conference, feel free to contact <a href="mailto:bastian.krol@codecentric.de">bastian.krol@codecentric.de</a>. The workshop length and the covered topics are flexible and can be customized to your specific needs, ranging from a half day basics workshop to a multi-day in depth Elm bootcamp.
 
@@ -42,7 +53,6 @@ This will start the Webpack dev server in watch mode. Always keep this running w
 
 Go to <http://localhost:7000> and open the file `frontend/elm/Example001.elm` in an editor to start the workshop. Now you are ready to go. Have fun!
 
-
 <a id="german">
 
 Deutsche Version
@@ -50,7 +60,7 @@ Deutsche Version
 
 [english version](#english)
 
-Willkommen zum Elm Workshop für Einsteiger. Dieser Workshop enthält viele praktische Beispiele und Aufgaben, mit denen du dich mit der Programmiersprache [Elm](http://elm-lang.org) vertraut machen.
+Willkommen zum [codecentric](https://www.codecentric.de/) Elm Workshop für Einsteiger. Dieser Workshop enthält viele praktische Beispiele und Aufgaben, mit denen du dich mit der Programmiersprache [Elm](http://elm-lang.org) vertraut machen.
 
 Dieser Workshop ist darauf ausgelegt, in einer Gruppe mit einem Trainer durchgeführt zu werden. Man kann die Aufgaben vermutlich auch alleine durchgehen, auch wenn das nicht die effektiveste Möglichkeit ist. Wenn du diesen Workshop in deiner Firma oder auf einer Konferenz durchführen möchtest, kannst gerne mit <a href="mailto:bastian.krol@codecentric.de">bastian.krol@codecentric.de</a> Kontakt aufnehmen. Die Länge des Workshops und die behandelten Themen sind flexibel und können auf eure individuellen Anforderungen abgestimmt werden, vom Halbtages-Grundlagen-Kurs bis zum mehrtägigen Elm-Bootcamp.
 
