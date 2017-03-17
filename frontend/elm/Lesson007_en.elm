@@ -49,5 +49,5 @@ Open the file `frontend/elm/Example007.elm` in an editor. Restructure the code s
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 8](/#008)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 8](/#008)**.
 """

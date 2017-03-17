@@ -25,7 +25,7 @@ p [] [ text "HTML Structures" ]
 
 All of these functions accept two lists as parameters. The first list is the list of attributes (style, class, event listeners etc.), the second list is the list of child elements.
 
-You should remember from the last exercise that lists are written as `[ element1, element2, ... ]` and `[]` is the empty list. So to produce an empty `<p/>` tag without attributes or children, you would write `p [] []`.
+You should remember from the last lesson that lists are written as `[ element1, element2, ... ]` and `[]` is the empty list. So to produce an empty `<p/>` tag without attributes or children, you would write `p [] []`.
 
 The notable exception to this pattern is `text`, which only accepts one parameters of type string.
 
@@ -113,7 +113,7 @@ Remark: [Bootstrap](http://getbootstrap.com/css/) CSS is included in the bundle,
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 6](/#006)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 6](/#006)**.
 """
 
 

@@ -67,5 +67,5 @@ someFunction a b c = ...
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 3](/#003)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 3](/#003)**.
 """

@@ -83,5 +83,5 @@ If this sounds like complicated gibberish to you, don't bother with it for now. 
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 11](/#011)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 11](/#011)**.
 """

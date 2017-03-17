@@ -57,5 +57,5 @@ Add type annotations to `main`. Keep in mind that `main` does not accept paramet
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 4](/#004)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 4](/#004)**.
 """

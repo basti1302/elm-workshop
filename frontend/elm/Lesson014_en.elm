@@ -99,4 +99,4 @@ Of course, there is more to learn. Here are some aspects that are not (yet) cove
 
 
 
--- <span class="fa fa-hand-o-right"></span> Continue with **[exercise 15](/#015)**.
+-- <span class="fa fa-hand-o-right"></span> Continue with **[lesson 15](/#015)**.

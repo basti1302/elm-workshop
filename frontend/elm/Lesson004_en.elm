@@ -64,5 +64,5 @@ Use `::` to prepend the number 0 to the start of the list. Again, you can do thi
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 5](/#005)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 5](/#005)**.
 """

@@ -104,5 +104,5 @@ Create another book `book2` and a list of books that contains both `book1` and `
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 10](/#010)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 10](/#010)**.
 """

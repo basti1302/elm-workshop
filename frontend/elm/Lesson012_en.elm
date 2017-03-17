@@ -96,7 +96,7 @@ The result should look like this:
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 13](/#013)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 13](/#013)**.
 """
 
 

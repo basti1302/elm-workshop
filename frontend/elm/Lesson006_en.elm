@@ -13,7 +13,7 @@ Lesson 6 - Working with Lists
 Introduction
 ------------
 
-We already used the List type in exercises 4 and 5. Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on lists is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
+We already used the List type in lessons 4 and 5. Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on lists is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
 
 Example:
 
@@ -53,5 +53,5 @@ Basically, you need to replace the second parameter to `ul` in `main` with a `Li
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 7](/#007)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 7](/#007)**.
 """

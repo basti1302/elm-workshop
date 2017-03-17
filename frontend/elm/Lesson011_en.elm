@@ -55,5 +55,5 @@ Hint: You can use the [`rem`](http://package.elm-lang.org/packages/elm-lang/core
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Continue with **[exercise 12](/#012)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 12](/#012)**.
 """
