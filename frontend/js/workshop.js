@@ -309,7 +309,7 @@ var leftPad = require('left-pad');
       localStorage.setItem('show-solutions', false);
       return false;
     } else {
-      return !!localStorage.getItem('show-solutions');
+      return localStorage.getItem('show-solutions') === 'true';
     }
   }
 
