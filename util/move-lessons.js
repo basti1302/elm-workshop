@@ -6,6 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const args = require('minimist')(process.argv.slice(2));
 const leftPad = require('left-pad');
+const replace = require('replace');
 
 let elmDir = null;
 let command = null;
@@ -85,7 +86,7 @@ function readDirectoryListing() {
 
 function calculateMaxIndex() {
   const regex =
-    new RegExp(`^(?:Lesson|Example|Solution)0*(\\d{1,3})(?:_\\d+)?\\.elm$`);
+    new RegExp(`^(?:Lesson|Example|Solution)0*(\\d{1,3})(?:_\\d+)?(?:_\w\w)?\\.elm$`);
 
   let max = 0;
   files.forEach(fileName => {
@@ -136,7 +137,7 @@ function checkIfTargetExists(to) {
 }
 
 function moveAllFilesForLesson(from, to) {
-  const lessonRegex = new RegExp(`^(Lesson)(${pad(from)})(\.elm$)`);
+  const lessonRegex = new RegExp(`^(Lesson)(${pad(from)})(_..\.elm$)`);
   const exampleRegex = new RegExp(`^(Example)(${pad(from)})(\.elm$)`);
   const solutionRegex = new RegExp(`^(Solution)(${pad(from)})(_\\d+\.elm$)`);
   const allRegexes = [
@@ -151,6 +152,15 @@ function moveAllFilesForLesson(from, to) {
       if (match && match.length >= 2) {
         let newFileName = `${match[1]}${pad(to)}${match[3]}`;
         console.log(`${fileName} -> ${newFileName}`);
+        // search & replace numbers in file
+        replace({
+          regex: from,
+          replacement: to,
+          paths: [ fileName ],
+          recursive: false,
+          silent: true,
+        });
+        // actually rename file
         fs.renameSync(fileName, newFileName);
       }
     });
