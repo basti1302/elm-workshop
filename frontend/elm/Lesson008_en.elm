@@ -13,7 +13,7 @@ Lesson 8 - Type Alias
 Introduction
 ------------
 
-You can declare an alias for any type in elm by using the `type alias` construct. Examples:
+You can declare an alias for any type in Elm by using the `type alias` construct. Examples:
 
 ```
 type alias Name = String

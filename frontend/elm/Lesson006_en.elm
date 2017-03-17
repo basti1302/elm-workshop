@@ -7,8 +7,8 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 6 - Working with Lists
-=============================
+Lesson 6 - List.map
+===================
 
 Introduction
 ------------

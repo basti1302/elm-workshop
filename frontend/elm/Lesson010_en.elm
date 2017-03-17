@@ -22,23 +22,7 @@ logLevel : LogLevel
 logLevel = Info
 ```
 
-Union types are quite a bit more powerful than that, though. Each individual union type option can hold additional data in a type safe way:
-
-```
-type AuthenticationState =
-    -- not signed in, so no additional data is needed
-    NotSignedIn |
-    -- store the user name together with the the authentication state
-    SignedIn String
-
-authState1 : AuthenticationState
-authState1 = NotSignedIn
-
-authState2 : AuthenticationState
-authState2 = SignedIn "example.user"
-```
-
-When a function accepts a union type value as a parameter, it will usually want to know which case it is. The `case ... of` statement helps with that:
+When a function accepts a union type value as a parameter, it will usually want to know which of the possible values it is. The `case ... of` statement helps with that:
 
 ```
 logLevelToMessage : LogLevel -> String
@@ -54,7 +38,23 @@ logLevelToMessage logLevel =
             "Red alert! Red Alert"
 ```
 
-If a union type contains additional data (like `SignedIn` in the example above) you can get these values out with pattern matching:
+Union types are quite a bit more powerful than what we have seen until now. Each individual union type option can hold additional data in a type safe way:
+
+```
+type AuthenticationState =
+    -- not signed in, so no additional data is needed
+    NotSignedIn |
+    -- store the user name together with the the authentication state
+    SignedIn String
+
+authState1 : AuthenticationState
+authState1 = NotSignedIn
+
+authState2 : AuthenticationState
+authState2 = SignedIn "example.user"
+```
+
+If a union type contains additional data (like `SignedIn` in the example above) you can get these values out in a `case ... in` statement with pattern matching:
 
 ```
 authStateToMessage : AuthenticationState -> String

@@ -1,0 +1,762 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+    <title>Elm Workshop</title>
+
+		<meta name="description" content="Accompanying slides for an Elm beginners workshop">
+		<meta name="author" content="Bastian Krol">
+
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+
+    <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
+
+    <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+		<!-- Code syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+    <style>
+
+      .reveal pre {
+        font-size: 0.65em;
+        /* line-height: 1.2em; */
+      }
+
+      // width: (columns x 80px) - 20px
+      .reveal .span1  { width:  60px; }
+      .reveal .span2  { width: 140px; }
+      .reveal .span3  { width: 220px; }
+      .reveal .span4  { width: 300px; }
+      .reveal .span5  { width: 380px; }
+      .reveal .span6  { width: 460px; }
+      .reveal .span7  { width: 540px; }
+      .reveal .span8  { width: 620px; }
+      .reveal .span9  { width: 700px; }
+      .reveal .span10 { width: 780px; }
+      .reveal .span11 { width: 860px; }
+      .reveal .span12 { width: 940px; }
+
+      .reveal .render-target {
+        height: 100px;
+        margin: 20px auto;
+        padding: 10px;
+        border: 3px solid white;
+        text-align: left;
+      }
+
+      .reveal [class*="span"] {
+        float: left;
+        min-height: 1px;
+        margin-left: 20px;
+      }
+
+      h1.banner, h2.banner, h3.banner, h4.banner, p.banner, div.banner {
+        background-color: rgba(255, 255, 255, 0.3);
+        height: 1.3em;
+        color: #111;
+      }
+
+      button {
+        margin-top: 21px;
+        width: 150px;
+        height: 2em;
+        font-size: large;
+      }
+
+      .reveal .face {
+        display: block;
+        margin: 5px auto;
+        height: 180px;
+        width: 180px;
+        border: 0 solid white;
+        border-radius: 90px;
+      }
+
+      .reveal .codecentric-logo {
+        height: 2ex;
+        border: 0;
+        margin: 0;
+        background: none;
+        vertical-align: sub;
+        box-shadow: none;
+      }
+
+      p.attribution {
+        color: black;
+        font-size: 15px;
+      }
+
+      p.attribution.low {
+        margin-top: 250px;
+      }
+
+      p.attribution a {
+        color: black;
+      }
+
+      p.attribution a:hover {
+        color: #333;
+      }
+
+    </style>
+
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<div class="slides">
+				<section>
+					<h1>Elm Workshop</h1>
+          <h3>An Introduction</h3>
+				</section>
+
+        <section>
+          <h2>Hi There!</h2>
+          <img src="images/bastian.png"
+               alt="Bastian Krol"
+               class="face">
+          <br>
+          <h3>Bastian Krol</h3>
+          Developer/Consultant at <a href="https://www.codecentric.de/"><img
+            src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            alt="codecentric logo"></a><br>
+          <a href="https://twitter.com/bastiankrol"><i class="fa fa-twitter"></i> @bastiankrol</a><br>
+          <a href="https://github.com/basti1302"><i class="fa fa-github"></i> basti1302</a><br>
+          <a href="mailto:bastian.krol@codecentric.de"><i class="fa fa-envelope"></i> bastian.krol@codecentric.de</a><br>
+        </section>
+
+        <section>
+          <img src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            style="width: 400px; height: initial;"
+            alt="codecentric logo">
+          <hr>
+          <div class="span6">
+            <ul>
+              <li>Software Development</li>
+              <li>Agile Coaching</li>
+              <li>Consulting</li>
+              <li>Continuous Delivery</li>
+              <li>Agile Software Factory</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <ul>
+              <li>Software Architecture</li>
+              <li>DevOps</li>
+              <li>Performance Tuning</li>
+              <li>Big Data</li>
+              <li>Operations</li>
+            </ul>
+          </div>
+        </section>
+
+        <section>
+          <img src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            style="width: 400px; height: initial;"
+            alt="codecentric logo">
+          <hr>
+          <h3>We're hiring!</h3>
+          <div class="span6">
+            <ul>
+              <li>Karlsruhe</li>
+              <li>Stuttgart</li>
+              <li>Frankfurt</li>
+              <li>München</li>
+              <li>Berlin</li>
+            </ul>
+          </div>
+          <div class="span6">
+            <ul>
+              <li>Hamburg</li>
+              <li>Solingen</li>
+              <li>Düsseldorf </li>
+              <li>Münster</li>
+              <li>Dortmund</li>
+            </ul>
+          </div>
+          <span style="float: none;"></span>
+          <div style="display: inline-block; margin-top: 2ex; font-size: .7em;">
+            <a
+             href="https://www.codecentric.de/karriere/offene-stellen/"
+            >https://www.codecentric.de/karriere/offene-stellen/</a>
+          </div>
+        </section>
+
+				<section>
+					<h2>What is Elm</h2>
+          <ul>
+            <li>Purely Functional</li>
+            <li>Static Type System</li>
+            <li>Compiles to JavaScript</li>
+            <li>Open Source</li>
+            <li>Makes Web Development Delightful</li>
+          </ul>
+				</section>
+
+				<section>
+          <h2>Marketing Blurbs</h2>
+          <ul>
+            <li>Clean Syntax</li>
+            <li>No Runtime Exceptions</li>
+            <li>Friendly Compiler Error Messages</li>
+            <li>Blazing Fast Rendering</li>
+            <li>Libraries With SemVer Guarantees</li>
+            <li>Smooth JavaScript Interop</li>
+          </ul>
+          <aside class="notes">
+            KEEP IT SHORT HERE!<br>
+            Just an overview
+          </aside>
+				</section>
+
+        <!--
+        ========================================================================
+        SYNTAX BASICS
+        ========================================================================
+        -->
+
+				<section>
+					<h1>Syntax Basics</h1>
+				</section>
+
+        <!-- Hello World -->
+				<section>
+					<h2>Hello World</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+module Example exposing (..)
+
+import Html exposing (..)
+
+main = text "Hello React Days!"
+</code></pre>
+				</section>
+
+        <!-- Functions -->
+				<section>
+          <h2>Functions</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+import Html exposing (..)
+
+-- define a function named greet
+greet str =
+  text str
+
+-- use the greet function
+main =
+  greet "Hello React Days!"
+</code></pre>
+				</section>
+
+        <!-- Type Annotations -->
+				<section>
+					<h2>Type Annotations</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+import Html exposing (..)
+
+greet : String -&gt; Html a
+greet str =
+  Html.text str
+
+main : Html a
+main =
+  greet "Hello React Days!"
+</code></pre>
+				</section>
+
+        <!-- Lists -->
+				<section>
+					<h2>Lists</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+list1 : List Int
+list1 = [1, 2, 3]
+
+list2 : List String
+list2 = ["just", "some", "words"]
+
+list3 = "before" :: [ "everything", "else" ]
+-- =&gt; [ "before", "everything", "else" ]
+
+list4 = [ "some", "strings" ] ++ [ "and", "some", "more" ]
+-- =&gt; [ "some", "strings", "and", "some", "more" ]
+</code></pre>
+				</section>
+
+				<section>
+					<h1>Hands On!</h1>
+          <h3>Exercises:</h3>
+          <h3>1 - 4</h3>
+				</section>
+
+        <!-- HTML -->
+				<section>
+					<h2>HTML</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+					  <pre><code class="hljs elm" data-trim contenteditable>
+-- <tag> [ attributes ] [ children ]
+p [] [ text "foo" ]
+
+div []
+    [ span []
+        [ text "bar" ]
+    ]
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>HTML</strong>
+					  <pre><code class="hljs html" data-trim contenteditable>
+&lt;!-- result --&gt;
+&lt;p&gt;foo&lt;/p&gt;
+
+&lt;div&gt;
+  &lt;span&gt;bar&lt;/span&gt;
+&lt;/div&gt;
+</code></pre>
+          </div>
+				</section>
+
+				<section>
+					<h2>HTML (2)</h2>
+          <div class="span6">
+            <strong>Elm</strong>
+					  <pre><code class="hljs elm" data-trim contenteditable>
+ul
+    []
+    [ li
+        []
+        [ text "First" ]
+    , li
+        []
+        [ text "Second" ]
+    , li
+        []
+        [ text "Third" ]
+    ]
+</code></pre>
+          </div>
+          <div class="span6">
+            <strong>HTML</strong>
+					  <pre><code class="hljs html" data-trim contenteditable>
+&lt;ul&gt;
+  &lt;li&gt;First&lt;/li&gt;
+  &lt;li&gt;Second&lt;/li&gt;
+  &lt;li&gt;Third&lt;/li&gt;
+&lt;/ul&gt;
+</code></pre>
+          </div>
+				</section>
+
+        <!-- List.map -->
+				<section>
+					<h2>List.map</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+double : Int -&gt; Int
+double a = a * 2
+
+list = [ 1, 2, 3, 4 ]
+
+mappedList = List.map double list
+-- =&gt; mappedList = [ 2, 4, 6, 8 ]
+</code></pre>
+				</section>
+
+         <!-- let -->
+				<section>
+					<h2>Let</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+calculate : Int
+calculate =
+    let
+        twentyfour = 3 * 8
+
+        toThePowerOfTwo a =
+            a ^ 2
+
+        sixteen = toThePowerOfTwo 4
+
+    in
+        twentyfour + sixteen
+</code></pre>
+				</section>
+
+				<section>
+					<h1>Hands On!</h1>
+          <h3>Exercises:</h3>
+          <h3>5 - 7</h3>
+				</section>
+
+        <!-- Type Alias -->
+ 				<section>
+					<h2>Type Alias</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+type alias Name = String
+type alias Age = Int
+
+type alias ManyStrings = List String
+</code></pre>
+				</section>
+
+        <!-- Records -->
+				<section>
+					<h2>Records</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+point = { x = 3, y = 4 }
+
+-- access field
+point.x
+-- =&gt; 3
+
+-- update
+{ point | x = 99 }
+-- =&gt; { x = 99, y = 4 }
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Records (2)</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+point = { x = 3, y = 4 }
+
+-- multi update
+{ point |
+    x = point.x + 1,
+    y = point.y + 1
+}
+-- =&gt; { x = 4, y = 5 }
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Records (3)</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+-- type alias for record
+type alias Point =
+  { x : Int
+  , y : Int
+  }
+
+point : Point
+point = { x = 3, y = 4 }
+-- =&gt; { x = 3, y = 3 }
+</code></pre>
+				</section>
+
+        <!-- Union Types -->
+				<section>
+					<h2>Union Types</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+type LogLevel = Info | Warn | Error
+
+logLevel : LogLevel
+logLevel = Info
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Union Types (2)</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+type LogLevel = Info | Warn | Error
+
+logLevelToMessage : LogLevel -&gt; String
+logLevelToMessage logLevel =
+    case logLevel of
+        Info -&gt;
+            "An information"
+
+        Warn -&gt;
+            "A warning"
+
+        Error -&gt;
+            "Red alert! Red Alert"
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Union Types (3)</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+type AuthenticationState = NotSignedIn | SignedIn String
+
+authState1 : AuthenticationState
+authState1 = NotSignedIn
+
+authState2 : AuthenticationState
+authState2 = SignedIn "example.user"
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Union Types (4)</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+type AuthenticationState = NotSignedIn | SignedIn String
+
+authStateToMessage : AuthenticationState -> String
+authStateToMessage authState =
+    case authState of
+        NotSignedIn ->
+            "You are not signed in."
+
+        SignedIn userName ->
+            "Signed in as " ++ userName
+</code></pre>
+				</section>
+
+				<section>
+					<h1>Hands On!</h1>
+          <h3>Exercises:</h3>
+          <h3>9 &amp; 10</h3>
+				</section>
+
+        <!--
+        ========================================================================
+        USER INTERACTION
+        &
+        THE ELM ARCHITECTURE
+        ========================================================================
+        -->
+
+				<section>
+          <h1>User Interaction</h1>
+					<h3>in Elm</h3>
+				</section>
+
+        <section>
+        	<h2>TEA - The Elm Architecture</h2>
+          <img src="images/architecture.png" style="border: none; box-shadow: none;">
+        </section>
+
+				<section>
+					<h1>A Counter</h1>
+					<h2>A Very Simple Elm App</h2>
+        </section>
+
+				<section>
+					<h2>Counter App - main</h2>
+          <s><pre><code class="hljs elm">main : Html a
+main = text "Hello React Days!"
+</code></pre></s>
+					<pre><code class="hljs elm" data-trim contenteditable>
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram
+        { model = model
+        , view = view
+        , update = update
+        }
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Counter App - Model</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+type alias Model = Int
+
+model : Model
+model = 0
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Counter App - Messages</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+type Msg = Increment | Decrement
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Counter App - view</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+view : Model -&gt; Html Msg
+view model =
+  div []
+    [ p [] [ text (toString model) ]
+    , button [ onClick Decrement ] [ text "-" ]
+    , button [ onClick Increment ] [ text "+" ]
+    ]
+</code></pre>
+				</section>
+
+				<section>
+					<h2>Counter App - update</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+update : Msg -&gt; Model -&gt; Model
+update msg model =
+  case msg of
+    Increment -&gt; model + 1
+    Decrement -&gt; model - 1
+</code></pre>
+				</section>
+
+        <section>
+        	<h2>Elm Architecture Overview</h2>
+          <img src="images/architecture.png" style="border: none; box-shadow: none;">
+        </section>
+
+        <section>
+          <h2>This is the Elm Architecture</h2>
+          <ul>
+            <li><strong>Model</strong> (just a type)</li>
+            <li><strong><code>view</code></strong>: Model -&gt; Html Msg</li>
+            <li><strong><code>update</code></strong>: Msg -&gt; Model -&gt; Model</li>
+          </ul>
+          <p><strong>That's all there is.</strong></p>
+          <p><small>(nearly)</small></p>
+        </section>
+
+				<section>
+					<h1>Hands On!</h1>
+          <h3>Exercise:</h3>
+          <h3>13</h3>
+				</section>
+
+        <section>
+          <h2>Questions?</h2>
+          <h2>Thank You!</h2>
+
+          <hr>
+
+          <a href="https://twitter.com/bastiankrol"><i class="fa fa-twitter"></i> @bastiankrol</a><br>
+          <a href="https://github.com/basti1302"><i class="fa fa-github"></i> basti1302</a><br>
+          <a href="mailto:bastian.krol@codecentric.de"><i class="fa fa-envelope"></i> bastian.krol@codecentric.de</a><br>
+          <a href="https://www.codecentric.de/"><img
+            src="images/codecentric-logo.png"
+            class="codecentric-logo"
+            alt="codecentric logo"></a><br>
+
+        </section>
+
+				<section>
+          <h2>But What About Side Effects?</h2>
+          <ul>
+            <li>AJAX</li>
+            <li>WebSockets</li>
+            <li>Randomness</li>
+            <li>...</li>
+          </ul>
+          <aside class="notes">
+            <p>Problem: How do we communicate with the world
+              outside Elm in when everything is purely functional?
+              How do we manage <em>side effects</em>?
+            </p>
+          </aside>
+				</section>
+
+        <section>
+          <h2>The Complete Elm Architecture.</h2>
+          <ul>
+            <li><strong style="color: red;">Commands</strong> (<code>Cmd</code>): Elm apps execute side effects via <string>Commands</strong></li>
+            <li><strong style="color: red;">Subscriptions</strong>  (<code>Sub</code>): Elm apps receive things via <string>Subscriptions</strong> (think web sockets)</li>
+            <li>Model</li>
+            <li><code>view</code></strong>: Model -&gt; Html Msg</li>
+            <li><code>update</code></strong>: Msg -&gt; Model -&gt; <strong>(Model, Cmd Msg)</strong></li>
+          </ul>
+        </section>
+
+        <!-- TODO Two more slides explaining Cmd with backend HTTP calls. -->
+
+        <!-- Parameter Types versus Return Types -->
+        <!-- TODO Move down -->
+        <!--
+				<section>
+					<h2>Parameter Types &amp; Return Types</h2>
+					<pre><code class="hljs elm" data-trim contenteditable>
+import Html exposing (Html)
+import String
+
+greet : Int -&gt; String -&gt; Html a
+greet number string =
+  Html.text
+    (String.repeat number string)
+
+main : Html a
+main =
+  greet 3 "Hello Bochum! "
+</code></pre>
+				</section>
+        -->
+
+        <!-- TODO Move down -->
+        <!--
+				<section>
+          <h2>Function Application<br><small>aka Data Pipelines</small></h2>
+
+          <pre><code class="hljs elm" data-trim contenteditable>
+greet : Int -&gt; String -&gt; Html a
+greet number string =
+  string
+    |&gt; String.repeat number
+    |&gt; Html.text
+
+main : Html a
+main =
+  greet 3 "Hello Bochum! "
+</code></pre>
+          <aside class="notes">
+            <h1>MAIN SCREEN</h1>
+            <ul>
+              <li>Picture: Pipeline of transformers</li>
+              <li>Actually: Function Application</li>
+              <li>Also: Function Composition (&gt;&gt;/&lt;&lt;)</li>
+            </ul>
+          </aside>
+				</section>
+        -->
+
+      </div> <!-- .slides -->
+    </div> <!-- .reveal -->
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available at:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+				// Optional reveal.js plugins
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true },
+					{ src: 'plugin/notes/notes.js', async: true }
+				]
+			});
+
+		</script>
+	</body>
+</html>
