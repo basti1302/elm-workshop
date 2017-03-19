@@ -1,58 +1,74 @@
-module Solution013_1 exposing (main)
+module Solution013_1 exposing (..)
 
 import Html exposing (..)
 import Html.Events exposing (..)
+import Http
 
 
-{-| When our main function does not return static HTML it is best to use a function like Html.beginnerProgram, Html.program or Html.programWithFlags.
--}
 main : Program Never Model Msg
 main =
-    Html.beginnerProgram
-        { model = model
+    Html.program
+        { init = init
         , view = view
         , update = update
+        , subscriptions = \_ -> Sub.none
         }
 
 
-{-| It is a convention to call the type that represents your model "Model". So
-even if our model is a simple Int, we create an alias named "Model" for Int.
--}
 type alias Model =
-    Int
+    { message : String
+    }
 
 
-{-| define the initial model value
--}
-model : Model
-model =
-    0
+init : ( Model, Cmd Msg )
+init =
+    ( { message = "click the button!"
+      }
+    , Cmd.none
+    )
 
 
-{-| define all messages that might be send from the view to the runtime
--}
 type Msg
-    = Increment
-    | Decrement
+    = TriggerRequest
+    | ReceivedResponse (Result Http.Error String)
 
 
-update : Msg -> Model -> Model
+update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        Increment ->
-            model + 1
+        TriggerRequest ->
+            ( { model | message = "loading..." }
+            , getRandomNumber
+            )
 
-        Decrement ->
-            model - 1
+        ReceivedResponse result ->
+            let
+                updatedModel =
+                    case result of
+                        Ok newRandomNumber ->
+                            { model | message = "Latest random number: " ++ newRandomNumber }
+
+                        Err err ->
+                            { model | message = toString err }
+            in
+                ( updatedModel, Cmd.none )
 
 
 view : Model -> Html Msg
 view model =
     div []
-        [ p [] [ model |> toString |> text ]
-        , p
-            []
-            [ button [ onClick Decrement ] [ text "-" ]
-            , button [ onClick Increment ] [ text "+" ]
-            ]
+        [ p [] [ model |> .message |> text ]
+        , p [] [ button [ onClick TriggerRequest ] [ text "execute request" ] ]
         ]
+
+
+getRandomNumber : Cmd Msg
+getRandomNumber =
+    let
+        url =
+            "https://www.random.org/integers/?num=1&min=1&max=999&col=1&base=10&format=plain&rnd=new"
+
+        request =
+            Http.getString url
+    in
+        Http.send ReceivedResponse request

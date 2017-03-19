@@ -3,20 +3,17 @@ module Solution006_1 exposing (..)
 import Html exposing (..)
 
 
-list : List String
-list =
-    [ "one"
-    , "two"
-    , "three"
-    , "four"
-    ]
-
-
-renderListItem : String -> Html a
-renderListItem string =
-    li [] [ text string ]
-
-
 main : Html a
 main =
-    ul [] (List.map renderListItem list)
+    let
+        list =
+            [ "one"
+            , "two"
+            , "three"
+            , "four"
+            ]
+
+        renderListItem string =
+            li [] [ text string ]
+    in
+        ul [] (List.map renderListItem list)

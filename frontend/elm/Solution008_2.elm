@@ -1,4 +1,4 @@
-module Solution009_2 exposing (..)
+module Solution008_2 exposing (..)
 
 import Html exposing (..)
 
@@ -14,7 +14,7 @@ book1 : Book
 book1 =
     { title = "Elm in Action"
     , author = "Richard Feldman"
-    , price = 39.99
+    , price = 38.88
     }
 
 

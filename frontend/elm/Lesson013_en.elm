@@ -7,138 +7,96 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 13 - Web Apps (Finally)
-==============================
+Lesson 13 - Talking to HTTP Backends
+====================================
 
 Introduction
 ------------
 
-Until now, we only have talked about static HTML and Elm syntax basics. It is high time to write something more interactive. After all, that is what Elm is all about - interactive web apps.
+Elm is a *pure* functional language. In particular, all functions are *pure*, which means that for the same input parameter values, the function must return the same result value, *every single time*. If you call `(someFunction 42 "foo" True)` two times, it will return the exact same result both times.
 
-Let's write a simple counter app that displays an integer value and has two buttons to increment and decrement the counter.
+But the real world is not pure. For example, an HTTP request, even with the exact same URL and query parameters  might work the first time and fail the second time due to network problems. How does Elm handle this mismatch?
 
-To do so, we stop returning some static HTML from our `main` function. That's not how actual Elm apps are written anyway.
+The solution is that the Elm runtime handles impure code and side effects for you. Let's extend the example of the previous lesson with an HTTP request to see how this works in practice.
 
-Instead, the `main` function of any Elm app usually uses one of this three options:
-* [Html.beginnerProgram](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram),
-* [Html.program](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#program) or
-* [Html.programWithFlags](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#programWithFlags).
+First of all, we need to upgrade from the `Html.beginnerProgram` to `Html.program` to be able to work with Elm [`Cmd`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform-Cmd) (short for *command*) type. A command is something that you hand off to the Elm runtime for execution. This could be an HTTP request, some asynchronous task, getting the current time or generating a random value (or a number of other things that are not possible in pure Elm).
 
-We ignore `Html.program` and `Html.programWithFlags` for now and use `Html.beginnerProgram`. This function expects us to pass a record with three things:
+When Elm has executed your `Cmd`, it create a message representing the result and calls your `update` function with it. You specify which messages you want to receive when creating the `Cmd`.
 
-* a `model` value, which is the initial data model for our app,
-* a `view` function, which turns a model into HTML, and
-* an `update` function which will process messages (user input, mouse clicks, returning HTTP calls, etc.) and update the model accordingly.
+Open the file  `frontend/elm/Example013.elm` in an editor. You might notice two key differences to the code in exercise 12, caused by our switch from `Html.beginnerProgram` to `Html.program`.
 
-### Model
+First, instead of `model` we now have to provide an `init` method which not only creates the initial model but also an initial command. This is handy in case you want to execute a command right at the start of your app. If you don't, you simple use `Cmd.none` to create a command that does nothing.
 
-The `model` can have any type we want (Elm uses type variables to achieve this). We usually declare a type named `Model` for that, which could be a record type, a simple type alias, a List, you name it. For our counter app example, we could use
+Second, the return type of the `update` function now is `( Model, Cmd Msg )` instead of simply `Model`. Thus, everytime `update is called, you can manipulate the state of your model *and* ask Elm to execute a command. Again, for cases where you don't need to run a command, return your model together with `Cmd.none`.
 
-```
-type alias Mode = Int
-```
+The `getRandomNumber` is a stub (that you will need to implement in exercise 13.1, see below). When implemented it should create a command to send an HTTP request asking random.org for a single random number.
 
-because all we need as our model is a simple integer. With that in place, we can initialise our model:
+The `view` method renders a button that should triggers a new request for a random number. Actually, in Elm a view method never directly triggers a `Cmd`, it only sends a message. In this case, it sends a `TriggerRequest` message. This message is then pushed into the update method by the Elm runtime. The update method would then create the command (by calling `getRandomNumber`) and return it, together with the model, for example like this:
 
 ```
-model : Model
-model = 0
+update : Msg -> Model -> ( Model, Cmd Msg )
+update msg model =
+    case msg of
+        TriggerRequest ->
+            ( model | getRandomNumber )
+        ...
 ```
 
-### Messages
-
-We also need a union type (usually called `Msg`) describing the messages that our `update` function will receive. For our counter app, we only need two messages:
-
-```
-type Msg = Increment | Decrement
-```
-
-### Update
-
-The `update` function must have the signature `update : Msg -> Model -> Model`, that is, it takes a message and the current state of the model. It then produces the new state of the model after processing the message. Most update functions use a `case ... of` statement to check which message value it has received.
-
-### View
-
-The `view` function takes the current state of the model and produces corresponding HTML.
-
-In a web app, the user can trigger events by interacting with the page (clicking a button, typing in a text field, etc.). User interaction is modelled as messages in Elm. The type of the messages that can be triggerd from a view is up to us, that is why the type `Html` takes a type parameter (such as `Html a` or `Html Msg`). Since our message type is `Msg`, the signature of our `view` function needs to be `view : Model -> Html Msg`. The message types used in the update function and in the view function must be the same, otherwise the compiler will complain.
-
-Side note: Remember exercise 3.2 when we said that the type of `main` is not simply `Html` but `Html a` and that we would come back to this type parameter later? Well, now this mystery has been solved. Since we were not interested in the messages produced by the HTML in our earlier examples, we simply used an unbound *type variable* `a` there and ignored it.
-
-### Events
-
-To make an HTML element do anything, we use the `Html.Events` module. It contains things like `onClick`, `onInput`, `onBlur` and so on.
-
-To use it, we need a new import at the top of the module:
-
-```
-import Html.Events exposing (..)
-```
-
-We attach event handlers to our DOM elements by adding them to the first of the two lists that we pass to each Html function:
-
-```
-button [ onClick Increment ] [ text "+" ]
-```
-
-This renders a button element with a "+" on it. When this button is clicked, the `Increment` message is produced. The Elm runtime will feed all messages that our view produces back into our `update` function, where we can process them to update our model.
-
-### Main
-
-Finally, with everything in place, we can call `Html.beginnerProgram` from our `main` function and pass the required record:
-
-```
-main : Program Never Model Msg
-main =
-    Html.beginnerProgram
-        { model = model
-        , view = view
-        , update = update
-        }
-```
-
-The rest will be handeld by `Html.beginnerProgram` and the Elm runtime.
+When the request returns, it either has succeeded or failed. That's why the `ReceivedResponse` wraps a value of type `Result Http.Error String`, which either contains an `Http.Error` (when the request has failed) or a simple string representing the response body (when the request has succeeded).
 
 Relevant Docs
 -------------
 
-* http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram
-* https://guide.elm-lang.org/architecture/
+* http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Platform-Cmd
+* https://guide.elm-lang.org/architecture/effects/
 
 Exercise 13.1
 -------------
 
-Open the file  `frontend/elm/Example013.elm` in an editor. It outlines most of what we have discussed above. A few things are missing, tough, so the buttons won't work.
+Open the file  `frontend/elm/Example013.elm` in an editor, if it is not open already.
 
-* Add the `Increment` and `Decrement` messages to the `Msg` type.
-* Remove the `NoOp` message from to the `Msg` type.
-* Implement the `update` function so that it correctly processes `Increment` and `Decrement` messages and returns an updated model.
-* Add `onClick` handlers to the buttons in the `view` function.
-* Verify that everything works as expected by clicking on the buttons in the "Elm output" panel above.
+First, implement `getRandomNumber` to actually send a request.
 
+Use `Http.getString` with the url `https://www.random.org/integers/?num=1&min=1&max=999&col=1&base=10&format=plain&rnd=new` to create the `request` object, then use `Http.send ReceivedResponse request` to actually create the `Cmd`. Passing the constructor `ReceivedResponse` into `Http.send` tells the Elm runtime that we want to receive the result of the HTTP call as a `ReceivedResponse` message.
 
-Exercise 13.2 (optional)
-------------------------
+Now, complete the implementation of the update function. You'll need the usual `case ... of` for the incoming message. In the `ReceivedResponse` case you might need a second `case` statement for the `Result` value, like this:
 
-Replace the `type alias Model = Int` with a type alias for a record type that only has one integer attribute named `counter`. Update the rest of the code accordingly.
+```
+case result of
+    Ok newRandomNumber -> ...
+    Err err -> ...
+```
 
-Exercise 13.3 (optional)
-------------------------
-
-This one is a bit more difficult :-)
-
-Add an input field after the buttons and send a message, when the input changes. Let's say we call this new message `OnInput`. Since this event will contain a string value, the new `Msg`  will need to be something like `OnInput String`.
-
-Add code to the `update` function to overwrite the current counter value with the value contained in the `OnInput` message. Note: You will receive a string there, which you will need to convert into an integer. The functions [`String#toInt`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/String#toInt) and [Result.withDefault](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Result#withDefault) might be useful here.
+In the `Ok` case, put a string into the model's `message` attribute that contains the response body. In the `Err` case, let the `message` be `toString err`.
 
 ----
 
-The half day workshop ends here. Congratulations for finishing it! <3
+Further Topics for Study
+------------------------
 
-Of course you are welcome to
-* explorer lessons exercises you might have skipped,
-* review the covered material again and experiment some more with the code in the exercises you have completed, or
-* continue with the next exercise that would be covered in a longer workshop (full day or multi day).
+You have reached the end of the workshop material. Congratulations! I hope you had some fun while working with Elm.
 
-<span class="fa fa-hand-o-right"></span> Continue with **[lesson 14](/#014)**.
+Of course, there is more to learn. Here are some aspects that are not (yet) covered by this beginner's workshop. Some of the topics will be included in the next version of this workshop.
+
+* tuples
+* working with Maybe
+* the module system, that is,
+    * details about the import statement
+    * working with multiple modules,
+    * expose functions from modules
+    * using modules with full qualified name versus non-qualified names via `import ... exposing`
+* JSON encoding/decoding
+* advanced HTTP requests
+* `Task`
+* working with web sockets, subsriptions
+* nesting components with their own model, view and update function
+* programWithFlags
+* writing SPAs in Elm
+* navigation in Elm SPAs
+* JavaScript interop/ports
+
 """
+
+
+
+-- <span class="fa fa-hand-o-right"></span> Continue with **[lesson 14](/#014)**.

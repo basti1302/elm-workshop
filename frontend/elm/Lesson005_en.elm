@@ -113,6 +113,25 @@ Now, extend your solution from exercise 5.1 so that the following HTMl is produc
 
 Remark: [Bootstrap](http://getbootstrap.com/css/) CSS is included in the bundle, so you can use any Bootstrap CSS class. If you really wanted to, you could also add more custom classes  in `frontend/scss/user.scss` (but it is not required for any of the exercises).
 
+
+Exercise 5.3
+------------
+
+Below the main function in `frontend/elm/Example005.elm`, you will find another declaration, a value named `list` (a list of four strings).
+
+Write a function `renderListItem : String -> Html a`, that renders a string into an `li` tag. Then, use `List.map` in `main` to create the following DOM structure:
+
+```
+<ul>
+  <li>one</li>
+  <li>two</li>
+  <li>three</li>
+  <li>four</li>
+</ul>
+```
+
+Basically, you need to replace current body of the main function with an `ul` that receives a `List.map` expression as its second parameter. You might need to wrap your `List.map` call in parantheses.
+
 ----
 
 <span class="fa fa-hand-o-right"></span> Continue with **[lesson 6](/#006)**.
@@ -120,7 +139,7 @@ Remark: [Bootstrap](http://getbootstrap.com/css/) CSS is included in the bundle,
 
 
 
--- Exercise 5.2 (Optional) - Styles
+-- Exercise 5.4 (Optional) - Styles
 -- --------------------------------
 --
 -- Inline styles are syntactically a bit more complicated than classes, because the are passed as a list of tuples to the styles function. If you want to, check out the examples in the docs for [the style function](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html-Attributes#style) and add some inline styles.

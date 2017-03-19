@@ -7,49 +7,45 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 6 - List.map
-===================
+Lesson 6 - Let Expressions
+==========================
 
 Introduction
 ------------
 
-We already used the List type in lessons 4 and 5. Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on lists is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
+Continuing from the last exercise we notice that it can be a bit awkward to define a new top level function for every little helper, especially if we only use the helper function in the context of one function. Let expressions to the rescue!
 
-Example:
-
+An example:
 ```
-list : List Int
-list = [ 1, 2, 3, 4 ]
+calculate : Int
+calculate =
+    let
+        twentyfour = 3 * 8
 
-double : Int -> Int
-double a = a * 2
+        toThePowerOfTwo a =
+            a ^ 2
 
-mappedList : List Int
-mappedList = List.map double list
--- => mappedList = [ 2, 4, 6, 8 ]
+        sixteen = toThePowerOfTwo 4
+
+    in
+        twentyfour + sixteen
 ```
+
+With the `let` keyword you can assign names to intermediate values or helper functions. Here, two values (`twentyfour` and `sixteen`) and one function (`toThePowerOfTwo`) are defined. Note that `let` declarations can use things declared in the same `let` expression.
+
+You can add type annotations to the things in the let expression, but people often omit them and only add them to top level functions.
+
+The function `calculate` as a whole returns the value produced in the expression after the `in` keyword.
 
 Relevant Docs
 -------------
 
-* http://elm-lang.org/docs/syntax#lists
-* http://package.elm-lang.org/packages/elm-lang/core/5.1.1/List
+* http://elm-lang.org/docs/syntax#let-expressions
 
 Exercise 6.1
 ------------
 
-Open the file `frontend/elm/Example006.elm` in an editor. You'll find a list of four strings and a function that turns a string into an `li` tag. Use `List.map` to create the following DOM structure:
-
-```
-<ul>
-  <li>one</li>
-  <li>two</li>
-  <li>three</li>
-  <li>four</li>
-</ul>
-```
-
-Basically, you need to replace the second parameter to `ul` in `main` with a `List.map` expression. You might need to wrap your `List.map` call in parantheses, like this: `(List.map ...)`.
+Open the file `frontend/elm/Example006.elm` in an editor. Restructure the code so that only one top level expression (`main`) remains. Define `list` and `renderListItem` in a let expression inside `main`.
 
 ----
 

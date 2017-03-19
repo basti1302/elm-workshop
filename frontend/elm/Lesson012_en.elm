@@ -7,81 +7,138 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 12 - Fancy Function Application (optional)
-=================================================
+Lesson 12 - Web Apps (Finally)
+==============================
 
 Introduction
 ------------
 
-**This lesson is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.** This lesson will help you to write much nicer Elm code, though.
+Until now, we only have talked about static HTML and Elm syntax basics. It is high time to write something more interactive. After all, that is what Elm is all about - interactive web apps.
 
-### Function Application
+Let's write a simple counter app that displays an integer value and has two buttons to increment and decrement the counter.
 
-In the previous exercises we had some use cases that required quite a number of parantheses, for example expressions like `text (toString (6 * 7))`. There are ways to write this more elegantly in Elm, namely with `|>` and `<|`, which are called *forward function application* and *backward function application*, respectively. You can also call them *pipes*, because that's what they do.
+To do so, we stop returning some static HTML from our `main` function. That's not how actual Elm apps are written anyway.
 
-* `(parameter |> function)` is the same as `(function parameter)`.
-* `(function <| parameter)` is the same as `(function parameter)`.
+Instead, the `main` function of any Elm app usually uses one of this three options:
+* [Html.beginnerProgram](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram),
+* [Html.program](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#program) or
+* [Html.programWithFlags](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#programWithFlags).
 
-Here are a few things that are equivalent:
-```
-text (toString (6 * 7))
+We ignore `Html.program` and `Html.programWithFlags` for now and use `Html.beginnerProgram`. This function expects us to pass a record with three things:
 
-6 * 7 |> toString |> text
+* a `model` value, which is the initial data model for our app,
+* a `view` function, which turns a model into HTML, and
+* an `update` function which will process messages (user input, mouse clicks, returning HTTP calls, etc.) and update the model accordingly.
 
-text <| toString <| 6 * 7
-```
+### Model
 
-Do you notice how the second and the third line resemble pipelines for values? Let's look at the second line in detail. The following is a good mental model for the `|>` operator: We start with the value `6 * 7` and pass it via `|>` into the `toString` function. The `toString` function transforms the numerical value `42` into the string value `"42"`. This value is then passed into the function `text`, which turns the string into an HTML text node.
-
-The third line works the same, but there the flow starts at the right side and values flow from right to left instead of left to right.
-
-### Partial Function Application
-
-But what about functions that take two or more parameters? Can we use `|>` and `<|` with such functions? We can only pipe one value into the next function via `|>`/`<|`, so where would this function get the other parameters from? Turns out we still can use these operators, with the help of partial function application.
-
-Let's say we wanted to use the [compare function](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#compare) in a pipe expression, like we did with `toString` and `text` above. The function `compare` requires *two* arguments, but it is perfectly fine to only pass in one value, like so `(compare 7)`. This will create a new (anonymous) function on the fly, that takes only one parameter, and that will compare everything with 7. We say that the first parameter for `compare` is already bound to 7.
-
-Thus, this would be legal Elm code:
+The `model` can have any type we want (Elm uses type variables to achieve this). We usually declare a type named `Model` for that, which could be a record type, a simple type alias, a List, you name it. For our counter app example, we could use
 
 ```
-12 |> compare 7
--- => LT (which means that 7 is less then 12)
+type alias Mode = Int
 ```
 
-And it would pass the value 12 into a function that takes one parameter and compares every incoming parameter with 7.
+because all we need as our model is a simple integer. With that in place, we can initialise our model:
 
+```
+model : Model
+model = 0
+```
+
+### Messages
+
+We also need a union type (usually called `Msg`) describing the messages that our `update` function will receive. For our counter app, we only need two messages:
+
+```
+type Msg = Increment | Decrement
+```
+
+### Update
+
+The `update` function must have the signature `update : Msg -> Model -> Model`, that is, it takes a message and the current state of the model. It then produces the new state of the model after processing the message. Most update functions use a `case ... of` statement to check which message value it has received.
+
+### View
+
+The `view` function takes the current state of the model and produces corresponding HTML.
+
+In a web app, the user can trigger events by interacting with the page (clicking a button, typing in a text field, etc.). User interaction is modelled as messages in Elm. The type of the messages that can be triggerd from a view is up to us, that is why the type `Html` takes a type parameter (such as `Html a` or `Html Msg`). Since our message type is `Msg`, the signature of our `view` function needs to be `view : Model -> Html Msg`. The message types used in the update function and in the view function must be the same, otherwise the compiler will complain.
+
+Side note: Remember exercise 3.2 when we said that the type of `main` is not simply `Html` but `Html a` and that we would come back to this type parameter later? Well, now this mystery has been solved. Since we were not interested in the messages produced by the HTML in our earlier examples, we simply used an unbound *type variable* `a` there and ignored it.
+
+### Events
+
+To make an HTML element do anything, we use the `Html.Events` module. It contains things like `onClick`, `onInput`, `onBlur` and so on.
+
+To use it, we need a new import at the top of the module:
+
+```
+import Html.Events exposing (..)
+```
+
+We attach event handlers to our DOM elements by adding them to the first of the two lists that we pass to each Html function:
+
+```
+button [ onClick Increment ] [ text "+" ]
+```
+
+This renders a button element with a "+" on it. When this button is clicked, the `Increment` message is produced. The Elm runtime will feed all messages that our view produces back into our `update` function, where we can process them to update our model.
+
+### Main
+
+Finally, with everything in place, we can call `Html.beginnerProgram` from our `main` function and pass the required record:
+
+```
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram
+        { model = model
+        , view = view
+        , update = update
+        }
+```
+
+The rest will be handeld by `Html.beginnerProgram` and the Elm runtime.
 
 Relevant Docs
 -------------
 
-* http://elm-lang.org/docs/syntax#functions
-* http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#|>
-* http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#<|
+* http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram
+* https://guide.elm-lang.org/architecture/
 
 Exercise 12.1
 -------------
 
-Take a look at `frontend/elm/Example012.elm`. It uses a verbose `let` expression to
+Open the file  `frontend/elm/Example012.elm` in an editor. It outlines most of what we have discussed above. A few things are missing, tough, so the buttons won't work.
 
-* sort an integer list,
-* convert all integer values in the list to strings,
-* join the strings into one string, and finally
-* convert this string into an HTML text node.
+* Add the `Increment` and `Decrement` messages to the `Msg` type.
+* Remove the `NoOp` message from to the `Msg` type.
+* Implement the `update` function so that it correctly processes `Increment` and `Decrement` messages and returns an updated model.
+* Add `onClick` handlers to the buttons in the `view` function.
+* Verify that everything works as expected by clicking on the buttons in the "Elm output" panel above.
 
-You could write that as one line with `text (String.join ", " (List.map toString (List.sort unsortedList)))` but that is even uglier.
 
-Remove the `let` expresssion and refactor this code into a chain of function calls that are chained via `|>`.
+Exercise 12.2 (optional)
+------------------------
 
-### Sidenote
+Replace the `type alias Model = Int` with a type alias for a record type that only has one integer attribute named `counter`. Update the rest of the code accordingly.
 
-There are also *function composition* operators, [`<<`](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#<<) and [`>>`](http://package.elm-lang.org/packages/elm-lang/core/latest/Basics#>>). For the mathematically inclined:
+Exercise 12.3 (optional)
+------------------------
 
-* `(g << f) x` is the same as `g (f x)`
-* `(f >> g) x` is the same as `g (f x)`
+This one is a bit more difficult :-)
 
-If this sounds like complicated gibberish to you, don't bother with it for now. `|>` and `<|` are used far more often than `<<` and `>>`.
+Add an input field after the buttons and send a message, when the input changes. Let's say we call this new message `OnInput`. Since this event will contain a string value, the new `Msg`  will need to be something like `OnInput String`.
+
+Add code to the `update` function to overwrite the current counter value with the value contained in the `OnInput` message. Note: You will receive a string there, which you will need to convert into an integer. The functions [`String#toInt`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/String#toInt) and [Result.withDefault](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Result#withDefault) might be useful here.
 
 ----
+
+The half day workshop ends here. Congratulations for finishing it! <3
+
+Of course you are welcome to
+* explorer lessons exercises you might have skipped,
+* review the covered material again and experiment some more with the code in the exercises you have completed, or
+* continue with the next exercise that would be covered in a longer workshop (full day or multi day).
 
 <span class="fa fa-hand-o-right"></span> Continue with **[lesson 13](/#013)**.
 """

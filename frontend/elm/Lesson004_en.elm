@@ -41,11 +41,31 @@ By the way, `++` also works on strings, that is, when you need to concatenate tw
 
 You can convert a list into a string by using the `toString` function. (In fact,  you can use `toString` with _any_ Elm value, no matter which type).
 
+List.map
+--------
+
+Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on lists is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
+
+Example:
+
+```
+list : List Int
+list = [ 1, 2, 3, 4 ]
+
+double : Int -> Int
+double a = a * 2
+
+mappedList : List Int
+mappedList = List.map double list
+-- => mappedList = [ 2, 4, 6, 8 ]
+```
+
 Relevant Docs
 -------------
 
 * http://elm-lang.org/docs/syntax#lists
 * http://package.elm-lang.org/packages/elm-lang/core/5.1.1/List
+* http://package.elm-lang.org/packages/elm-lang/core/5.1.1/List#map
 
 Exercise 4.1
 ------------
@@ -61,6 +81,11 @@ Exercise 4.3
 ------------
 
 Use `::` to prepend the number 0 to the start of the list. Again, you can do this directly in the definition of `list1` (that is, in line 8).
+
+Exercise 4.4
+------------
+
+Define a function `increment : Int -> Int` that increments an integer by 1. Define a second `List Int` (say, `list2`) by mapping the `increment` function over `list1`. Don't forget to change your main function so that `list2` is printed instead of `list1`.
 
 ----
 

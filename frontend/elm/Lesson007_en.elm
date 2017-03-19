@@ -7,45 +7,32 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Lesson 7 - Let Expressions
-==========================
+Lesson 7 - Type Alias
+=====================
 
 Introduction
 ------------
 
-Continuing from the last exercise we notice that it can be a bit awkward to define a new top level function for every little helper, especially if we only use the helper function in the context of one function. Let expressions to the rescue!
+You can declare an alias for any type in Elm by using the `type alias` construct. Examples:
 
-An example:
 ```
-calculate : Int
-calculate =
-    let
-        twentyfour = 3 * 8
+type alias Name = String
+type alias Age = Int
 
-        toThePowerOfTwo a =
-            a ^ 2
-
-        sixteen = toThePowerOfTwo 4
-
-    in
-        twentyfour + sixteen
+type alias ManyStrings = List String
 ```
 
-With the `let` keyword you can assign names to intermediate values or helper functions. Here, two values (`twentyfour` and `sixteen`) and one function (`toThePowerOfTwo`) are defined. Note that `let` declarations can use things declared in the same `let` expression.
-
-You can add type annotations to the things in the let expression, but people often omit them and only add them to top level functions.
-
-The function `calculate` as a whole returns the value produced in the expression after the `in` keyword.
+The original type and its aliases can be used interchangeably, that is, you can pass a `String` to a function that expects a `Name` and vice versa.
 
 Relevant Docs
 -------------
 
-* http://elm-lang.org/docs/syntax#let-expressions
+* http://elm-lang.org/docs/syntax#type-aliases
 
-Exercise 7.1
-------------
+Exercises
+---------
 
-Open the file `frontend/elm/Example007.elm` in an editor. Restructure the code so that only one top level expression (`main`) remains. Define `list` and `renderListItem` in a let expression inside `main`.
+There are no exercises for type aliases but we will use type aliases when we introduce records in [exercise 8](/#008).
 
 ----
 

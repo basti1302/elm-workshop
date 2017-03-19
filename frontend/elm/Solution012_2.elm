@@ -1,4 +1,4 @@
-module Solution013_2 exposing (main)
+module Solution012_2 exposing (main)
 
 import Html exposing (..)
 import Html.Events exposing (..)

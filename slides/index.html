@@ -1,41 +1,41 @@
 <!doctype html>
 <html lang="en">
 
-	<head>
-		<meta charset="utf-8">
+  <head>
+    <meta charset="utf-8">
 
     <title>Slides - Elm Workshop</title>
 
-		<meta name="description" content="Accompanying slides for the Elm beginners workshop">
-		<meta name="author" content="Bastian Krol">
+    <meta name="description" content="Accompanying slides for the Elm beginners workshop">
+    <meta name="author" content="Bastian Krol">
 
-		<meta name="apple-mobile-web-app-capable" content="yes">
-		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
 
     <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
     <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
 
     <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/moon.css" id="theme">
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
 
-		<!-- Code syntax highlighting -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
 
-		<!-- Printing and PDF exports -->
-		<script>
-			var link = document.createElement( 'link' );
-			link.rel = 'stylesheet';
-			link.type = 'text/css';
-			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
-			document.getElementsByTagName( 'head' )[0].appendChild( link );
-		</script>
+    <!-- Printing and PDF exports -->
+    <script>
+      var link = document.createElement( 'link' );
+      link.rel = 'stylesheet';
+      link.type = 'text/css';
+      link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+      document.getElementsByTagName( 'head' )[0].appendChild( link );
+    </script>
 
-		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
-		<![endif]-->
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
 
     <style>
 
@@ -122,16 +122,16 @@
 
     </style>
 
-	</head>
+  </head>
 
-	<body>
+  <body>
 
-		<div class="reveal">
+    <div class="reveal">
 
-			<div class="slides">
-				<section>
-					<h1>Elm Workshop</h1>
-				</section>
+      <div class="slides">
+        <section>
+          <h1>Elm Workshop</h1>
+        </section>
 
         <section>
           <h2>Hi There!</h2>
@@ -208,8 +208,8 @@
           </div>
         </section>
 
-				<section>
-					<h2>What is Elm</h2>
+        <section>
+          <h2>What is Elm</h2>
           <ul>
             <li>Purely Functional</li>
             <li>Static Type System</li>
@@ -217,9 +217,9 @@
             <li>Open Source</li>
             <li>Makes Web Development Delightful</li>
           </ul>
-				</section>
+        </section>
 
-				<section>
+        <section>
           <h2>Marketing Blurbs</h2>
           <ul>
             <li>Clean Syntax</li>
@@ -229,7 +229,7 @@
             <li>Libraries With SemVer Guarantees</li>
             <li>Smooth JavaScript Interop</li>
           </ul>
-				</section>
+        </section>
 
         <!--
         ========================================================================
@@ -237,26 +237,26 @@
         ========================================================================
         -->
 
-				<section>
-					<h1>Syntax Basics</h1>
-				</section>
+        <section>
+          <h1>Syntax Basics</h1>
+        </section>
 
         <!-- Hello World -->
-				<section>
-					<h2>Hello World</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Hello World</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 module Example exposing (..)
 
 import Html exposing (..)
 
 main = text "Hello React Days!"
 </code></pre>
-				</section>
+        </section>
 
         <!-- Functions -->
-				<section>
+        <section>
           <h2>Functions</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs elm" data-trim contenteditable>
 import Html exposing (..)
 
 -- define a function named greet
@@ -267,12 +267,12 @@ greet str =
 main =
   greet "Hello React Days!"
 </code></pre>
-				</section>
+        </section>
 
         <!-- Type Annotations -->
-				<section>
-					<h2>Type Annotations</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Type Annotations</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 import Html exposing (..)
 
 greet : String -&gt; Html a
@@ -283,11 +283,11 @@ main : Html a
 main =
   greet "Hello React Days!"
 </code></pre>
-				</section>
+        </section>
 
         <!-- Lists -->
-				<section>
-					<h2>Lists</h2>
+        <section>
+          <h2>Lists</h2>
           <pre><code class="hljs elm" data-trim contenteditable>
 list1 : List Int
 list1 = [1, 2, 3]
@@ -301,24 +301,38 @@ list3 = [ "some", "strings" ] ++ [ "and", "some", "more" ]
 list4 = "before" :: [ "everything", "else" ]
 -- =&gt; [ "before", "everything", "else" ]
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h1>Hands On!</h1>
+        <!-- List.map -->
+        <section>
+          <h2>List.map</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
+double : Int -&gt; Int
+double a = a * 2
+
+list = [ 1, 2, 3, 4 ]
+
+mappedList = List.map double list
+-- =&gt; mappedList = [ 2, 4, 6, 8 ]
+</code></pre>
+        </section>
+
+        <section>
+          <h1>Hands On!</h1>
           <h3>Exercises:</h3>
           <h3>2 - 4</h3>
-				</section>
+        </section>
 
-				<section>
-					<h1>HTML</h1>
-				</section>
+        <section>
+          <h1>HTML</h1>
+        </section>
 
         <!-- HTML -->
-				<section>
-					<h2>HTML</h2>
+        <section>
+          <h2>HTML</h2>
           <div class="span8">
             <strong>Elm</strong>
-					  <pre><code class="hljs elm" data-trim contenteditable>
+            <pre><code class="hljs elm" data-trim contenteditable>
 -- &lt;tag&gt; [ attributes ] [ children ]
 p [] [ text "foo" ]
 
@@ -330,7 +344,7 @@ div []
           </div>
           <div class="span4">
             <strong>HTML</strong>
-					  <pre><code class="hljs html" data-trim contenteditable>
+            <pre><code class="hljs html" data-trim contenteditable>
 &lt;!-- result --&gt;
 &lt;p&gt;foo&lt;/p&gt;
 
@@ -339,13 +353,13 @@ div []
 &lt;/div&gt;
 </code></pre>
           </div>
-				</section>
+        </section>
 
-				<section>
-					<h2>HTML (2)</h2>
+        <section>
+          <h2>HTML (2)</h2>
           <div class="span6">
             <strong>Elm</strong>
-					  <pre><code class="hljs elm" data-trim contenteditable>
+            <pre><code class="hljs elm" data-trim contenteditable>
 ul
     []
     [ li
@@ -362,7 +376,7 @@ ul
           </div>
           <div class="span6">
             <strong>HTML</strong>
-					  <pre><code class="hljs html" data-trim contenteditable>
+            <pre><code class="hljs html" data-trim contenteditable>
 &lt;ul&gt;
   &lt;li&gt;First&lt;/li&gt;
   &lt;li&gt;Second&lt;/li&gt;
@@ -370,26 +384,12 @@ ul
 &lt;/ul&gt;
 </code></pre>
           </div>
-				</section>
+        </section>
 
-        <!-- List.map -->
-				<section>
-					<h2>List.map</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
-double : Int -&gt; Int
-double a = a * 2
-
-list = [ 1, 2, 3, 4 ]
-
-mappedList = List.map double list
--- =&gt; mappedList = [ 2, 4, 6, 8 ]
-</code></pre>
-				</section>
-
-         <!-- let -->
-				<section>
-					<h2>Let</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <!-- let -->
+        <section>
+          <h2>Let</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 calculate : Int
 calculate =
     let
@@ -403,33 +403,32 @@ calculate =
     in
         twentyfour + sixteen
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h1>Hands On!</h1>
+        <section><h1>Hands On!</h1>
           <h3>Exercises:</h3>
           <h3>5 - 7</h3>
-				</section>
+        </section>
 
-				<section>
-					<h1>Type System</h1>
-				</section>
+        <section>
+          <h1>Type System</h1>
+        </section>
 
         <!-- Type Alias -->
- 				<section>
-					<h2>Type Alias</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+         <section>
+          <h2>Type Alias</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type alias Name = String
 type alias Age = Int
 
 type alias ManyStrings = List String
 </code></pre>
-				</section>
+        </section>
 
         <!-- Records -->
-				<section>
-					<h2>Records</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Records</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 point = { x = 3, y = 4 }
 
 -- access field
@@ -440,11 +439,11 @@ point.x
 { point | x = 99 }
 -- =&gt; { x = 99, y = 4 }
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Records (2)</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Records (2)</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 point = { x = 3, y = 4 }
 
 -- multi update
@@ -454,11 +453,11 @@ point = { x = 3, y = 4 }
 }
 -- =&gt; { x = 4, y = 5 }
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Records (3)</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Records (3)</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 -- type alias for record
 type alias Point =
   { x : Int
@@ -469,22 +468,22 @@ point : Point
 point = { x = 3, y = 4 }
 -- =&gt; { x = 3, y = 3 }
 </code></pre>
-				</section>
+        </section>
 
         <!-- Union Types -->
-				<section>
-					<h2>Union Types</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Union Types</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type LogLevel = Info | Warn | Error
 
 logLevel : LogLevel
 logLevel = Info
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Union Types (2)</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Union Types (2)</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type LogLevel = Info | Warn | Error
 
 logLevelToMessage : LogLevel -&gt; String
@@ -499,11 +498,11 @@ logLevelToMessage logLevel =
         Error -&gt;
             "Red alert! Red Alert"
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Union Types (3)</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Union Types (3)</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type AuthenticationState = NotSignedIn | SignedIn String
 
 authState1 : AuthenticationState
@@ -512,11 +511,11 @@ authState1 = NotSignedIn
 authState2 : AuthenticationState
 authState2 = SignedIn "example.user"
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Union Types (4)</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Union Types (4)</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type AuthenticationState = NotSignedIn | SignedIn String
 
 authStateToMessage : AuthenticationState -> String
@@ -528,13 +527,13 @@ authStateToMessage authState =
         SignedIn userName ->
             "Signed in as " ++ userName
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h1>Hands On!</h1>
+        <section>
+          <h1>Hands On!</h1>
           <h3>Exercises:</h3>
           <h3>9 &amp; 10</h3>
-				</section>
+        </section>
 
         <!--
         ========================================================================
@@ -544,26 +543,26 @@ authStateToMessage authState =
         ========================================================================
         -->
 
-				<section>
+        <section>
           <h1>User Interaction</h1>
-				</section>
+        </section>
 
         <section>
-        	<h2>TEA - The Elm Architecture</h2>
+          <h2>TEA - The Elm Architecture</h2>
           <img src="images/architecture.png" style="border: none; box-shadow: none;">
         </section>
 
-				<section>
-					<h1>A Counter</h1>
-					<h3>(A Very Simple Elm App)</h3>
+        <section>
+          <h1>A Counter</h1>
+          <h3>(A Very Simple Elm App)</h3>
         </section>
 
-				<section>
-					<h2>Counter App - main</h2>
+        <section>
+          <h2>Counter App - main</h2>
           <s><pre><code class="hljs elm">main : Html a
 main = text "Hello React Days!"
 </code></pre></s>
-					<pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs elm" data-trim contenteditable>
 main : Program Never Model Msg
 main =
     Html.beginnerProgram
@@ -572,27 +571,27 @@ main =
         , update = update
         }
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Counter App - Model</h2>
+        <section>
+          <h2>Counter App - Model</h2>
           <pre><code class="hljs elm" data-trim contenteditable>
 type alias Model = Int
 
 model : Model
 model = 0
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Counter App - Messages</h2>
+        <section>
+          <h2>Counter App - Messages</h2>
           <pre><code class="hljs elm" data-trim contenteditable>
 type Msg = Increment | Decrement
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Counter App - view</h2>
+        <section>
+          <h2>Counter App - view</h2>
           <pre><code class="hljs elm" data-trim contenteditable>
 view : Model -&gt; Html Msg
 view model =
@@ -602,10 +601,10 @@ view model =
     , button [ onClick Increment ] [ text "+" ]
     ]
 </code></pre>
-				</section>
+        </section>
 
-				<section>
-					<h2>Counter App - update</h2>
+        <section>
+          <h2>Counter App - update</h2>
           <pre><code class="hljs elm" data-trim contenteditable>
 update : Msg -&gt; Model -&gt; Model
 update msg model =
@@ -613,10 +612,10 @@ update msg model =
     Increment -&gt; model + 1
     Decrement -&gt; model - 1
 </code></pre>
-				</section>
+        </section>
 
         <section>
-        	<h2>Elm Architecture Overview</h2>
+          <h2>Elm Architecture Overview</h2>
           <img src="images/architecture.png" style="border: none; box-shadow: none;">
         </section>
 
@@ -631,11 +630,11 @@ update msg model =
           <p><small>(nearly)</small></p>
         </section>
 
-				<section>
-					<h1>Hands On!</h1>
+        <section>
+          <h1>Hands On!</h1>
           <h3>Exercise:</h3>
           <h3>13</h3>
-				</section>
+        </section>
 
         <section>
           <h2>Questions?</h2>
@@ -653,7 +652,7 @@ update msg model =
 
         </section>
 
-				<section>
+        <section>
           <h2>But What About Side Effects?</h2>
           <ul>
             <li>AJAX</li>
@@ -667,7 +666,7 @@ update msg model =
               How do we manage <em>side effects</em>?
             </p>
           </aside>
-				</section>
+        </section>
 
         <section>
           <h2>The Complete Elm Architecture.</h2>
@@ -685,9 +684,9 @@ update msg model =
         <!-- Parameter Types versus Return Types -->
         <!-- TODO Move down -->
         <!--
-				<section>
-					<h2>Parameter Types &amp; Return Types</h2>
-					<pre><code class="hljs elm" data-trim contenteditable>
+        <section>
+          <h2>Parameter Types &amp; Return Types</h2>
+          <pre><code class="hljs elm" data-trim contenteditable>
 import Html exposing (Html)
 import String
 
@@ -700,12 +699,12 @@ main : Html a
 main =
   greet 3 "Hello Bochum! "
 </code></pre>
-				</section>
+        </section>
         -->
 
         <!-- TODO Move down -->
         <!--
-				<section>
+        <section>
           <h2>Function Application<br><small>aka Data Pipelines</small></h2>
 
           <pre><code class="hljs elm" data-trim contenteditable>
@@ -727,38 +726,38 @@ main =
               <li>Also: Function Composition (&gt;&gt;/&lt;&lt;)</li>
             </ul>
           </aside>
-				</section>
+        </section>
         -->
 
       </div> <!-- .slides -->
     </div> <!-- .reveal -->
 
-		<script src="lib/js/head.min.js"></script>
-		<script src="js/reveal.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.js"></script>
 
-		<script>
+    <script>
 
-			// Full list of configuration options available at:
-			// https://github.com/hakimel/reveal.js#configuration
-			Reveal.initialize({
-				controls: true,
-				progress: true,
-				history: true,
-				center: true,
+      // Full list of configuration options available at:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
 
-				transition: 'slide', // none/fade/slide/convex/concave/zoom
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
 
-				// Optional reveal.js plugins
-				dependencies: [
-					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
-					{ src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
-					{ src: 'plugin/zoom-js/zoom.js', async: true },
-					{ src: 'plugin/notes/notes.js', async: true }
-				]
-			});
+        // Optional reveal.js plugins
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+          { src: 'plugin/zoom-js/zoom.js', async: true },
+          { src: 'plugin/notes/notes.js', async: true }
+        ]
+      });
 
-		</script>
-	</body>
+    </script>
+  </body>
 </html>

@@ -3,27 +3,44 @@ module Solution009_1 exposing (..)
 import Html exposing (..)
 
 
-type alias Book =
-    { title : String
-    , author : String
-    , price : Float
-    }
+type Msg
+    = Increment
+    | Decrement
+    | Set Int
 
 
-book1 : Book
-book1 =
-    { title = "Elm in Action"
-    , author = "Richard Feldman"
-    , price = 39.99
-    }
+update : Int -> Msg -> Int
+update currentValue msg =
+    case msg of
+        Increment ->
+            currentValue + 1
+
+        Decrement ->
+            currentValue - 1
+
+        Set newValue ->
+            newValue
+
+
+view : Int -> Html a
+view value =
+    let
+        txt =
+            text (toString (value))
+    in
+        li [] [ txt ]
 
 
 main : Html a
 main =
     let
-        bookToString b =
-            b.title
-                ++ " - "
-                ++ b.author
+        someValues =
+            [ update 42 Increment
+            , update 42 Decrement
+            , update 42 (Set 10)
+            ]
+
+        items =
+            List.map view someValues
     in
-        text (bookToString book1)
+        ul [] items

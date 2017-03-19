@@ -12,8 +12,6 @@ list =
     ]
 
 
-{-| Converts a string into a li (list item) tag
--}
 renderListItem : String -> Html a
 renderListItem string =
     li [] [ text string ]
@@ -21,4 +19,4 @@ renderListItem string =
 
 main : Html a
 main =
-    ul [] []
+    ul [] (List.map renderListItem list)

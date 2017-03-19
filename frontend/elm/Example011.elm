@@ -3,15 +3,26 @@ module Example011 exposing (..)
 import Html exposing (..)
 
 
-convert : Int -> String
-convert v =
-    "TODO"
+unsortedList : List Int
+unsortedList =
+    [ 3, 7, 2, 9, 5, 1 ]
 
 
 main : Html a
 main =
+    -- Actually, this could also be written as
+    -- text (String.join ", " (List.map toString (List.sort unsortedList)))
     let
-        mappedValues =
-            List.map convert [ 2, 4, 9, 11, 15, 24 ]
+        sorted =
+            List.sort unsortedList
+
+        strings =
+            List.map toString sorted
+
+        joined =
+            String.join ", " strings
+
+        result =
+            text joined
     in
-        text (toString (mappedValues))
+        result
