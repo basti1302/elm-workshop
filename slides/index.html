@@ -277,7 +277,7 @@ import Html exposing (..)
 
 greet : String -&gt; Html a
 greet str =
-  Html.text str
+  text str
 
 main : Html a
 main =
@@ -295,11 +295,11 @@ list1 = [1, 2, 3]
 list2 : List String
 list2 = ["just", "some", "words"]
 
-list3 = "before" :: [ "everything", "else" ]
--- =&gt; [ "before", "everything", "else" ]
-
-list4 = [ "some", "strings" ] ++ [ "and", "some", "more" ]
+list3 = [ "some", "strings" ] ++ [ "and", "some", "more" ]
 -- =&gt; [ "some", "strings", "and", "some", "more" ]
+
+list4 = "before" :: [ "everything", "else" ]
+-- =&gt; [ "before", "everything", "else" ]
 </code></pre>
 				</section>
 
@@ -319,7 +319,7 @@ list4 = [ "some", "strings" ] ++ [ "and", "some", "more" ]
           <div class="span8">
             <strong>Elm</strong>
 					  <pre><code class="hljs elm" data-trim contenteditable>
--- <tag> [ attributes ] [ children ]
+-- &lt;tag&gt; [ attributes ] [ children ]
 p [] [ text "foo" ]
 
 div []
@@ -693,7 +693,7 @@ import String
 
 greet : Int -&gt; String -&gt; Html a
 greet number string =
-  Html.text
+  text
     (String.repeat number string)
 
 main : Html a
@@ -713,7 +713,7 @@ greet : Int -&gt; String -&gt; Html a
 greet number string =
   string
     |&gt; String.repeat number
-    |&gt; Html.text
+    |&gt; text
 
 main : Html a
 main =

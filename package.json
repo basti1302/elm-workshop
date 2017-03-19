@@ -52,6 +52,6 @@
     "watch-webpack-production": "webpack -w",
     "start": "run-p serve-workshop serve-slides",
     "serve-workshop": "webpack-dev-server --hot --inline --content-base frontend/",
-    "serve-slides": "http-server slides -p8080"
+    "serve-slides": "http-server slides -p7001"
   }
 }
