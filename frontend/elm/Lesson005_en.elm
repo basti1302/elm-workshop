@@ -18,18 +18,18 @@ Open the file `frontend/elm/Example005.elm` in an editor.
 This file's main function looks different than before:
 
 ```
-p [] [ text "HTML Structures" ]
+main = p [] [ text "HTML Structures" ]
 ```
 
 `p` is a function from the module `Html`. It renders a `<p>` tag. For all HTML tags you could possibly think of, there is function with the same name in the `Html` module, so there are also functions like `div`, `span`, `ul`, `li`, `a`, etc.
 
-All of these functions accept two lists as parameters. The first list is the list of attributes (style, class, event listeners etc.), the second list is the list of child elements.
+All of these functions accept two lists as parameters. The first parameter is the list of attributes (style, class, event listeners etc.), the second parameter is the list of child elements.
 
-You should remember from the last lesson that lists are written as `[ element1, element2, ... ]` and `[]` is the empty list. So to produce an empty `<p/>` tag without attributes or children, you would write `p [] []`.
+You should remember from the last lesson that lists are written as `[ element1, element2, ... ]` and `[]` is the empty list. To produce an empty `<p/>` tag without attributes or children, you would write `p [] []`.
 
-The notable exception to this pattern is `text`, which only accepts one parameters of type string.
+The notable exception to this pattern is `text`, which only accepts one parameter of type string.
 
-Of course you can nest `Html` function calls to produce nested DOM structures, like so
+Of course you can nest `Html` function calls to produce nested DOM structures:
 
 ```
 div
@@ -40,7 +40,7 @@ div
     ]
 ```
 
-or like this
+Or like this:
 
 ```
 ul
@@ -57,9 +57,9 @@ ul
     ]
 ```
 
-which produces an unordered list with three items.
+which produces an unordered list with three list items.
 
-This might seem a bit clunky now. Just keep in mind that Elm is not a templating language for static Html, but a functional language. Since all of this are function calls, we can do some quite elegant things in our view code (we come back to this in the excercise 6).
+This might seem a bit clunky an awkward. Just keep in mind that Elm is not a templating language for static Html, but a functional language. Since all of these are function calls, we can do some quite elegant things in our view code (we come back to this in excercise 5.3).
 
 Relevant Docs
 -------------

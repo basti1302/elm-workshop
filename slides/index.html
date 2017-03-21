@@ -129,8 +129,19 @@
     <div class="reveal">
 
       <div class="slides">
+
         <section>
           <h1>Elm Workshop</h1>
+          <p>
+            Please clone:
+          </p>
+          <p>
+            <span style="font-size: 50px;">https://github.com/</span><br/>
+            <span style="font-size: 50px;">basti1302/elm-workshop.git</span>
+          <p>
+        </section>
+
+
         </section>
 
         <section>
@@ -209,6 +220,24 @@
         </section>
 
         <section>
+          <h2>Workshop Repository</h2>
+
+          <strong>clone with HTTPS</strong><br/>
+          <p>
+            <span style="font-size: 50px;">https://github.com/</span><br/>
+            <span style="font-size: 50px;">basti1302/elm-workshop.git</span>
+          </p>
+          <strong>or clone with SSH</strong><br/>
+          <p>
+            <span style="font-size: 50px;">git@github.com:</span><br/>
+            <span style="font-size: 50px;">basti1302/elm-workshop.git</span>
+          </p>
+          <p>
+            or download: https://github.com/basti1302/elm-workshop/archive/master.zip
+          </p>
+        </section>
+
+        <section>
           <h2>What is Elm</h2>
           <ul>
             <li>Purely Functional</li>
@@ -246,7 +275,49 @@
           <h2>Hello World</h2>
           <div class="span8">
             <strong>Elm</strong>
-            <pre><code class="hljs elm" data-trim contenteditable>
+            <pre><code class="hljs" data-trim contenteditable>
+module Example exposing (..)
+
+import Html
+
+main = Html.text "Hello React Days!"
+</code></pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div class="render-target" style="height: 120px; font-size: 30px;">
+              Hello React Days!
+            </div>
+          </div>
+        </section>
+
+        <!-- imports/exposing -->
+        <section>
+          <h2>Hello World</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre>
+<span class="hljs-keyword">module</span> <span class="hljs-title">Example exposing</span> <span class="hljs-params">(..)</span>
+
+<span class="hljs-title">import Html</span> <strong style="color: red;">exposing (..)</strong>
+
+<span class="hljs-title">main</span> = <s style="color: red;">Html.</s><span class="hljs-built_in">text</span> <span class="hljs-string">"Hello React Days!"</span>
+</pre>
+          </div>
+          <div class="span4">
+            <strong>Result</strong>
+            <div class="render-target" style="height: 120px; font-size: 30px;">
+              Hello React Days!
+            </div>
+          </div>
+        </section>
+
+        <!-- imports/exposing -->
+        <section>
+          <h2>Hello World</h2>
+          <div class="span8">
+            <strong>Elm</strong>
+            <pre><code class="hljs" data-trim contenteditable>
 module Example exposing (..)
 
 import Html exposing (..)
@@ -265,7 +336,7 @@ main = text "Hello React Days!"
         <!-- Functions -->
         <section>
           <h2>Functions</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 import Html exposing (..)
 
 -- define a function named greet
@@ -281,7 +352,7 @@ main =
         <!-- Type Annotations -->
         <section>
           <h2>Type Annotations</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 import Html exposing (..)
 
 greet : String -&gt; Html a
@@ -297,7 +368,7 @@ main =
         <!-- Lists -->
         <section>
           <h2>Lists</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 list1 : List Int
 list1 = [1, 2, 3]
 
@@ -315,7 +386,7 @@ list4 = "before" :: [ "everything", "else" ]
         <!-- List.map -->
         <section>
           <h2>List.map</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 double : Int -&gt; Int
 double a = a * 2
 
@@ -341,7 +412,7 @@ mappedList = List.map double list
           <h2>HTML</h2>
           <div class="span8">
             <strong>Elm</strong>
-            <pre><code class="hljs elm" data-trim contenteditable>
+            <pre><code class="hljs" data-trim contenteditable>
 -- &lt;tag&gt; [ attributes ] [ children ]
 p [] [ text "foo" ]
 
@@ -368,7 +439,7 @@ div []
           <h2>HTML (2)</h2>
           <div class="span6">
             <strong>Elm</strong>
-            <pre><code class="hljs elm" data-trim contenteditable>
+            <pre><code class="hljs" data-trim contenteditable>
 ul
     []
     [ li
@@ -398,7 +469,7 @@ ul
         <!-- let -->
         <section>
           <h2>Let</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 calculate : Int
 calculate =
     let
@@ -426,7 +497,7 @@ calculate =
         <!-- Type Alias -->
          <section>
           <h2>Type Alias</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type alias Name = String
 type alias Age = Int
 
@@ -437,7 +508,7 @@ type alias ManyStrings = List String
         <!-- Records -->
         <section>
           <h2>Records</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 point = { x = 3, y = 4 }
 
 -- access field
@@ -452,7 +523,7 @@ point.x
 
         <section>
           <h2>Records (2)</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 point = { x = 3, y = 4 }
 
 -- multi update
@@ -466,7 +537,7 @@ point = { x = 3, y = 4 }
 
         <section>
           <h2>Records (3)</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 -- type alias for record
 type alias Point =
   { x : Int
@@ -482,7 +553,7 @@ point = { x = 3, y = 4 }
         <!-- Union Types -->
         <section>
           <h2>Union Types</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type LogLevel = Info | Warn | Error
 
 logLevel : LogLevel
@@ -492,7 +563,7 @@ logLevel = Info
 
         <section>
           <h2>Union Types (2)</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type LogLevel = Info | Warn | Error
 
 logLevelToMessage : LogLevel -&gt; String
@@ -511,7 +582,7 @@ logLevelToMessage logLevel =
 
         <section>
           <h2>Union Types (3)</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type AuthenticationState = NotSignedIn | SignedIn String
 
 authState1 : AuthenticationState
@@ -524,7 +595,7 @@ authState2 = SignedIn "example.user"
 
         <section>
           <h2>Union Types (4)</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type AuthenticationState = NotSignedIn | SignedIn String
 
 authStateToMessage : AuthenticationState -> String
@@ -568,10 +639,10 @@ authStateToMessage authState =
 
         <section>
           <h2>Counter App - main</h2>
-          <s><pre><code class="hljs elm">main : Html a
+          <s><pre><code class="hljs">main : Html a
 main = text "Hello React Days!"
 </code></pre></s>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 main : Program Never Model Msg
 main =
     Html.beginnerProgram
@@ -584,7 +655,7 @@ main =
 
         <section>
           <h2>Counter App - Model</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type alias Model = Int
 
 model : Model
@@ -594,14 +665,14 @@ model = 0
 
         <section>
           <h2>Counter App - Messages</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 type Msg = Increment | Decrement
 </code></pre>
         </section>
 
         <section>
           <h2>Counter App - view</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 view : Model -&gt; Html Msg
 view model =
   div []
@@ -614,7 +685,7 @@ view model =
 
         <section>
           <h2>Counter App - update</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 update : Msg -&gt; Model -&gt; Model
 update msg model =
   case msg of
@@ -695,7 +766,7 @@ update msg model =
         <!--
         <section>
           <h2>Parameter Types &amp; Return Types</h2>
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 import Html exposing (Html)
 import String
 
@@ -716,7 +787,7 @@ main =
         <section>
           <h2>Function Application<br><small>aka Data Pipelines</small></h2>
 
-          <pre><code class="hljs elm" data-trim contenteditable>
+          <pre><code class="hljs" data-trim contenteditable>
 greet : Int -&gt; String -&gt; Html a
 greet number string =
   string

@@ -13,7 +13,7 @@ Lesson 6 - Let Expressions
 Introduction
 ------------
 
-Continuing from the last exercise we notice that it can be a bit awkward to define a new top level function for every little helper, especially if we only use the helper function in the context of one function. Let expressions to the rescue!
+Continuing from the last exercise we notice that it can be a bit awkward to define a new top level function for every little helper, especially if we only use the helper function in the context of one function. *Let expressions* to the rescue!
 
 An example:
 ```
@@ -22,8 +22,8 @@ calculate =
     let
         twentyfour = 3 * 8
 
-        toThePowerOfTwo a =
-            a ^ 2
+        toThePowerOfTwo x =
+            x ^ 2
 
         sixteen = toThePowerOfTwo 4
 
@@ -33,9 +33,10 @@ calculate =
 
 With the `let` keyword you can assign names to intermediate values or helper functions. Here, two values (`twentyfour` and `sixteen`) and one function (`toThePowerOfTwo`) are defined. Note that `let` declarations can use things declared in the same `let` expression.
 
+The function `calculate` as a whole returns the value produced in the expression after the `in` keyword.
+
 You can add type annotations to the things in the let expression, but people often omit them and only add them to top level functions.
 
-The function `calculate` as a whole returns the value produced in the expression after the `in` keyword.
 
 Relevant Docs
 -------------

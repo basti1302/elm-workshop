@@ -14,7 +14,7 @@ Einheit 2 - Hello World
 
 Übung 2.1
 ---------
-Ersetze den Text "Hello World" durch etwas anderes. Überprüfe das Resultat im Browser. So lange `npm start` läuft, brauchst du die Datei einfach nur abzuspeichern und der webpack dev server kompiliert deinen Code automatisch und löst einen Browser Refresh aus. In jeder Einheit ist das passende Modul (`frontend/elm/Examplexxx.elm`) in die Seite eingebettet. So kannst du dir die Auswirkungen deiner Code-Änderungen sofort ansehen. Wenn der Code mal nicht kompiliert, werden die Compile-Fehler auch im Browser angezeigt. Zusätzlich werden Compile-Fehler auch durch den webpack-dev-server Prozess geloggt und erscheinen so in der Shell, in der `npm start` läuft.
+Ersetze den Text "Hello Elm!" durch etwas anderes. Überprüfe das Resultat im Browser. So lange `npm start` läuft, brauchst du die Datei einfach nur abzuspeichern und der webpack dev server kompiliert deinen Code automatisch und löst einen Browser Refresh aus. In jeder Einheit ist das passende Modul (`frontend/elm/Examplexxx.elm`) in die Seite eingebettet. So kannst du dir die Auswirkungen deiner Code-Änderungen sofort ansehen. Wenn der Code mal nicht kompiliert, werden die Compile-Fehler auch im Browser angezeigt. Zusätzlich werden Compile-Fehler auch durch den webpack-dev-server Prozess geloggt und erscheinen so in der Shell, in der `npm start` läuft.
 
 Übung 2.2
 ---------

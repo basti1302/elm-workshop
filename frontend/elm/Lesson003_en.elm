@@ -13,9 +13,9 @@ Lesson 3 - Type Annotations
 Introduction
 ------------
 
-Elm is statically typed, so why did our code not mention any types until now? The reason is that Elm can infer the type of expressions by itself. You can add `type annotations` to your Elm code, though. It is considered a best practice to add type annotations to your top level functions.
+Elm is statically typed. Why did our code not mention any types until now? The reason is that Elm can infer the type of an expressions by itself. You can add *type annotations* to your Elm code, though. It is considered a best practice to add type annotations to your top level functions.
 
-Functions with a type annotations looks like this:
+A functions with a type annotations looks like this:
 
 ```
 increment : Int -> Int
@@ -48,12 +48,12 @@ Exercise 3.1
 
 Open the file `frontend/elm/Example003.elm` in an editor. It should look approximately like your solution to the last exercise.
 
-Add type annotations to the `multiply` function. Make sure your code still compiles (check the output of webpack-dev-server).
+Add type annotations to the `multiply` function. Make sure your code still compiles.
 
 Exercise 3.2
 ------------
 
-Add type annotations to `main`. Keep in mind that `main` does not accept parameters, so technically it is not a function but a simple value. The type of `main` is `Html a`. The `a` is a type parameter - we will get to that later.
+Add a type annotations to `main`. Keep in mind that `main` does not accept parameters, so technically it is not a function but a simple value. The type of `main` is `Html a`. The `a` is a type parameter - we will get to that later.
 
 ----
 

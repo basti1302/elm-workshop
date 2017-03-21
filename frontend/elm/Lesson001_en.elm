@@ -60,11 +60,11 @@ Finally, the `main` function:
 main = text "Hello Elm!"
 ```
 
-This is the entry point into our module. Whatever we return from it will be rendered. Elm is strongly typed, so we can not just return a string here. Instead, we need to convert the string into an *HTML text node* by calling the function `text` from the `Html` module.
+This is the entry point into our module. Whatever we return from it will be rendered. Elm is strongly typed, so we can not just return a string. Instead, we need to convert the string into an *HTML text node* by calling the function `text` from the `Html` module.
 
-Since in the `import` statement we import *everything* from the `Html` module with the phrase `exposing (..)` we can refer to all functions `Html` provides by their unqualified name. That is, when we write `text`, the Elm compiler knows we are talking about the `text` function from the `Html` module. If the import statement would have been `import Html` (omitting the `exposing` part), we would have to use the full qualified name `Html.text` in our `main` function.
+Since in the `import` statement we import *everything* from the `Html` module with the phrase `exposing (..)` we can refer to all `Html` functions by their unqualified name. That is, when we write `text`, the Elm compiler knows we are talking about the `text` function from the `Html` module. If the import statement had been `import Html` (omitting the `exposing` part), we would have to use the full qualified name `Html.text` in our `main` function.
 
-Now you know the basic syntactic building blocks of Elm. Let's get started with some hands on exercises.
+Now you know the basics of Elm's syntax. Let's get started with some hands on exercises.
 
 ----
 

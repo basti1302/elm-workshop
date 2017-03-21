@@ -86,7 +86,7 @@ Create a value `book1` of type `Book` with some arbitrary values for title, auth
 
 Create a `bookToString` function that takes a `Book` and returns a string like "Title - Author". You can either use a let expression inside `main` or declare this as a top level function. Reminder: You can use `++` to concatenate strings in Elm.
 
-Use the `bookToString` to render the book. Don't forget to apply  the `text` function to the string returned by `bookToString`.
+Use `bookToString` to render the book. Don't forget to apply  the `text` function to the string returned by `bookToString`.
 
 Exercise 8.2
 ------------

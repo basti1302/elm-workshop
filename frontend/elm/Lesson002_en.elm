@@ -14,8 +14,8 @@ Open the file `frontend/elm/Example002.elm` in an editor. It looks exactly like 
 
 Exercise 2.1
 ------------
-Change the text "Hello World" to something else. Check the result in your browser.
-Notice that as long as `npm start` is running, you only need to save the file. The Webpack dev server will recompile everything automatically and trigger a browser refresh. For each exercise, the corresponding Elm module (`frontend/elm/Examplexxx.elm`) is embedded in page in the "Elm output" panel above, so you can check your results right there. If your code does not compile, the compile errors will also be shown in the browser. Additionaly, compile errors will show up in the output of the webpack-dev-server process (the shell where you started `npm start`).
+Change the text "Hello Elm!" to something else. Check the result in your browser.
+Notice that as long as `npm start` is running, you only need to save the file. The Webpack dev server will recompile everything automatically and trigger a browser refresh. For each exercise, the corresponding Elm module (`frontend/elm/Examplexxx.elm`) is embedded in the page in the "Elm output" panel above, so you can check your results right there. If your code does not compile, the compile errors will also be shown in the browser. Additionaly, compile errors will show up in the output of the webpack-dev-server process (the shell where you started `npm start`).
 
 Exercise 2.2
 ------------
@@ -42,7 +42,7 @@ This is how a function definition looks like:
 multiply a b = a * b
 ```
 
-First comes the function name, then the parameter list, separated by spaces.
+The function name comes first, then the parameter list, separated by spaces.
 The equals sign starts the function body. Remember that Elm is not an
 imperative language. All you can do in the function body is to produce a new
 value, based on the input parameters.

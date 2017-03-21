@@ -13,7 +13,7 @@ Lesson 4 - Lists
 Introduction
 ------------
 
-Lists are written as `[ element1, element2, ... ]` in Elm. `[]` is the empty list.
+Lists are written as `[ element1, element2, ... ]` in Elm. The empty list is `[]`.
 
 A list can only contain values of the same type, so `["string", 42]` would be illegal in Elm. The `List` type is a parameterized type, and the type parameter defines the type of the individual elements contained in the list. That is, `[1, 2, 3]` has type `List Int` and `["just", "some", "words"]` has type `List String`.
 
@@ -39,12 +39,12 @@ There is no dedicated operator to add a single element to the end of the list, s
 
 By the way, `++` also works on strings, that is, when you need to concatenate two strings, you can use `++`.
 
-You can convert a list into a string by using the `toString` function. (In fact,  you can use `toString` with _any_ Elm value, no matter which type).
+You can convert a list into a string by using the `toString` function. In fact,  you can use `toString` with _any_ Elm value, no matter which type.
 
 List.map
 --------
 
-Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on lists is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
+Let's have a look at some of the things we can do with lists in Elm. One of the most common operations on a list is to _map_ a function over it. [`List.map`](http://package.elm-lang.org/packages/elm-lang/core/5.0.0/List#map) takes a function and a list and applies the given function to each element in the list, producing a new list containing the mapped values.
 
 Example:
 
@@ -86,6 +86,13 @@ Exercise 4.4
 ------------
 
 Define a function `increment : Int -> Int` that increments an integer by 1. Define a second `List Int` (say, `list2`) by mapping the `increment` function over `list1`. Don't forget to change your main function so that `list2` is printed instead of `list1`.
+
+Exercise 4.5 (optional)
+-----------------------
+
+**Please skip this exercise in the half day workshop.**
+
+Define a function `greaterThanFive : Int -> Bool` that returns `True` if the parameter is `> 5`. Remove the `List.map` call and instead use [List.filter](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/List#filter), so that `list2` only contains the numbers from `list1` that are greater than 5. Make sure your main function prints `list2` instead of `list1`.
 
 ----
 
