@@ -33,7 +33,6 @@ main =
 --     someValues =
 --         [ update 42 Increment
 --         , update 42 Decrement
---         , update 42 (Set 10)
 --         ]
 --     items =
 --         List.map view someValues

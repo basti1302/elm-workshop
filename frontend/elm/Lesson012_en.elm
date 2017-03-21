@@ -17,9 +17,9 @@ Until now, we only have talked about static HTML and Elm syntax basics. It is hi
 
 Let's write a simple counter app that displays an integer value and has two buttons to increment and decrement the counter.
 
-To do so, we stop returning some static HTML from our `main` function. That's not how actual Elm apps are written anyway.
+To do so, we stop returning static HTML from our `main` function. That's not how actual Elm apps are written anyway.
 
-Instead, the `main` function of any Elm app usually uses one of this three options:
+Instead, the `main` function of any Elm app usually uses one of three options:
 * [Html.beginnerProgram](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram),
 * [Html.program](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#program) or
 * [Html.programWithFlags](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#programWithFlags).
@@ -32,10 +32,10 @@ We ignore `Html.program` and `Html.programWithFlags` for now and use `Html.begin
 
 ### Model
 
-The `model` can have any type we want (Elm uses type variables to achieve this). We usually declare a type named `Model` for that, which could be a record type, a simple type alias, a List, you name it. For our counter app example, we could use
+The `model` can have any type we want (Elm uses type variables to achieve this). By conventions, we usually declare a type named `Model` for that, which could be a record type, a simple type alias, a List, you name it. For our counter app example, we could use
 
 ```
-type alias Mode = Int
+type alias Model = Int
 ```
 
 because all we need as our model is a simple integer. With that in place, we can initialise our model:
@@ -55,7 +55,7 @@ type Msg = Increment | Decrement
 
 ### Update
 
-The `update` function must have the signature `update : Msg -> Model -> Model`, that is, it takes a message and the current state of the model. It then produces the new state of the model after processing the message. Most update functions use a `case ... of` statement to check which message value it has received.
+The `update` function must have the signature `update : Msg -> Model -> Model`, that is, it takes a message and the current state of the model. It then produces the new state of the model after processing the message. Most update functions use a `case ... of` statement to check which message value they have received.
 
 ### View
 
@@ -136,9 +136,9 @@ Add code to the `update` function to overwrite the current counter value with th
 The half day workshop ends here. Congratulations for finishing it! <3
 
 Of course you are welcome to
-* explorer lessons exercises you might have skipped,
+* explorer lessons and/or exercises you might have skipped,
 * review the covered material again and experiment some more with the code in the exercises you have completed, or
 * continue with the next exercise that would be covered in a longer workshop (full day or multi day).
 
-<span class="fa fa-hand-o-right"></span> Continue with **[lesson 13](/#013)**.
+<span class="fa fa-hand-o-right"></span> Continue with **[lesson 13](/#013)**, or review one of the skipped lessons, for example about conditionals (<span class="fa fa-hand-o-right"></span>  **[lesson 10](/#010)**) or about fancy function application (<span class="fa fa-hand-o-right"></span>  **[lesson 11](/#011)**).
 """

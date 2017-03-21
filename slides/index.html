@@ -553,7 +553,7 @@ point = { x = 3, y = 4 }
         <!-- Union Types -->
         <section>
           <h2>Union Types</h2>
-          <pre><code class="hljs" data-trim contenteditable>
+          <pre><code class="hljs elm" data-trim contenteditable>
 type LogLevel = Info | Warn | Error
 
 logLevel : LogLevel
@@ -673,6 +673,8 @@ type Msg = Increment | Decrement
         <section>
           <h2>Counter App - view</h2>
           <pre><code class="hljs" data-trim contenteditable>
+import Html.Events exposing (..)
+
 view : Model -&gt; Html Msg
 view model =
   div []

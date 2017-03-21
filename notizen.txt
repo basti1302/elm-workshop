@@ -5,20 +5,32 @@
 
 TODO
 ====
+* Deutsche Übersetzungen
+* Probellauf Vortragsteil
+* Zeitplan
+* Probelauf Übungen
+* Slides für if, |>, Cmd
+* TODO-Liste aus Lesson 13 raus bzw. kürzen
+
+Später
+======
+* Lesson/Exercise 13 als direkte Fortsetzung von Lesson 12 gestalten
+* Lesson in Unit umbenennenA
+* Syntax-Highlighting für Code-Blöcke
+
+Erledigt
+========
 √ Setup
 √ Code-Beispiele in den Aufgaben, damit Teilnehmer das Beispiel gleichzeitig mit
   der Aufgabe sehen.
 √ Beispielprojekt mit webpack, elm, ggf. express für Backend
 √ Themen sortieren, in Reihenfolge bringen, roter Faden
 √ Aufgaben im Beispielprojekt vorbereiten.
-* Kürzen!!!!
-* Folien (Konzepte erklären, Beispiele)
-* Zweisprachig/Deutsch
-* Syntax-Highlighting für Code-Blöcke
-* Compile-Fehler im Browser anzeigen?
-* Test-Lauf
-
-* Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
+√ Kürzen!!!!
+√ Folien (Konzepte erklären, Beispiele)
+√ Zweisprachig/Deutsch
+√ Compile-Fehler im Browser anzeigen?
+√ Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
 
 Scope
 =====
@@ -50,9 +62,9 @@ Syntax
 * Maybe
 * Imports, Module, Exposing, full qualified vs. non-qualified
 * [Typen: Tuple, Html.Attributes.style]
-* [Typen: Primitive: Int, Bool, String]
+√ [Typen: Primitive: Int, Bool, String]
 
-* Backend HTTP (only in full day workshop) & Cmd
+√ Backend HTTP (only in full day workshop) & Cmd
 * Web Sockets? (only in full day workshop)
 * Tasks (only in full day workshop)
 

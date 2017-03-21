@@ -15,10 +15,10 @@ Introduction
 
 **This lesson is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.**
 
-The `if` keyword lets you select among different expressions, depending on a boolean value. Its well known cousins `else` and `else if` are also available:
+The `if` keyword lets you select among different expressions, depending on a boolean condition. Its well known cousins `else` and `else if` are also available:
 
 ```
-if someValue > 10 then "a lot" else "not so many"
+if someValue > 10 then "a lot" else "a few"
 ```
 
 ```
@@ -27,10 +27,10 @@ if someValue == 10 then
 else if someValue > 10 then
     "a lot"
 else
-    "not so many"
+    "a few"
 ```
 
-Note that this is not a *control flow statement* like in imperative programming (Java, JavaScript, C, ...). All you do in your Elm functions is to return a *value*, based on the incoming parameters and `if` let's you return different values based on a boolean value.
+Note that this is not a *control flow statement* like in imperative programming (Java, JavaScript, C, ...). All you do in your Elm functions is to return a *value*, based on the incoming parameters and `if` let's you return different values based on a condition.
 
 To compose boolean expressions out of other expressions, you can use
 * `not` to negate a boolean expression,

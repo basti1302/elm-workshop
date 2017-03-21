@@ -30,7 +30,7 @@ init =
 
 type Msg
     = TriggerRequest
-    | ReceivedResponse (Result Http.Error String)
+    | ResponseReceived (Result Http.Error String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -41,7 +41,7 @@ update msg model =
             , getRandomNumber
             )
 
-        ReceivedResponse result ->
+        ResponseReceived result ->
             let
                 updatedModel =
                     case result of
@@ -71,4 +71,4 @@ getRandomNumber =
         request =
             Http.getString url
     in
-        Http.send ReceivedResponse request
+        Http.send ResponseReceived request

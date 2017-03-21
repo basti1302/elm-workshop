@@ -30,12 +30,12 @@ init =
 
 type Msg
     = TriggerRequest
-    | ReceivedResponse (Result Http.Error String)
+    | ResponseReceived (Result Http.Error String)
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
-    -- TODO Implement the update function for TriggerRequest and ReceivedResponse
+    -- TODO Implement the update function for TriggerRequest and ResponseReceived
     ( model, Cmd.none )
 
 
@@ -53,5 +53,5 @@ getRandomNumber : Cmd Msg
 getRandomNumber =
     -- TODO Implement an HTTP request to
     -- "https://www.random.org/integers/?num=1&min=1&max=999&col=1&base=10&format=plain&rnd=new"
-    -- that will trigger a ReceivedResponse message when it has been executed.
+    -- that will trigger a ResponseReceived message when it has been executed.
     Cmd.none

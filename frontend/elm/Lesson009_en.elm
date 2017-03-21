@@ -13,7 +13,7 @@ Lesson 9 - Union Types/Tagged Unions
 Introduction
 ------------
 
-At the most basic level, union types in Elm feel like enumerations in other languages (Java, TypeScript, ...). Each union type consists of a number of constant names.
+At the most basic level, union types in Elm are similar to enumerations in other languages (Java, C, TypeScript, ...). Each union type declaration lists its possible *union type values*, separated by a pipe character (`|`).
 
 ```
 type LogLevel = Info | Warn | Error
@@ -22,7 +22,7 @@ logLevel : LogLevel
 logLevel = Info
 ```
 
-When a function accepts a union type value as a parameter, it will usually want to know which of the possible values it is. The `case ... of` statement helps with that:
+When a function accepts a union type as a parameter, it will usually want to know which of the possible values it is. The `case ... of` statement helps with that:
 
 ```
 logLevelToMessage : LogLevel -> String
@@ -38,7 +38,7 @@ logLevelToMessage logLevel =
             "Red alert! Red Alert"
 ```
 
-Union types are quite a bit more powerful than what we have seen until now. Each individual union type option can hold additional data in a type safe way:
+But union types are quite a bit more powerful than that. Each individual union type value can hold additional data in a type safe way:
 
 ```
 type AuthenticationState =
@@ -51,10 +51,10 @@ authState1 : AuthenticationState
 authState1 = NotSignedIn
 
 authState2 : AuthenticationState
-authState2 = SignedIn "example.user"
+authState2 = SignedIn "example-user"
 ```
 
-If a union type contains additional data (like `SignedIn` in the example above) you can get these values out in a `case ... in` statement with pattern matching:
+If a union type value contains additional data (like `SignedIn` in the example above) you can get this data out in a `case ... in` statement with pattern matching:
 
 ```
 authStateToMessage : AuthenticationState -> String
@@ -80,15 +80,29 @@ Exercise 9.1
 
 Open the file  `frontend/elm/Example009.elm` in an editor.
 
-Declare a union type `Msg` (short for message) with the values `Increment` and `Decrement` and a value `Set` which can contain a value of type `Int` (like `SignedIn` above could contain a `String` value).
+Declare a union type `Msg` (short for message) with the values `Increment` and `Decrement`.
 
-Implement a function `update` with type `Int -> Msg -> Int` that accepts the *current value* and a `Msg` and returns a new integer value, based on the current value and the incoming `Msg`. That is, `update 5 Increment` would return 6, `update 5 Decrement` would return 4, and `update 5 (Set 99)` would return 99.
+Implement a function `update` with type `Int -> Msg -> Int` that accepts the *current value* and a `Msg` and returns a new integer value, based on the current value and the incoming `Msg`. That is, `update 5 Increment` would return 6 and `update 5 Decrement` would return 4.
 
 A `view` function that renders an integer value to HTML is already provided for you, so you don't have to bother about that in this exercise.
 
 Finally, delete the dummy line `text "Exercise 9"` in the `main` function and uncomment the disabled code in the main function (beginning with `let someValues = ...`).
 
 The result should look like this:
+
+* 43
+* 41
+
+Exercise 9.2
+-------------
+
+Add another union type value named `Set` to the union type `Msg`. `Set` will  contain a value of type `Int` (like `SignedIn` above wrapped a `String` value).
+
+Extend the function `update` so that `Set` is handled correctly. For example, `update 5 (Set 99)` would return 99.
+
+Finally, add another element to the list `someValues`, namely `update 42 (Set 10)`.
+
+The result then should look like this:
 
 * 43
 * 41

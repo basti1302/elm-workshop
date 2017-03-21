@@ -17,10 +17,10 @@ Introduction
 
 ### Function Application
 
-In the previous exercises we had some use cases that required quite a number of parantheses, for example expressions like `text (toString (6 * 7))`. There are ways to write this more elegantly in Elm, namely with `|>` and `<|`, which are called *forward function application* and *backward function application*, respectively. You can also call them *pipes*, because that's what they do.
+In the previous exercises we had some use cases that required quite a number of parantheses, for example expressions like `text (toString (6 * 7))`. There are ways to write this more elegantly in Elm, namely with `|>` and `<|`, which are called *forward function application* and *backward function application*, respectively. You can also call them *pipes*, because that's what they are.
 
 * `(parameter |> function)` is the same as `(function parameter)`.
-* `(function <| parameter)` is the same as `(function parameter)`.
+* `(function <| parameter)` is also the same as `(function parameter)`.
 
 Here are a few things that are equivalent:
 ```
@@ -48,7 +48,7 @@ Thus, this would be legal Elm code:
 -- => LT (which means that 7 is less then 12)
 ```
 
-And it would pass the value 11 into a function that takes one parameter and compares every incoming parameter with 7.
+This code passes the value 12 into a function that takes one parameter and compares every incoming parameter with 7.
 
 
 Relevant Docs

@@ -1,4 +1,4 @@
-module Solution009_1 exposing (..)
+module Solution009_2 exposing (..)
 
 import Html exposing (..)
 
@@ -6,6 +6,7 @@ import Html exposing (..)
 type Msg
     = Increment
     | Decrement
+    | Set Int
 
 
 update : Int -> Msg -> Int
@@ -16,6 +17,9 @@ update currentValue msg =
 
         Decrement ->
             currentValue - 1
+
+        Set newValue ->
+            newValue
 
 
 view : Int -> Html a
@@ -33,6 +37,7 @@ main =
         someValues =
             [ update 42 Increment
             , update 42 Decrement
+            , update 42 (Set 10)
             ]
 
         items =
