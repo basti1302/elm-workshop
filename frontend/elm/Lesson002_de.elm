@@ -59,5 +59,5 @@ someFunction a b c = ...
 
 ----
 
-<span class="fa fa-hand-o-right"></span> Fahre mit **[Einheit 3](/#003) fort**.
+<span class="fa fa-hand-o-right"></span> Mach weiter mit **[Einheit 3](/#003)**.
 """

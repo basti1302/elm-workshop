@@ -44,7 +44,7 @@ Die erste Zeile
 module Example001 exposing (..)
 ```
 
-deklariert ein Modul mit dem Namen `Example001`. Jeglicher Elm-Code muss sich innerhalb eines Moduls befinden. Den `exposing`-Teil an der Modul-Deklaration ignorieren wir erst einmal.
+deklariert ein Modul mit dem Namen `Example001`. Jeglicher Elm-Code muss sich innerhalb eines Moduls befinden. Den `exposing`-Teil der Modul-Deklaration ignorieren wir erst einmal.
 
 Als nächstes kommt:
 
@@ -60,7 +60,7 @@ Zu guter Letzt kommt die Funktion `main`.
 main = text "Hello Elm!"
 ```
 
-Dies ist der Einsprungspunkt in unser Modul. Das, was diese Funktion zurückgibt, wird dargestellt. Elm ist stark typisiert, daher können wir nicht einfach einen String zurückgeben. Stattdessen müssen wir den String "Hello Elm!" in eine *HTML Text-Node* konvertieren, in dem wir die Funktion `text` aus dem Model `Html` verwenden.
+Dies ist der Einsprungspunkt in unser Modul. Das, was diese Funktion zurückgibt, wird dargestellt. Elm ist stark typisiert, daher können wir nicht einfach einen String zurückgeben. Stattdessen müssen wir den String "Hello Elm!" in einen *HTML Text-Knoten* konvertieren, in dem wir die Funktion `text` aus dem Model `Html` verwenden.
 
 Da wir in der `import`-Anweisung mit der Phrase `exposing (..)` *alle* Funktionen aus dem Model `Html` importieren, können wir deren Namen *unqualifiziert* verwenden. Das bedeutet, dass wir einfach `text` schreiben können statt `Html.text`. Hätten wir in der import Anweisung nur `import Html` geschrieben und das `exposing (..)` weggelassen, müssten wir im in unserer `main`-Funktion den vollqualifizierten Name `Html.text` verwenden.
 
@@ -70,5 +70,5 @@ Nun, da wir die Grundlagen der Elm-Syntax kennen, können wir mit den praktische
 
 Siehst du die Navigationsleiste am oberen Rand? Dort kannst du jederzeit zwischen den einzelnen Einheiten hin- und herschalten sowie die Sprache umschalten.
 
-<span class="fa fa-hand-o-right"></span> Machh weiter mit  **[Einheit 2](/#002)**.
+<span class="fa fa-hand-o-right"></span> Mach weiter mit **[Einheit 2](/#002)**.
 """

@@ -13,7 +13,7 @@ Lesson 3 - Type Annotations
 Introduction
 ------------
 
-Elm is statically typed. Why did our code not mention any types until now? The reason is that Elm can infer the type of an expressions by itself. You can add *type annotations* to your Elm code, though. It is considered a best practice to add type annotations to your top level functions.
+Elm is statically typed. Why did our code not mention any types until now? The reason is that Elm can infer the type of an expressions by itself. You can add *type annotations* to your Elm code, though. It is considered a best practice to add type annotations to your top level functions. The compiler honors type annotations. That is, it is a compiler error if the type of an expression does not match its type annotation.
 
 A functions with a type annotations looks like this:
 
