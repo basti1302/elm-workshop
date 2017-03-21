@@ -7,6 +7,12 @@ import Markdown
 main : Html ()
 main =
     Markdown.toHtml [] """
+English or German?
+==================
+
+* You can switch the language between German and English in the upper right corner.
+* Schalte die Sprache oben rechts um, wenn du mit der deutschen Übersetzung arbeiten möchtest.
+
 Einheit 1 - Einrichtung
 =======================
 

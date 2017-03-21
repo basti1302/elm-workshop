@@ -8,47 +8,49 @@ main : Html a
 main =
     Markdown.toHtml [] """
 Einheit 8 - Records
-==================
+===================
 
-Introduction
-------------
+Einleitung
+----------
 
-Besides lists, Elm offers a few more data structures. One of them are *records*. While lists contain a variable number of values of the *same* type, records contain a fixed number of values with *different* types. They are quite similar to dictionaries/maps in other languages.
+Neben Listen bietet Elm noch eine Reihe weiterer Datenstrukturen. Eine davon sind *Records*. Während Listen eine variable Anzahl von Elementen des *gleichen* Typs beinhalten können, enthalten Records eine feste Anzahl von Elementen mit *verschiedenen* Typen. Elm-Records ähneln Dictionaries oder Maps in anderen Programmiersprachen.
 
-You create a record value like this:
+Ein Record-Wert wird folgendermaßen erzeugt:
 
 ```
 point = { x = 3, y = 4 }
 ```
 
-and access individual record fields with the dot notation:
+Auf die einzelnen Felder im Record kann man mit der Punkt-Notation zugreifen:
 
 ```
 point.x
 -- => 3
 ```
 
-Actually, each record property implicitly creates an accessor function, so you could also get the `x` value like this:
+Des Weiteren wird für jedes deklarierte Record-Feld implizit ein Zugriffsfunktion erzeugt. Man könnte den `x`-Wert auch folgenermaßen auslesen:
 
 ```
 .x point
 -- => 3
 ```
 
-This is handy if you want to use the accessor function, for example, with `List.map`:
+Dies ist manchmal ganz nützlich, z. B. wenn man diese Zugriffsfunktion mit `List.map` verwenden will:
 ```
 List.map .x [ {x = 1, y = 0}, {x = 2, y = 0}, {x = 3, y =0 } ]
 -- => [ 1, 2, 3 ]
 ```
 
-This is how you update a record (or, to be precise, create a new record with one field updated):
+Um das Wert eines Feldes zu ändern benutzt man folgende Schreibweise:
 
 ```
 { point | x = 99 }
 -- => { x = 99, y = 4 }
 ```
 
-You can also update multiple fields at once:
+Um ganz genau zu sein: Da in Elm immer alle Werte unveränderlich (immutable) sind, ändert der obige Code den Wert von `x` im bestehenden Record nicht, sondern erzeugt eine geänderte Kopie des Records.
+
+Man kann auch mehrere Felder auf einmal ändern:
 
 ```
 { point |
@@ -58,7 +60,7 @@ You can also update multiple fields at once:
 -- => { x = 4, y = 5 }
 ```
 
-You use a type alias to define a type (that can be used in type annotations) for record values:
+Um für Record-Strukturen einen Typnamen zu haben, der sich z. B. in Typ-Annotationen verwenden lässt, legt man einen Typ-Alias fest:
 
 ```
 type alias Point =
@@ -70,39 +72,39 @@ point : Point
 point = { x = 3, y = 4 }
 ```
 
-Relevant Docs
--------------
+Relevante Dokumentation
+-----------------------
 
 * http://elm-lang.org/docs/syntax#records
 
 Übung 8.1
-------------
+---------
 
-Open the file `frontend/elm/Example008.elm` in an editor. This time we are starting with an almost empty source file.
+Öffne die Datei `frontend/elm/Example008.elm` in einem Editor. Dieses Mal fangen wir mehr oder weniger mit einer leeren Datei an.
 
-Define a `type alias` named `Book` for records with the attributes `title`, `author` (both of type `String`) and `price` (type `Float`).
+Lege einen `type alias` namens `Book` für Records mit den Feldern `title`, `author` (beides vom Type `String`) und `price` (Typ `Float`) an.
 
-Create a value `book1` of type `Book` with some arbitrary values for title, author and price. Add a type annotation to `book1` for bonus points :)
+Erzeuge einen Wert `book1` vom Typ `Book` mit beliebigen Werten für Titel, Autor und Preis. Es gibt drei Bonuspunkte, wenn du `book1` eine Typ-Annotation gibst. ;-)
 
-Create a `bookToString` function that takes a `Book` and returns a string like "Title - Author". You can either use a let expression inside `main` or declare this as a top level function. Reminder: You can use `++` to concatenate strings in Elm.
+Implementiere eine Funktion `bookToString`, die ein `Book` als Parameter erwartet und ein String der Form "Titel - Autor" zurückgibt. Du kannst die Funktion entweder in einer `let`-Expression in `main` implementieren oder als Top-Level-Funktion. Zur Erinnerung: Strings werden in Elm mit `++` verkettet.
 
-Use `bookToString` to render the book. Don't forget to apply  the `text` function to the string returned by `bookToString`.
+Benutze `bookToString`, um dein Buch `book1` zu rendern. Vergiss nicht, `Html.text` auf den String, den `bookToString` liefert, anzuwenden.
 
 Übung 8.2
-------------
+---------
 
-Create another helper function `applyDiscount: Book -> Book` that reduces the price of a book by 50%.
+Schreibe eine weitere Hilfsfunktion `applyDiscount: Book -> Book`, die den Preis eines Buches um 50% reduziert. Wende `applyDiscount` auf `book1`an.
 
-Apply `applyDiscount` to `book1`. Extend the `bookToString` function from the previous exercise to also include the price of the book, so that it returns a string with the pattern "Title - Author: Price". Reminder: Values that are not of type `String` (like `Float` values) need to be converted to `String` with `toString`.
+Erweitere die Funktion `bookToString` aus der vorhergehenden Übung, so dass diese auch den Preis eines Buches mit ausgibt. Die erweiterte Funktion sollte eine String nach folgendem Muster zurückgeben: "Titel - Autor: Preis". Hinweis: Werte, die keine Strings sind (wie zum Beispiel `Float`-Werte), müssen mit `toString` in einen `String ` konvertiert werden.
 
-Finally, use the updated `bookToString` function to render the book with the discount applied.
+Benutze abschließend die erweiterte Funktion `bookToString`, um das preisreduzierte Buch zu rendern.
 
 Übung 8.3 (optional)
 -----------------------
 
 **Bitte überspringe diese Übung im Halbtagsworkshop.**
 
-Create another book `book2` and a list of books that contains both `book1` and `book2`. Use `List.map` to map the list of books to a list of strings that only contains the titles of the book. Render the list of titles as an unordered list (`ul`).
+Lege ein weiteres Buch `book2` an und eine Liste von Büchern, die sowohl `book1` als auch `book2` enthält. Benutze `List.map`, um auf Basis der Liste von Büchern eine Liste von Strings zu erzeugen, die nur die Titel der Bücher enthält. Stelle die Liste der Titel als ungeordnete Liste (`<ul>`) dar.
 
 ----
 

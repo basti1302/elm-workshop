@@ -8,37 +8,39 @@ main : Html a
 main =
     Markdown.toHtml [] """
 Einheit 10 - Conditionals (optional)
-===================================
+====================================
 
-Introduction
-------------
+Einleitung
+----------
 
-**This Einheit is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.**
+**Diese Einheit ist optional. Bitte überspringe sie im Halbtagsworkshop. Du kannst sie gerne später bearbeiten.**
 
-The `if` keyword lets you select among different expressions, depending on a boolean condition. Its well known cousins `else` and `else if` are also available:
+Das Schlüsselwort `if` wählt in Abhängigkeit von einer booleschen Bedingung zwischen mehreren Ausdrücken. Die Schlüsselwörter `else` and `else if` sind ebenfalls verfügbar.
 
-```
-if someValue > 10 then "a lot" else "a few"
-```
+Beispiele:
 
 ```
-if someValue == 10 then
-    "exactly ten"
-else if someValue > 10 then
-    "a lot"
+if einWert > 10 then "eine Menge" else "einige wenige"
+```
+
+```
+if einWert == 10 then
+    "genau zehn"
+else if einWert > 10 then
+    "eine Menge"
 else
-    "a few"
+    "einige wenige"
 ```
 
-Note that this is not a *control flow statement* like in imperative programming (Java, JavaScript, C, ...). All you do in your Elm functions is to return a *value*, based on the incoming parameters and `if` let's you return different values based on a condition.
+Man beachte, dass es sich hier nicht um eine Kontrollflusssteuerung wie in imperativen Programmiersprachen (Java, JavaScript, C, ...) handelt. In Elm schreibt man ausschließlich Funktionen, die auf Basis der Eingabewerte einen neuen Wert zurückgeben. `if` erlaubt es, verschiedene Werte in Abhängigkeit von einer Bedingung zurückzugeben.
 
-To compose boolean expressions out of other expressions, you can use
-* `not` to negate a boolean expression,
-* `&&` for logical and, as well as
-* `||` for logical or.
+Folgende Operatoren stehen zur Verfügung, um boolesche Ausdrücke zu verknüpfen:
+* `not` um einen booleschen Ausdruck zu negieren,
+* `&&` für das logische "Und", sowie
+* `||` für das logische "Oder".
 
-Relevant Docs
--------------
+Relevante Dokumentation
+-----------------------
 
 * http://elm-lang.org/docs/syntax#conditionals
 * http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#not
@@ -46,14 +48,14 @@ Relevant Docs
 Übung 10.1
 ----------
 
-Open `frontend/elm/Example010.elm` in an editor. Your task is to implement the `convert` function so that it returns "even" for even numbers, "divisible by three" for numbers that are divisible by three and "whatever" in all other cases.
+Öffne die Datei `frontend/elm/Example010.elm` in einem Editor. Deine Aufgabe ist es, eine Funktion `convert : Int -> String` zu implementieren, die "gerade" für gerade Zahlen zurückgibt, "teilbar durch drei" für Zahlen, die durch drei teilbar sind und "sonstwas" in allen anderen Fällen.
 
 The correct output would be:
 ```
-["even","even","divisible by three","whatever","divisible by three","even"]
+["gerade","gerade","teilbar durch drei","sonstwas","teilbar durch drei","gerade"]
 ```
 
-Hint: You can use the [`rem`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#rem) function or [`%`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#%) to implement your check.
+Hinweis: Du kannst die Funktion [`rem`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#rem) oder [`%`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Basics#%) verwenden, um deinen Check zu implementieren.
 
 ----
 

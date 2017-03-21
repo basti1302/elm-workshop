@@ -7,22 +7,22 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Einheit 11 - Fancy Function Application (optional)
-=================================================
+Einheit 11 - Funktionsanwendung für Fortgeschrittene (optional)
+===============================================================
 
-Introduction
+Einleitung
 ------------
 
-**This lesson is not required to progress with the workshop. Please skip it in the half day workshop. Feel free to come back to it later.** This lesson will help you to write much nicer Elm code, though.
+**Diese Einheit ist optional. Bitte überspringe sie im Halbtagsworkshop. Du kannst sie gerne später bearbeiten.** Diese Einheit wird dir helfen, besseren Elm-Code zu schreiben.
 
-### Function Application
+### Funktionsanwenung
 
-In the previous exercises we had some use cases that required quite a number of parantheses, for example expressions like `text (toString (6 * 7))`. There are ways to write this more elegantly in Elm, namely with `|>` and `<|`, which are called *forward function application* and *backward function application*, respectively. You can also call them *pipes*, because that's what they are.
+In einigen der vorhergehenden Übungen hatte wir Anwendungsfälle, die eine nicht unwesentliche Anzahl von Klammern erforderlich machten, z. B. Ausdrücke wie `text (toString (6 * 7))`. Es gibt Möglichkeiten, so etwas in Elm deutlich eleganter zu schreiben. Dabei helfen vor allem die Operatoren `|>` und `<|`, die *forward function application* und *backward function application* genannt werden. Man kann diese Operatoren auch Pipe nennen, da sie einer Pipe in der Shell stark ähneln.
 
-* `(parameter |> function)` is the same as `(function parameter)`.
-* `(function <| parameter)` is also the same as `(function parameter)`.
+* `(parameter |> function)` ist das gleiche wie `(function parameter)`.
+* `(function <| parameter)` ist auch das gleiche wie `(function parameter)`.
 
-Here are a few things that are equivalent:
+Hier sind einige Ausdrücke, die äquivalent sind:
 ```
 text (toString (6 * 7))
 

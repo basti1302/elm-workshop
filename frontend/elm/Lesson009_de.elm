@@ -10,10 +10,10 @@ main =
 Einheit 9 - Union Types/Tagged Unions
 =====================================
 
-Introduction
-------------
+Einleitung
+----------
 
-At the most basic level, union types in Elm are similar to enumerations in other languages (Java, C, TypeScript, ...). Each union type declaration lists its possible *union type values*, separated by a pipe character (`|`).
+Eine weitere Komponente des Typsystems in Elm sind *Union Types*. Diese ähneln dem ersten Eindruck nach Enumerations, wie sie aus anderen Sprachen (Java, C, TypeScript, ...) bekannt sind. Die Deklaration eines Union Types listet einfach die möglichen *Union Type Values* auf, wobei die einzelnen Alternativen durch das Pipe-Symbol (`|`) getrennt werden.
 
 ```
 type LogLevel = Info | Warn | Error
@@ -22,29 +22,31 @@ logLevel : LogLevel
 logLevel = Info
 ```
 
-When a function accepts a union type as a parameter, it will usually want to know which of the possible values it is. The `case ... of` statement helps with that:
+Wenn eine Funktion einen Union Type als Parameter bekommt, wird sie wahrscheinlich wissen wollen, um welchen der möglichen Werte es sich handelt. Dies lässt sich mit der `case ... of` Anweisung feststellen:
 
 ```
 logLevelToMessage : LogLevel -> String
 logLevelToMessage logLevel =
     case logLevel of
         Info ->
-            "An information"
+            "Eine Information"
 
         Warn ->
-            "A warning"
+            "Eine Warnung"
 
         Error ->
-            "Red alert! Red Alert"
+            "Alarm! Fehler! Große Katastrophe!"
 ```
 
-But union types are quite a bit more powerful than that. Each individual union type value can hold additional data in a type safe way:
+Tatsächlich sind Union Types aber deutlich mächtiger. Jeder Union Type Value kann weitere Daten typsicher enthalten:
 
 ```
+{-| Gibt an, ob und welcher Benutzer angemeldet ist -}
 type AuthenticationState =
-    -- not signed in, so no additional data is needed
+    -- Nicht angemeldet, es werden keine weiteren Daten benötigt
     NotSignedIn |
-    -- store the user name together with the the authentication state
+    -- Der Benutzername des angemeldeten Benutzers wird zusammen mit dem
+    -- Anmeldestatus hinterlegt.
     SignedIn String
 
 authState1 : AuthenticationState
@@ -54,23 +56,23 @@ authState2 : AuthenticationState
 authState2 = SignedIn "example-user"
 ```
 
-If a union type value contains additional data (like `SignedIn` in the example above) you can get this data out in a `case ... in` statement with pattern matching:
+Wenn ein Union Type Value weitere Werte enthält (wie z. B. `SignedIn` im obigen Beispiel) kann man diese in einem `case ... of` mit *Pattern Matching* auslesen:
 
 ```
 authStateToMessage : AuthenticationState -> String
 authStateToMessage authState =
     case authState of
         NotSignedIn ->
-            "You are not signed in."
+            "Du bist nicht angemeldet."
 
         SignedIn userName ->
-            "Signed in as " ++ userName
+            "Angemeldet als " ++ userName
 ```
 
-Here, in the `SignedIn userName ->` case, the pattern `SignedIn userName` is matched against the value `authState`, thereby assigning the name `userName` to the string contained in the SignedIn value.
+Hier wird im Fall für `SignedIn` das Muster `SignedIn userName` mit dem Wert `authState` abgeglichen und damit dem in SignedIn-Wert enthaltenen String der Bezeichner `userName` zugewiesen.
 
-Relevant Docs
--------------
+Relevante Dokumentation
+-----------------------
 
 * http://elm-lang.org/docs/syntax#union-types
 * https://guide.elm-lang.org/types/union_types.html
@@ -78,17 +80,17 @@ Relevant Docs
 Übung 9.1
 -------------
 
-Open the file  `frontend/elm/Example009.elm` in an editor.
+Öffne die Datei `frontend/elm/Example009.elm` in einem Editor.
 
-Declare a union type `Msg` (short for message) with the values `Increment` and `Decrement`.
+Deklariere einen Union Type `Msg` (Abkürzung für *Message*) mit den Werten `Increment` und `Decrement`.
 
-Implement a function `update` with type `Int -> Msg -> Int` that accepts the *current value* and a `Msg` and returns a new integer value, based on the current value and the incoming `Msg`. That is, `update 5 Increment` would return 6 and `update 5 Decrement` would return 4.
+Implementiere eine Funktion `update : Int -> Msg -> Int`, die den *aktuellen Wert* (ein Integer) und eine `Msg` entgegennimmt und einen neuen Wert zurückgibt, basierend auf dem aktuellen Wert und der `Msg`. Beispiel: `update 5 Increment` sollte 6 zurückgeben und `update 5 Decrement` sollte 4 zurückgeben.
 
-A `view` function that renders an integer value to HTML is already provided for you, so you don't have to bother about that in this exercise.
+Eine `view` Funktion, die den Integer-Wert in HTML konvertiert, ist bereits vorhanden, darum musst du dich in dieser Aufgabe also nicht kümmern.
 
-Finally, delete the dummy line `text "Exercise 9"` in the `main` function and uncomment the disabled code in the main function (beginning with `let someValues = ...`).
+Löschen schließlich die Zeile `text "Exercise 9"` in der `main`-Funktion und aktiviere den auskommentierten Code, beginnend mit `let someValues = ...`.
 
-The result should look like this:
+Das Resultat sollte folgendermaßen aussehen:
 
 * 43
 * 41
@@ -96,13 +98,13 @@ The result should look like this:
 Übung 9.2
 ---------
 
-Add another union type value named `Set` to the union type `Msg`. `Set` will  contain a value of type `Int` (like `SignedIn` above wrapped a `String` value).
+Füge einen weiteren Union Type Value names `Set` zum Union Type `Msg` hinzu. `Set` enthält einen `Int`, so wie `SignedIn` im obigen Beispiel einen `String` enthielt.
 
-Extend the function `update` so that `Set` is handled correctly. For example, `update 5 (Set 99)` would return 99.
+Erweitere die Funktion `update`, so dass `Set` korrekt verarbeitet wird. `update 5 (Set 99)` sollte zum Beispiel 99 zurückgeben.
 
-Finally, add another element to the list `someValues`, namely `update 42 (Set 10)`.
+Füge abschließend ein weiteres Element zur Liste `someValues` hinzu, welches `Set` verwendet, z. B. `update 42 (Set 10)`.
 
-The result then should look like this:
+Das Resultat sollte folgendermaßen aussehen:
 
 * 43
 * 41

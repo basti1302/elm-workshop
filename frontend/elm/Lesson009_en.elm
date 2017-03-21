@@ -54,7 +54,7 @@ authState2 : AuthenticationState
 authState2 = SignedIn "example-user"
 ```
 
-If a union type value contains additional data (like `SignedIn` in the example above) you can get this data out in a `case ... in` statement with pattern matching:
+If a union type value contains additional data (like `SignedIn` in the example above) you can get this data out in a `case ... of` statement with pattern matching:
 
 ```
 authStateToMessage : AuthenticationState -> String

@@ -10,6 +10,7 @@ TODO
 * Zeitplan
 * Probelauf Übungen
 * Slides für if, |>, Cmd
+* Lesson -> Unit
 * TODO-Liste aus Lesson 13 raus bzw. kürzen
 
 Später

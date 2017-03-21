@@ -25,9 +25,6 @@ main : Html a
 main =
     -- TODO Delete this line
     text "Exercise 9"
-
-
-
 -- TODO Uncomment the code below after implementing Msg and update
 -- let
 --     someValues =
