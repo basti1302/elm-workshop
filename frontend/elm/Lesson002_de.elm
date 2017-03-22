@@ -37,7 +37,7 @@ Definiere deine eigene Funktion namens `multiply`, die zwei Parameter entgegenni
 multiply a b = a * b
 ```
 
-Zuerst kommt der Funktionsname, dann die List der Parameter, wobei die einzelnen Parameter einfach durch Leerzeichen voneinander getrennt sind. Das Gleichheitszeichen leitet die Implementierung der Funktion ein. Da Elm keine imperative sondern eine funktionale Sprache ist, kann eine Funktionsimplementierung immer nur einen neuen Wert erzeugen, in Abhängigkeit von den Parametern.
+Zuerst kommt der Funktionsname, dann die Liste der Parameter, wobei die einzelnen Parameter einfach durch Leerzeichen voneinander getrennt sind. Das Gleichheitszeichen leitet die Implementierung der Funktion ein. Da Elm keine imperative sondern eine funktionale Sprache ist, kann eine Funktionsimplementierung immer nur einen neuen Wert erzeugen, in Abhängigkeit von den Parametern.
 
 Übung 2.4
 ------------

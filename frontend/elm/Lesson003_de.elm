@@ -13,7 +13,7 @@ Einheit 3 - Type Annotations
 Einleitung
 ----------
 
-Elm hat ein statisches Typsystem. Warum tauchten in unserem Code bisher gar keine Typen auf? Das liegt daran, dass Elm den eines Ausdrucks zuverlässig selbst ermitteln kann. Man kann seinen Code allerdings (optional) mit Typ-Annotationen anreichern. Als Best Practice gilt es, alle Top-Level-Funktionen mit Typ-Annotationen zu versehen. Typ-Annotationen werden vom Compiler beachtet - passt ein Ausdruck nicht zu seiner Typ-Annotation, gibt es einen Compile-Fehler.
+Elm hat ein statisches Typsystem. Warum tauchten in unserem Code bisher gar keine Typen auf? Das liegt daran, dass Elm den Typ eines Ausdrucks zuverlässig selbst ermitteln kann. Man kann seinen Code allerdings (optional) mit Typ-Annotationen anreichern. Als Best Practice gilt es, alle Top-Level-Funktionen mit Typ-Annotationen zu versehen. Typ-Annotationen werden vom Compiler beachtet - passt ein Ausdruck nicht zu seiner Typ-Annotation, gibt es einen Compile-Fehler.
 
 Eine Funktion mit einer Typ-Annotation sieht so aus:
 
@@ -29,7 +29,7 @@ concatenate string1 string2 =
     string1 ++ string2
 ```
 
-Eine Typ-Annotation wird in die Zeile direkt über der Funktionsdefinition geschrieben. Sie beginnt mit dem Funktionsnamen und einem Doppelpunkt `:`, gefolgt von den Typen er einzelnen Parameter. Diese werden mit `->` separiert aufgelistet. Der letzte Typ ist der Rückgabetyp der Funktion.
+Eine Typ-Annotation wird in die Zeile direkt über der Funktionsdefinition geschrieben. Sie beginnt mit dem Funktionsnamen und einem Doppelpunkt `:`, gefolgt von den Typen der einzelnen Parameter. Diese werden mit `->` separiert aufgelistet. Der letzte Typ ist der Rückgabetyp der Funktion.
 
 Einfache Werte können auch einen Typ-Annotation haben:
 

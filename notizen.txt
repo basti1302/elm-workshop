@@ -23,6 +23,7 @@ Fahrplan
 
 TODO
 ====
+* Deutsche Übersetzungen Korrektur lesen
 * Slides für if, |>, Cmd
 * Deutsche Übersetzung Unit 13
 * TODO-Liste aus Lesson 13 raus bzw. kürzen

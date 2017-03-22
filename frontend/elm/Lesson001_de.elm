@@ -26,7 +26,7 @@ Wenn du allerdings diese Seite hier in deinem Browser siehst und sie von http://
 Der Workshop
 ------------
 
-Dieser Workshop ist darauf ausgelegt, in einer Gruppe mit einem Trainer durchgeführt zu werden. Man kann die Aufgaben vermutlich auch alleine durchgehen, auch wenn das nicht die effektiveste Möglichkeit ist. Wenn du diesen Workshop in deiner Firma oder auf einer Konferenz durchführen möchtest, kannst gerne mit <a href="mailto:bastian.krol@codecentric.de">bastian.krol@codecentric.de</a> Kontakt aufnehmen. Die Länge des Workshops und die behandelten Themen sind flexibel und können auf eure individuellen Anforderungen abgestimmt werden, vom Halbtages-Grundlagen-Kurs bis zum mehrtägigen Elm-Bootcamp.
+Dieser Workshop ist darauf ausgelegt, in einer Gruppe mit einem Trainer durchgeführt zu werden. Man kann die Aufgaben vermutlich auch alleine durchgehen, auch wenn das nicht die effektivste Möglichkeit ist. Wenn du diesen Workshop in deiner Firma oder auf einer Konferenz durchführen möchtest, kannst du gerne mit <a href="mailto:bastian.krol@codecentric.de">bastian.krol@codecentric.de</a> Kontakt aufnehmen. Die Länge des Workshops und die behandelten Themen sind flexibel und können auf eure individuellen Anforderungen abgestimmt werden, vom Halbtags-Grundlagen-Kurs bis zum mehrtägigen Elm-Bootcamp.
 
 Elm Syntax Grundlagen
 ---------------------
@@ -60,7 +60,7 @@ import Html exposing (..)
 
 Damit importieren wir das `Html` Modul, so dass wir Funktionen aus diesem Modul benutzen können.
 
-Zu guter Letzt kommt die Funktion `main`.
+Zu guter Letzt kommt die Funktion `main`:
 
 ```
 main = text "Hello Elm!"
@@ -68,7 +68,7 @@ main = text "Hello Elm!"
 
 Dies ist der Einsprungspunkt in unser Modul. Das, was diese Funktion zurückgibt, wird dargestellt. Elm ist stark typisiert, daher können wir nicht einfach einen String zurückgeben. Stattdessen müssen wir den String "Hello Elm!" in einen *HTML Text-Knoten* konvertieren, in dem wir die Funktion `text` aus dem Model `Html` verwenden.
 
-Da wir in der `import`-Anweisung mit der Phrase `exposing (..)` *alle* Funktionen aus dem Model `Html` importieren, können wir deren Namen *unqualifiziert* verwenden. Das bedeutet, dass wir einfach `text` schreiben können statt `Html.text`. Hätten wir in der import Anweisung nur `import Html` geschrieben und das `exposing (..)` weggelassen, müssten wir im in unserer `main`-Funktion den vollqualifizierten Name `Html.text` verwenden.
+Da wir in der `import`-Anweisung mit der Phrase `exposing (..)` *alle* Funktionen aus dem Model `Html` importieren, können wir deren Namen *unqualifiziert* verwenden. Das bedeutet, dass wir einfach `text` schreiben können statt `Html.text`. Hätten wir in der import Anweisung nur `import Html` geschrieben und das `exposing (..)` weggelassen, müssten wir in unserer `main`-Funktion den vollqualifizierten Name `Html.text` verwenden.
 
 Nun, da wir die Grundlagen der Elm-Syntax kennen, können wir mit den praktischen Übungen loslegen.
 
