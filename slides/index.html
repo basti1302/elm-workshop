@@ -475,8 +475,8 @@ calculate =
     let
         twentyfour = 3 * 8
 
-        toThePowerOfTwo a =
-            a ^ 2
+        toThePowerOfTwo x =
+            x ^ 2
 
         sixteen = toThePowerOfTwo 4
 
@@ -646,9 +646,9 @@ main = text "Hello React Days!"
 main : Program Never Model Msg
 main =
     Html.beginnerProgram
-        { model = model
-        , view = view
-        , update = update
+        { model = ...?
+        , view = ...?
+        , update = ...?
         }
 </code></pre>
         </section>
@@ -693,6 +693,19 @@ update msg model =
   case msg of
     Increment -&gt; model + 1
     Decrement -&gt; model - 1
+</code></pre>
+        </section>
+
+        <section>
+          <h2>Counter App - main</h2>
+          <pre><code class="hljs" data-trim contenteditable>
+main : Program Never Model Msg
+main =
+    Html.beginnerProgram
+        { model = model
+        , view = view
+        , update = update
+        }
 </code></pre>
         </section>
 
