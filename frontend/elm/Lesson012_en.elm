@@ -122,6 +122,8 @@ Exercise 12.2 (optional)
 
 Replace the `type alias Model = Int` with a type alias for a record type that only has one integer attribute named `counter`. Update the rest of the code accordingly.
 
+Hint: If the Elm compiler stops complaining, it is very likely that refactoring is finished and your app works fine again. This is a very common experience in Elm and even very big refactorings work out like this - if it compiles, it works! :)
+
 Exercise 12.3 (optional)
 ------------------------
 

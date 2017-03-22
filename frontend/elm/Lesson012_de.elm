@@ -54,37 +54,35 @@ type Msg = Increment | Decrement
 
 ### Update
 
-The `update` function must have the signature `update : Msg -> Model -> Model`, that is, it takes a message and the current state of the model. It then produces the new state of the model after processing the message. Most update functions use a `case ... of` statement to check which message value they have received.
+Die Funktion `update` muss die Signatur `update : Msg -> Model -> Model` haben, sie bekommt also eine Message und den aktuellen Zustand des Modells. AufBasis dieser Eingaben erzeugt sie den *neuen* Zustand des Modells, der durch die Verarbeitung der Message erzeugt wird. Die meisten update-Funktionen benutzen `case ... of`, um festzustellen, welche Message sie erhalten haben.
 
 ### View
 
-The `view` function takes the current state of the model and produces corresponding HTML.
+Die Funktion `view` bekommt den aktuellen Zustand des Modells und produziert auf dieser Basis HTML.
 
-In a web app, the user can trigger events by interacting with the page (clicking a button, typing in a text field, etc.). User interaction is modelled as messages in Elm. The type of the messages that can be triggerd from a view is up to us, that is why the type `Html` takes a type parameter (such as `Html a` or `Html Msg`). Since our message type is `Msg`, the signature of our `view` function needs to be `view : Model -> Html Msg`. The message types used in the update function and in the view function must be the same, otherwise the compiler will complain.
+In einer Web App löst die Benutzerin durch ihre Interaktion mit der App Ereignisse aus (sie klickt auf einen Button, gibt etwas in ein Eingabefeld ein, etc.). Benutzerunteraktion wird in Elm als Message modelliert. Der Typ der Messages, die von einer View erzeugt werden, bleibt dabei uns überlassen. Das ist der Grund, warum der Typ `Html` einen Typparameter hat (z. B. `Html Msg`). Da unser Message-Typ `Msg` ist, muss die Signatur unserer `view`-Funktion `view : Model -> Html Msg` sein. Der Message-Typ in unserer update-Funktion muss der gleiche sein wie in unserer view-Funktion, ansonsten beschwert sich der Compiler.
 
-Side note: Remember exercise 3.2 when we said that the type of `main` is not simply `Html` but `Html a` and that we would come back to this type parameter later? Well, now this mystery has been solved. Since we were not interested in the messages produced by the HTML in our earlier examples, we simply used an unbound *type variable* `a` there and ignored it.
+Randbemerkung: In Übung 3.2 hatten wir gesagt, dass der Typ von `main` nicht einfach `Html` sondern `Html a` ist und dass wir später darauf zurückkommen. Nun haben wir die Erklärung dazu. Da unser HTML in Übung 3.2 noch gar keine Messages produziert hat, war uns der Typparameter an dieser Stelle egal und wir haben eine ungebundene *Typvariable* `a` verwendet.
 
 ### Events
 
-To make an HTML element do anything, we use the `Html.Events` module. It contains things like `onClick`, `onInput`, `onBlur` and so on.
-
-To use it, we need a new import at the top of the module:
+Um die Benutzerinteraktion in unserem HTML zu ermöglichen, benutzen wir das Modul `Html.Events`. Es stellt Funktionen wie `onClick`, `onInput` und `onBlur` zur Verfügung. Um es benutzen zu können, benötigen wir einen weiteren Import in unserem Modul:
 
 ```
 import Html.Events exposing (..)
 ```
 
-We attach event handlers to our DOM elements by adding them to the first of the two lists that we pass to each Html function:
+Um einen Event-Handler an ein DOM-Element zu binden, wird dieser im ersten der beiden Listen-Parameter übergeben, die jede HTML-Funktion bekommt:
 
 ```
 button [ onClick Increment ] [ text "+" ]
 ```
 
-This renders a button element with a "+" on it. When this button is clicked, the `Increment` message is produced. The Elm runtime will feed all messages that our view produces back into our `update` function, where we can process them to update our model.
+Dieser Code erzeugt einen Button mit der Beschriftung "+". Wenn der Button angeklickt wird, wird die Message `Increment` erzeugt. Die Elm-Runtime ruft für jede Message, die in unserer View erzeugt wird, unsere `update`-Funktion auf. Dort können wir die Nachricht verarbeiten und unser Modell entsprechend aktualisieren.
 
 ### Main
 
-Finally, with everything in place, we can call `Html.beginnerProgram` from our `main` function and pass the required record:
+Jetzt haben wir alle Bestandteile beisammen und können sie als Record an `Html.beginnerProgram` übergeben (in unserer `main`-Funktion):
 
 ```
 main : Program Never Model Msg
@@ -96,48 +94,49 @@ main =
         }
 ```
 
-The rest will be handeld by `Html.beginnerProgram` and the Elm runtime.
+Um den Rest kümmert sich `Html.beginnerProgram` und die Elm-Runtime.
 
-Relevant Docs
--------------
+Relevante Dokumentation
+-----------------------
 
 * http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram
 * https://guide.elm-lang.org/architecture/
 
 Übung 12.1
--------------
+----------
 
-Open the file  `frontend/elm/Example012.elm` in an editor. It outlines most of what we have discussed above. A few things are missing, tough, so the buttons won't work.
+Öffne die Datei `frontend/elm/Example012.elm` in einem Editor. Dort ist schon ein Teil der oben behandelten Struktur skizziert. Es fehlen aber noch ein paar Dinge und die Buttons funktionieren noch nicht.
 
-* Add the `Increment` and `Decrement` messages to the `Msg` type.
-* Remove the `NoOp` message from to the `Msg` type.
-* Implement the `update` function so that it correctly processes `Increment` and `Decrement` messages and returns an updated model.
-* Add `onClick` handlers to the buttons in the `view` function.
-* Verify that everything works as expected by clicking on the buttons in the "Elm output" panel above.
-
+* Füge die `Increment`- und `Decrement`-Messages zum Typ `Msg` hinzu.
+* Entferene die `NoOp` message.
+* Implementiere die `update`-Funktion, so dass `Increment` und `Decrement` korrekt verarbeitet werden.
+* Füge den Buttons in der `view`-Funktion die passenden `onClick` handler hinzu.
+* Überprüfe, dass alles wie erwartet funktioniert - teste deine App im obigen "Elm Output" Panel.
 
 Übung 12.2 (optional)
-------------------------
+---------------------
 
-Replace the `type alias Model = Int` with a type alias for a record type that only has one integer attribute named `counter`. Update the rest of the code accordingly.
+Ersetze den Alias `type alias Model = Int` durch einen Typ-Alias für einen Recordtyp, der nur ein Integer-Attribut namens `counter` hat. Passe den Rest des Codes entsprechend an.
+
+Tip: Wenn der Elm-Compiler nicht mehr meckert, ist das Refactoring höchstwahrscheinlich abgeschlossen und deine App funktioniert wieder tadellos. Das ist fast immer so, wenn man mit Elm arbeitet, egal wie groß das Refactoring ist. Wenn es kompiliert, läufts! :)
 
 Übung 12.3 (optional)
-------------------------
+---------------------
 
-This one is a bit more difficult :-)
+Diese Übung ist ein kleines bisschen schwieriger :-)
 
-Add an input field after the buttons and send a message, when the input changes. Let's say we call this new message `OnInput`. Since this event will contain a string value, the new `Msg`  will need to be something like `OnInput String`.
+Füge noch ein Texteingabefeld hinter den Buttons hinzu. Das Eingabefeld sollte eine Message erzeugen, wenn sich sein Inhalt ändert. Wir könnten diese Nachricht z. B. `OnInput` nennen. Da diese Nachricht einen String enthalten wird, muss der neue `Msg`-Wert so etwas wie `OnInput String` sein.
 
-Add code to the `update` function to overwrite the current counter value with the value contained in the `OnInput` message. Note: You will receive a string there, which you will need to convert into an integer. The functions [`String#toInt`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/String#toInt) and [Result.withDefault](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Result#withDefault) might be useful here.
+Füge der `update`-Funktion Code hinzu, die den aktuellen Counter mit dem Wert überschreibt, der in der `OnInput`-Nachricht enthalten ist. Da die Nachricht einen String enthält, muss dieser zuerst in einen Integer konvertiert werden. Die Funktionen [`String#toInt`](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/String#toInt) und [Result.withDefault](http://package.elm-lang.org/packages/elm-lang/core/5.1.1/Result#withDefault) könnten hier nützlich sein.
 
 ----
 
-The half day workshop ends here. Congratulations for finishing it! <3
+Der Halbtags-Workshop endet hier. Herzlichen Glückwunsch zur erfolgreichen Bearbeitung der Aufgaben!
 
-Of course you are welcome to
-* explorer lessons and/or exercises you might have skipped,
-* review the covered material again and experiment some more with the code in the exercises you have completed, or
-* continue with the next exercise that would be covered in a longer workshop (full day or multi day).
+Natürlich kannst du gerne noch weitermachen, z. B.
+* Einheiten und/oder Übungen bearbeiten, die wir übersprungen haben,
+* das bearbeitete Material noch einmal durchgehen und etwas mehr mit dem Code in den Übungen experimentieren oder
+* mit der nächsten Einheit weitermachen, die sonst in einer längeren Version des Workshops (Ganztagesworkshop oder mehrtägiger Workshop) abgedeckt würde.
 
-<span class="fa fa-hand-o-right"></span> Mach weiter mit **[Einheit 13](/#013)**, or review one of the skipped lessons, for example about conditionals (<span class="fa fa-hand-o-right"></span> **[Einheit 10](/#010)**) or about fancy function application (<span class="fa fa-hand-o-right"></span>  **[Einheit 11](/#011)**).
+<span class="fa fa-hand-o-right"></span> Mach weiter mit **[Einheit 13](/#013)**, oder schaue dir eine der übersprungenen Einheiten an, z. B. die Einheit zu Verzweigungen (<span class="fa fa-hand-o-right"></span> **[Einheit 10](/#010)**) oder zu fortgeschrittener Funktionsanwendung (<span class="fa fa-hand-o-right"></span>  **[Einheit 11](/#011)**).
 """
