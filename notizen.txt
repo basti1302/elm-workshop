@@ -1,37 +1,37 @@
 22 MAR 2017
-13:30 - 17:00
+13:30 - 17:00, halbe Stunde Pause
 
-3,5 Stunden
+3 Stunden
+
+Fahrplan
+========
+
+13:30 Slides: Einleitung         (5 Minuten)
+13:35 Slides: Syntax Basics     (15 Minuten)
+13:50 Hands On: Exercises 2-4   (10 Minuten)
+14:00 Slides: HTML & Let        (15 Minuten)
+14:15 Hands On: Exercises 5 & 6 (10 Minuten)
+14:25 Slides: Type System       (15 Minuten)
+14:40 Hands On: Exercises 8 & 9 (20 Minuten)
+15:00 Pause                     (30 Minuten)
+15:30 Feedback-Bögen            (nebenbei)
+15:30 Slides: User Interaction  (40 Minuten)
+16:10 Hands On: Exercise 12     (40 Minuten)
+16:50 Ende. 10 Minuten Puffer.
+..... Nach Belieben: Function Application, Conditionals, HTTP...
+..... Nach Belieben: Hands On
 
 TODO
 ====
-* Deutsche Übersetzungen
-* Probellauf Vortragsteil
-* Zeitplan
-* Probelauf Übungen
 * Slides für if, |>, Cmd
-* Lesson -> Unit
+* Deutsche Übersetzung Unit 13
 * TODO-Liste aus Lesson 13 raus bzw. kürzen
 
-Später
-======
+TODO Später (optional)
+----------------------
 * Lesson/Exercise 13 als direkte Fortsetzung von Lesson 12 gestalten
-* Lesson in Unit umbenennenA
-* Syntax-Highlighting für Code-Blöcke
-
-Erledigt
-========
-√ Setup
-√ Code-Beispiele in den Aufgaben, damit Teilnehmer das Beispiel gleichzeitig mit
-  der Aufgabe sehen.
-√ Beispielprojekt mit webpack, elm, ggf. express für Backend
-√ Themen sortieren, in Reihenfolge bringen, roter Faden
-√ Aufgaben im Beispielprojekt vorbereiten.
-√ Kürzen!!!!
-√ Folien (Konzepte erklären, Beispiele)
-√ Zweisprachig/Deutsch
-√ Compile-Fehler im Browser anzeigen?
-√ Abwechselnde Blöcke mit Vortrag und Hands on. Aber nicht zu viel Vortrag!
+* Lesson in Unit umbenennen
+* Syntax-Highlighting für Code-Blöcke in den Lessons/Units
 
 Scope
 =====
@@ -56,18 +56,18 @@ Syntax
 √ Html.beginnerProgram
 √ button, click event
 √ text input, change event
-√ Elm-Architecture (einfache Version)
-    * zentrales Model
-    * update Funktion
-    * view function
-* Maybe
-* Imports, Module, Exposing, full qualified vs. non-qualified
-* [Typen: Tuple, Html.Attributes.style]
 √ [Typen: Primitive: Int, Bool, String]
+√ Elm-Architecture (einfache Version)
+    √ zentrales Model
+    √ update Funktion
+    √ view function
+x Maybe
+x Imports, Module, Exposing, full qualified vs. non-qualified, eigene Module
+x [Typen: Tuple, Html.Attributes.style]
 
 √ Backend HTTP (only in full day workshop) & Cmd
-* Web Sockets? (only in full day workshop)
-* Tasks (only in full day workshop)
+x Tasks (only in full day workshop)
+x Web Sockets? (only in full day workshop)
 
 Passt das noch?
 ===============
