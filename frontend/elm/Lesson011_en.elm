@@ -45,7 +45,7 @@ Thus, this would be legal Elm code:
 
 ```
 12 |> compare 7
--- => LT (which means that 7 is less then 12)
+-- => LT (which means that 7 is less than 12)
 ```
 
 This code passes the value 12 into a function that takes one parameter and compares every incoming parameter with 7.

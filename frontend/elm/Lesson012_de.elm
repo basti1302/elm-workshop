@@ -7,38 +7,37 @@ import Markdown
 main : Html a
 main =
     Markdown.toHtml [] """
-Einheit 12 - Web Apps (Finally)
-==============================
+Einheit 12 - Web Apps (endlich!)
+================================
 
-Introduction
-------------
+Einleitung
+----------
 
-Until now, we only have talked about static HTML and Elm syntax basics. It is high time to write something more interactive. After all, that is what Elm is all about - interactive web apps.
+Bis jetzt haben wir nur über statisches HTML und die Elm-Syntax geredet. Höchste Zeit, etwas zu programmieren, das ein bisschen interaktiver ist. Schließlich ist Elm für interaktive Web Apps gedacht.
 
-Let's write a simple counter app that displays an integer value and has two buttons to increment and decrement the counter.
+Wir schreiben im folgenden eine minimalistische Zähler-App, die einen Zähler anzeigt und zwei Buttons, um den Zähler zu inkrementieren und dekrementieren.
 
-To do so, we stop returning static HTML from our `main` function. That's not how actual Elm apps are written anyway.
+Um das zu erreichen, geben wir aus unserer `main`-Funktion nicht mehr statisches HTML zurück. So funktioniert eine typische Elm App ohnehin nicht. Stattdessen benutzen Elm Apps üblicherweise eine der folgenden drei Optionen:
 
-Instead, the `main` function of any Elm app usually uses one of three options:
 * [Html.beginnerProgram](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#beginnerProgram),
 * [Html.program](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#program) or
 * [Html.programWithFlags](http://package.elm-lang.org/packages/elm-lang/html/2.0.0/Html#programWithFlags).
 
-We ignore `Html.program` and `Html.programWithFlags` for now and use `Html.beginnerProgram`. This function expects us to pass a record with three things:
+`Html.program` und `Html.programWithFlags` ignorieren wir erst fürs erste und benutzen `Html.beginnerProgram`. Dieser Funktion müssen wir einen Record mit drei Attributen geben:
 
-* a `model` value, which is the initial data model for our app,
-* a `view` function, which turns a model into HTML, and
-* an `update` function which will process messages (user input, mouse clicks, returning HTTP calls, etc.) and update the model accordingly.
+* einen Wert `model`, der den initialen Zustand unseres Modells darstellt,
+* eine Funktion `view`, die das Modell in HTML übersetzt, und
+* eine Funktion `update` die alle *Messages* (Benutzereingaben, Mausklicks, zurückkehrende HTTP-Requests, etc.) verarbeitet und das Modell entsprechend der eingehenden Message aktualisiert.
 
 ### Model
 
-The `model` can have any type we want (Elm uses type variables to achieve this). By conventions, we usually declare a type named `Model` for that, which could be a record type, a simple type alias, a List, you name it. For our counter app example, we could use
+Das `model` kann von einem beliebigen Typ sein. Elm benutzt Typ-Variablen, um das zu erreichen. Der Konvention nach deklarieren wir einen Typ namens `Model` dafür. Das könnte ein Record-Typ sein, eine Liste, ein simpler Typ-Alias, was auch immer für unseren Anwendungsfall gerade passt. Für unsere Zähler-App könnten wir z. B. Folgendes verwenden:
 
 ```
 type alias Model = Int
 ```
 
-because all we need as our model is a simple integer. With that in place, we can initialise our model:
+Wir benötigen ja als unser Modell nur einen simplen Integer. Nun, da wir den Typ festgelegt haben, initialisieren wir das Modell:
 
 ```
 model : Model
@@ -47,7 +46,7 @@ model = 0
 
 ### Messages
 
-We also need a union type (usually called `Msg`) describing the messages that our `update` function will receive. For our counter app, we only need two messages:
+Des Weiteren benötigen wir einen Union Type (üblicherweise `Msg` genannt) der die Messages beschreibt, die unsere `update`-Funktion bekommt. Für die Zähler-App benötigen wir erstmal nur zwei Messages:
 
 ```
 type Msg = Increment | Decrement
