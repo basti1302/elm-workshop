@@ -25,7 +25,15 @@ var leftPad = require('left-pad');
   // the Elm file we mention here.
   // Thus, all modules are available as Elm.Full.Qualified.Module.Name
   // after this require call.
-  var Elm = require('../elm/Example001');
+  var example001 = require('../elm/Example001');
+  console.log('example001', Object.keys(example001));
+  var lesson001 = require('../elm/Lesson001_en');
+  console.log('lesson001', Object.keys(lesson001));
+  var example002 = require('../elm/Example002');
+  console.log('example002', Object.keys(example002));
+  var lesson002 = require('../elm/Lesson002_en');
+  console.log('lesson002', Object.keys(lesson002));
+  var Elm = {};
 
   var maxLessonIndex = 999;
   var languages = ['en', 'de'];

@@ -1,26 +1,13 @@
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
+var ElmMultipleMainPlugin = require('./webpack/elm-multiple-main-plugin');
 var autoprefixer      = require('autoprefixer');
 var glob              = require('glob');
 var merge             = require('webpack-merge');
 var path              = require('path');
 var process           = require('process');
 var webpack           = require('webpack');
-
-// collect all entry point Elm modules
-var exampleModules = glob.sync('frontend/elm/Example*.elm');
-var lessonModules = glob.sync('frontend/elm/Lesson*.elm');
-var solutionModules = glob.sync('frontend/elm/Solution*.elm');
-var elmModules =
-  exampleModules
-  .concat(lessonModules)
-  .concat(solutionModules)
-  .map(function(modulePath) {
-    return path.resolve( __dirname, modulePath);
-  });
-
-console.log('Found Elm modules: \n', elmModules);
 
 // detemine build env
 var TARGET_ENV =
@@ -69,6 +56,7 @@ var commonConfig = {
       inject:   'body',
       filename: 'index.html',
     }),
+    new ElmMultipleMainPlugin(),
   ],
 };
 
@@ -107,8 +95,7 @@ if (TARGET_ENV === 'development') {
                 verbose: true,
                 warn: true,
                 debug: true,
-                cwd: __dirname,
-                modules: elmModules
+                cwd: __dirname
               }
             }
           ]
@@ -146,9 +133,6 @@ if (TARGET_ENV === 'production') {
           exclude: [/elm-stuff/, /node_modules/],
           use: {
             loader: 'elm-webpack-loader',
-            options: {
-              modules: elmModules,
-            }
           }
         },
         {

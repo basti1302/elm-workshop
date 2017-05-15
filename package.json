@@ -50,7 +50,7 @@
     "make": "run-s elm-install webpack-production",
     "webpack-production": "webpack",
     "watch-webpack-production": "webpack -w",
-    "start": "run-p serve-workshop serve-slides",
+    "start": "run-p serve-workshop",
     "serve-workshop": "webpack-dev-server --hot --inline --content-base frontend/",
     "serve-slides": "http-server slides -p7001"
   }
