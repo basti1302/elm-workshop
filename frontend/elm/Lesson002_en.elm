@@ -15,7 +15,7 @@ Open the file `frontend/elm/Example002.elm` in an editor. It looks exactly like 
 Exercise 2.1
 ------------
 Change the text "Hello Elm!" to something else. Check the result in your browser.
-Notice that as long as `npm start` is running, you only need to save the file. The Webpack dev server will recompile everything automatically and trigger a browser refresh. For each exercise, the corresponding Elm module (`frontend/elm/Examplexxx.elm`) is embedded in the page in the "Elm output" panel above, so you can check your results right there. If your code does not compile, the compile errors will also be shown in the browser. Additionaly, compile errors will show up in the output of the webpack-dev-server process (the shell where you started `npm start`).
+Notice that as long as `npm start` is running, you only need to save the file. The Webpack dev server will recompile everything automatically and trigger a browser refresh. For each exercise, the corresponding Elm module (`frontend/elm/Examplexxx.elm`) is embedded in the page in the "Elm output" panel above, so you can check your results right there. If your code does not compile, the compile errors will also be shown in the browser's dev tools console. You should have the dev tools and the console tab open at all times. Additionaly, compile errors will show up in the output of the webpack-dev-server process (the shell where you started `npm start`).
 
 Exercise 2.2
 ------------
