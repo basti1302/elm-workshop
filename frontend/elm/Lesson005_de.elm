@@ -129,7 +129,7 @@ Schreibe eine Funktion `renderListItem : String -> Html a`, die einen String als
 </ul>
 ```
 
-Die Implementierung von `main` aus der vorigen Übung muss dazu komplett gelöscht und durch ein `ul` ersetzt werden, dass einen `List.map`-Ausdruck als zweiten Parameter erhält. Ggf. musst du den `List.map`-Aufruf samt Parametern in Klammer setzen.
+Die Implementierung von `main` aus der vorigen Übung muss dazu komplett gelöscht und durch ein `ul` ersetzt werden, dass einen `List.map`-Ausdruck als zweiten Parameter erhält. Ggf. musst du den `List.map`-Aufruf samt Parametern in runde Klammer setzen.
 
 ----
 
